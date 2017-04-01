@@ -10,7 +10,9 @@ import {
 
 } from 'react-native';
 
-
+// Form for Username & Password
+// secureTextEntry hiddes the users-input.
+// TouchableOpacity changes the layout when writing with keybord.
 export default class Login extends Component {
   render(){
     return (
@@ -42,7 +44,7 @@ export default class Login extends Component {
 }
 
 
-
+// StyleSheet
 const styles = StyleSheet.create({
   container: {
     padding: 20

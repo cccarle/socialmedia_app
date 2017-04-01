@@ -8,38 +8,58 @@ import {
   Button,
   StyleSheet,
   Image,
-    StatusBar
+  StatusBar,
+  Navigator
 } from 'react-native';
-// importing navigator to switch between pages
+// import components
 import { StackNavigator } from 'react-navigation';
 import Login from './src/components/Login/Login';
-import home from './src/components/home';
+import HomeScreen from './src/components/home';
+import Settings from './src/components/settings';
+import RockSetting from './src/components/settings/rock';
+import BluesSetting from './src/components/settings/blues';
+import PopSetting from './src/components/settings/pop';
+import JazzSetting from './src/components/settings/jazz';
 
 
-class githubapp extends React.Component{
+// setting up to navigate to Login as firstpage
+class AmpSettingProject extends React.Component{
  render(){
    return (
-     <Login />
+     <Navigator
+     initialRoute ={{
+       id: 'Login'
+     }}
+     renderScene={
+       this.AmpSettingProject
+     }
+     />
    );
  }
+
+ // Navigates
+AmpSettingProject(route,navigator){
+  _navigator = navigator;
+  switch (route.id) {
+    case 'Login':
+    return(<Login navigator={navigator} title='Login'/>);
+    case 'HomeScreen':
+    return(<HomeScreen navigator={navigator} title='Home'/>);
+    case 'Settings':
+    return(<Settings navigator={navigator} title='Settings'/>);
+    case 'RockSetting':
+    return(<RockSetting navigator={navigator} title='RockSetting'/>);
+    case 'BluesSetting':
+    return(<BluesSetting navigator={navigator} title='BluesSetting'/>);
+    case 'PopSetting':
+    return(<PopSetting navigator={navigator} title='PopSetting'/>);
+    case 'JazzSetting':
+    return(<JazzSetting navigator={navigator} title='JazzSetting'/>);
+  }
 }
 
-export default class homes extends Component{
- render(){
-   return (
-     <home />
-   );
- }
 }
 
-
-// The navigation pages
-const AmpSettingProject = StackNavigator({
-  githubapp:{ screen: githubapp},
-  homes:{screen: homes}
-
-
-});
 
 // app reg, Shows the react Component on the screen
 

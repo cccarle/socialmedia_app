@@ -12,13 +12,14 @@ import {
   navigate
 } from 'react-native';
 
-// Homescreen after login 
+// Homescreen after login
  class HomeScreen extends Component {
    onButtonPress(){
      this.props.navigator.push({
        id: 'Settings'
      });
    }
+   
   render() {
     return (
       <View style={styles.box}>

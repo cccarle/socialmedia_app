@@ -15,15 +15,20 @@ import {
 import { StackNavigator } from 'react-navigation';
 import Login from './src/components/Login/Login';
 import HomeScreen from './src/components/home';
-import Settings from './src/components/settings';
+import Settings from './src/components/settings/settings';
 import RockSetting from './src/components/settings/rock';
 import BluesSetting from './src/components/settings/blues';
 import PopSetting from './src/components/settings/pop';
 import JazzSetting from './src/components/settings/jazz';
+import User from './src/components/regUser/RegisterUser';
 
+//import { firebaseRef } from './src/components/Login/firebase';
 
 // setting up to navigate to Login as firstpage
 class AmpSettingProject extends React.Component{
+
+
+
  render(){
    return (
      <Navigator
@@ -55,6 +60,8 @@ AmpSettingProject(route,navigator){
     return(<PopSetting navigator={navigator} title='PopSetting'/>);
     case 'JazzSetting':
     return(<JazzSetting navigator={navigator} title='JazzSetting'/>);
+    case 'User':
+    return(<User navigator={navigator} title='User'/>);
   }
 }
 

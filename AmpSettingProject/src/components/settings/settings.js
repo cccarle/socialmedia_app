@@ -17,28 +17,48 @@ import {
 // Create first react Component
 // first page
 class Settings extends React.Component {
-  onButtonPress(){
+  onButtonPress1(){
     this.props.navigator.push({
-      id: 'RockSetting',
-      id: 'BluesSetting',
-      id: 'PopSetting',
-      id: 'JazzSetting',
+      id: 'RockSetting'
+    });
+  }
+  onButtonPress2(){
+    this.props.navigator.push({
+      id: 'BluesSetting'
+    });
+  }
+  onButtonPress3(){
+    this.props.navigator.push({
+      id: 'PopSetting'
+    });
+  }
+  onButtonPress4(){
+    this.props.navigator.push({
+      id: 'JazzSetting'
+    });
+  }
+  onButtonPress4(){
+    this.props.navigator.push({
+      id: 'HomeScreen'
     });
   }
   render() {
     return (
       <View style={styles.backgroundColor}>
         <Text style={styles.headerText}>Settings</Text>
-        <TouchableOpacity onPress={this.onButtonPress.bind(this)}>
+          <TouchableOpacity onPress={this.onButtonPress4.bind(this)}>
+        <Text style={styles.buttonText}>Back to ChooseSetting</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.onButtonPress1.bind(this)}>
       <Text style={styles.buttonText}>RockSetting</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={this.onButtonPress.bind(this)}>
+      <TouchableOpacity onPress={this.onButtonPress2.bind(this)}>
     <Text style={styles.buttonText}>BluesSetting</Text>
     </TouchableOpacity>
-    <TouchableOpacity onPress={this.onButtonPress.bind(this)}>
+    <TouchableOpacity onPress={this.onButtonPress3.bind(this)}>
   <Text style={styles.buttonText}>PopSetting</Text>
   </TouchableOpacity>
-  <TouchableOpacity onPress={this.onButtonPress.bind(this)}>
+  <TouchableOpacity onPress={this.onButtonPress4.bind(this)}>
 <Text style={styles.buttonText}>JazzSetting</Text>
 </TouchableOpacity>
       </View>

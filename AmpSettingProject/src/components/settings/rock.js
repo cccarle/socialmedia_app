@@ -13,13 +13,22 @@ import {
 } from 'react-native';
 
 class RockSetting extends React.Component {
-  static navigationOptions = {
-    title: 'Rock-Setting',
-  };
+  onButtonPress1(){
+    this.props.navigator.push({
+      id: 'Settings'
+    });
+  }
   render() {
     return (
+
+
       <View style={styles.backgroundColor}>
+        <TouchableOpacity onPress={this.onButtonPress1.bind(this)}>
+      <Text style={styles.headerText}>Back to the pre-made settings</Text>
+      </TouchableOpacity>
         <Text style={styles.headerText}>Rock-Setting</Text>
+          <Text style={styles.headerText}> Here is some text about RockSettings !</Text>
+
       </View>
     );
   }

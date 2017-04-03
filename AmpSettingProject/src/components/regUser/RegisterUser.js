@@ -12,18 +12,13 @@ import {
 } from 'react-native';
 
 // importing the form for the username & password
-import LoginForm from './LoginForm';
+import RegisterForm from './registerForm';
 
-export default class Login extends Component {
+export default class User extends Component {
 // Function that refer to this & bind. Navigates to HomeScreen.
-  onButtonPress1(){
+  onButtonPress(){
     this.props.navigator.push({
-      id: 'HomeScreen',
-    });
-  }
-  onButtonPress2(){
-    this.props.navigator.push({
-      id: 'User',
+      id: ''
     });
   }
   render(){
@@ -35,16 +30,10 @@ export default class Login extends Component {
       style={styles.logo}
         source={require('../../images/logo.png')}
       />
-      <Text style={styles.titleText}> Welcome to test-application @carlejnarsson</Text>
+    <Text style={styles.titleText}> Create new user to acess more functionalities. </Text>
       </View>
       <View style = {styles.formConatiner}>
-      <LoginForm />
-        <TouchableOpacity onPress={this.onButtonPress1.bind(this)} style={styles.buttonContainer}>
-      <Text style={styles.buttonText}>Skip Login</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={this.onButtonPress2.bind(this)} style={styles.buttonContainer}>
-    <Text style={styles.buttonText}>Create User</Text>
-    </TouchableOpacity>
+      <RegisterForm />
       </View>
       </KeyboardAvoidingView>
       </View>
@@ -87,9 +76,8 @@ const styles = StyleSheet.create({
   formConatiner: {
     height: 210
   },
-  buttonText: {
-    textAlign: 'auto'
 
-  }
 
 });
+
+module.exports = User;

@@ -15,28 +15,12 @@ import {
 // Form for Username & Password
 // secureTextEntry hiddes the users-input.
 // TouchableOpacity changes the layout when writing with keybord.
-export default class Login extends Component {
-
-  // constructor(props){
-  //   super(props)
-  //
-  //   this.state = {
-  //     email: '',
-  //     password: ''
-  //   }
-  //
-  //   this._login = this._login.bind(this)
-  //   this._register = this._register.bind(this)
-  // }
-  //
-  // _login(){
-  //   firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
-  //   // Handle Errors here.
-  // console.log(error.code);
-  //   console.log(error.message);
-  //   // ...
-  // });
-  // }
+export default class User extends Component {
+  onButtonPress(){
+    this.props.navigator.push({
+      id: 'Login,'
+    });
+  }
   render(){
     return (
       <View style= {styles.container}>
@@ -60,13 +44,9 @@ export default class Login extends Component {
       ref={(input) => this.passwordInput = input}
       />
 
-      <TouchableOpacity style={styles.buttonContainer}>
-<Text style={styles.buttonText}>LOGIN</Text>
+    <TouchableOpacity onPress={this.onButtonPress.bind(this)} style={styles.buttonContainer}>
+<Text style={styles.buttonText}>Create New User ! </Text>
 </TouchableOpacity>
-
-
-
-
       </View>
     );
   }

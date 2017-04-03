@@ -13,10 +13,20 @@ import {
 } from 'react-native';
 
 class PopSetting extends React.Component {
+  onButtonPress1(){
+    this.props.navigator.push({
+      id: 'Settings'
+    });
+  }
   render() {
     return (
       <View style={styles.backgroundColor}>
+        <TouchableOpacity onPress={this.onButtonPress1.bind(this)}>
+      <Text style={styles.headerText}>Back to the pre-made settings</Text>
+      </TouchableOpacity>
         <Text style={styles.headerText}>PopSettingss</Text>
+          <Text style={styles.headerText}> Here is some text about PopSettings !</Text>
+
       </View>
     );
   }

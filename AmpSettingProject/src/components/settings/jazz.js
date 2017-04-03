@@ -13,11 +13,19 @@ import {
 } from 'react-native';
 
 class JazzSetting extends React.Component {
+  onButtonPress1(){
+    this.props.navigator.push({
+      id: 'Settings'
+    });
+  }
   render() {
     return (
       <View style={styles.backgroundColor}>
+        <TouchableOpacity onPress={this.onButtonPress1.bind(this)}>
+      <Text style={styles.headerText}>Back to the pre-made settings</Text>
+      </TouchableOpacity>
         <Text style={styles.headerText}>JazzSetting</Text>
-        <Text style={styles.headerText}> hej ooiajsdiojas djasiodj asoijd i</Text>
+        <Text style={styles.headerText}> Here is some text about JazzSettings !</Text>
       </View>
     );
   }

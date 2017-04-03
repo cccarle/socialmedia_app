@@ -37,7 +37,7 @@ class Settings extends React.Component {
       id: 'JazzSetting'
     });
   }
-  onButtonPress4(){
+  onButtonPress5(){
     this.props.navigator.push({
       id: 'HomeScreen'
     });
@@ -46,7 +46,7 @@ class Settings extends React.Component {
     return (
       <View style={styles.backgroundColor}>
         <Text style={styles.headerText}>Settings</Text>
-          <TouchableOpacity onPress={this.onButtonPress4.bind(this)}>
+          <TouchableOpacity onPress={this.onButtonPress5.bind(this)}>
         <Text style={styles.buttonText}>Back to ChooseSetting</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={this.onButtonPress1.bind(this)}>
@@ -65,7 +65,6 @@ class Settings extends React.Component {
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   headerText: {

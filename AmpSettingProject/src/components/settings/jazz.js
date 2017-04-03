@@ -24,8 +24,9 @@ class JazzSetting extends React.Component {
         <TouchableOpacity onPress={this.onButtonPress1.bind(this)}>
       <Text style={styles.headerText}>Back to the pre-made settings</Text>
       </TouchableOpacity>
-        <Text style={styles.headerText}>JazzSetting</Text>
-        <Text style={styles.headerText}> Here is some text about JazzSettings !</Text>
+        <Text style={styles.headerText}>JazzSettingss</Text>
+          <Text style={styles.headerText}> Here is some text about JazzSettings !</Text>
+
       </View>
     );
   }

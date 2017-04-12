@@ -13,29 +13,24 @@ import {
 } from 'react-native';
 
 // Homescreen after login
- class HomeScreen extends Component {
+ class CreateSettings extends Component {
    onButtonPress1(){
      this.props.navigator.push({
-       id: 'Settings'
+       id: 'HomeScreen'
      });
    }
-   onButtonPress2(){
-     this.props.navigator.push({
-       id: 'CreateSettings'
-     });
-   }
+
   render() {
     return (
       <View style={styles.box}>
       <View style={styles.backgroundColor}>
-      <TouchableOpacity onPress={this.onButtonPress1.bind(this)}>
-    <Text style={styles.buttonText}>Choose settings</Text>
+      <TouchableOpacity>
+    <Text style={styles.buttonText}>Let´s create settings</Text>
     </TouchableOpacity>
-    <TouchableOpacity onPress={this.onButtonPress2.bind(this)}>
-    <Text style={styles.buttonText}>Create setting</Text>
-    </TouchableOpacity>
-
-      </View>
+    <TouchableOpacity onPress={this.onButtonPress1.bind(this)}>
+  <Text style={styles.buttonText}>Back</Text>
+  </TouchableOpacity>
+  </View>
       </View>
     );
   }
@@ -67,4 +62,4 @@ box:{
 }
 });
 
-module.exports = HomeScreen;
+module.exports = CreateSettings;

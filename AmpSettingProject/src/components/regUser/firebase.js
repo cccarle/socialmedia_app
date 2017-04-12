@@ -1,4 +1,4 @@
-import * as firebase from "firebase";
+import * as Firebase from "firebase";
 
 var config = {
   apiKey: "AIzaSyDgQSNevIQuthf2xR4kYnm3CW5Dho_KZ64",
@@ -6,4 +6,4 @@ var config = {
   databaseURL: "https://ampsettingproject-9356f.firebaseio.com"
 };
 
-module.exports const firebaseRef = firebase.initializeApp(config);
+export const firebaseRef = Firebase.initializeApp(config);

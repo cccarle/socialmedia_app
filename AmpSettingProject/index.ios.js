@@ -21,13 +21,13 @@ import BluesSetting from './src/components/settings/blues';
 import PopSetting from './src/components/settings/pop';
 import JazzSetting from './src/components/settings/jazz';
 import User from './src/components/regUser/RegisterUser';
+import CreateSettings from './src/components/settings/CreateSettings'
+
 
 //import { firebaseRef } from './src/components/Login/firebase';
 
 // setting up to navigate to Login as firstpage
 class AmpSettingProject extends React.Component{
-
-
 
  render(){
    return (
@@ -62,6 +62,8 @@ AmpSettingProject(route,navigator){
     return(<JazzSetting navigator={navigator} title='JazzSetting'/>);
     case 'User':
     return(<User navigator={navigator} title='User'/>);
+    case 'CreateSettings':
+    return(<CreateSettings navigator={navigator} title='CreateSettings'/>);
   }
 }
 

@@ -11,11 +11,9 @@ import {
   Button,
   navigate
 } from 'react-native';
-// importing navigator to switch between pages
 
+// navigate the button to different pages.
 
-// Create first react Component
-// first page
 class Settings extends React.Component {
   onButtonPress1(){
     this.props.navigator.push({

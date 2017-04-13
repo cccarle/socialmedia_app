@@ -11,10 +11,6 @@ import {
 
 import { firebaseRef } from '../regUser/firebase';
 
-
-// importing the form for the username & password
-import LoginForm from './LoginForm';
-
 export default class Login extends Component {
 // Function that refer to this & bind. Navigates to HomeScreen.
     onButtonPress1(){
@@ -39,8 +35,7 @@ export default class Login extends Component {
         this._loginForm = this._loginForm.bind(this)
     }
 
-
-
+// log in function
     _loginForm(){
         firebaseRef.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
             console.log(error.code);
@@ -54,9 +49,20 @@ export default class Login extends Component {
     render(){
         return (
             <View style= {styles.container}>
+              <View style={{
+       flex: 1,
+       flexDirection: 'column',
+       justifyContent: 'center',
+       alignItems: 'center',
+     }}>
+       <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+       <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
+       <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
+
+     </View>
     <TextInput
-        placeholder='username or email'
-        placeholderTextColor='rgba(255,255,255,0.3)'
+        placeholder='email'
+        placeholderTextColor='black'
         returnKeyType='next'
         onChangeText={(text)=> this.setState({email: text})}
         value={this.state.email}
@@ -64,17 +70,20 @@ export default class Login extends Component {
         keyboardType='email-address'
         style={styles.input}
     />
+  <View style={styles.hairline}/>
     <TextInput
-        placeholder='Password'
+        placeholder='password'
+        placeholderTextColor='black'
         onChangeText={(text)=> this.setState({password: text})}
         value={this.state.password}
-        placeholderTextColor='rgba(255,255,255,0.3)'
         returnKeyType='go'
         secureTextEntry
         style={styles.input}
         ref={(input) => this.passwordInput = input}
     />
-    <TouchableOpacity  onPress={this._loginForm} style={styles.buttonContainer}>
+    <View style={styles.hairline}/>
+
+    <TouchableOpacity onPress={this._loginForm} style={styles.buttonContainer}>
     <Text style={styles.buttonText}>LOGIN</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={this.onButtonPress1.bind(this)} style={styles.buttonContainer}>
@@ -93,24 +102,35 @@ export default class Login extends Component {
 const styles = StyleSheet.create({
     container: {
         padding: 20,
-        backgroundColor: 'red'
+        backgroundColor: 'white',
+        flex: 1,
+
     },
     input: {
         height: 40,
-        backgroundColor: 'rgba(255,255,255,0.3)',
+        backgroundColor: 'white',
         marginBottom: 10,
-        color: '#5c8dff',
-        paddingHorizontal:10
-    },
+        color: 'black',
+        paddingHorizontal:10,
+        padding: 10,
+          },
     buttonContainer: {
-        backgroundColor: '#2980b9',
-        paddingVertical: 15
-
+        backgroundColor: 'white',
+        paddingVertical: 1,
+        borderColor: 'black'
     },
     buttonText: {
         textAlign: 'center',
-        color: '#FFFFFF',
-        fontWeight: '700'
+        color: 'black',
+        fontWeight: '700',
+        borderColor: 'black'
 
+    },
+    hairline:{
+      height:1,
+      backgroundColor:'black',
+      marginBottom:40,
+      marginLeft:10,
+      marginRight:10
     }
 })

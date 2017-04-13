@@ -42,53 +42,85 @@ class Settings extends React.Component {
   }
   render() {
     return (
-      <View style={styles.backgroundColor}>
-        <Text style={styles.headerText}>Settings</Text>
-          <TouchableOpacity onPress={this.onButtonPress5.bind(this)}>
-        <Text style={styles.buttonText}>Back to ChooseSetting</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={this.onButtonPress1.bind(this)}>
-      <Text style={styles.buttonText}>RockSetting</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={this.onButtonPress2.bind(this)}>
-    <Text style={styles.buttonText}>BluesSetting</Text>
-    </TouchableOpacity>
-    <TouchableOpacity onPress={this.onButtonPress3.bind(this)}>
-  <Text style={styles.buttonText}>PopSetting</Text>
+      <View style= {styles.container}>
+        <View style={{
+ flex: 1,
+ flexDirection: 'column',
+ justifyContent: 'center',
+ alignItems: 'center',
+}}>
+ <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+ <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
+ <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
+    </View>
+<TouchableOpacity onPress={this.onButtonPress1.bind(this)} style={styles.buttonContainer}>
+<Text style={styles.buttonText}>Rock Setting</Text>
   </TouchableOpacity>
-  <TouchableOpacity onPress={this.onButtonPress4.bind(this)}>
-<Text style={styles.buttonText}>JazzSetting</Text>
-</TouchableOpacity>
-      </View>
-    );
-  }
+  <View style={styles.hairline}/>
+  <TouchableOpacity onPress={this.onButtonPress2.bind(this)} style={styles.buttonContainer}>
+  <Text style={styles.buttonText}>Blues Setting</Text>
+    </TouchableOpacity>
+    <View style={styles.hairline}/>
+    <TouchableOpacity onPress={this.onButtonPress3.bind(this)} style={styles.buttonContainer}>
+    <Text style={styles.buttonText}>Pop Setting</Text>
+      </TouchableOpacity>
+      <View style={styles.hairline}/>
+      <TouchableOpacity onPress={this.onButtonPress4.bind(this)} style={styles.buttonContainer}>
+      <Text style={styles.buttonText}>Jazz Setting</Text>
+        </TouchableOpacity>
+  <View style={styles.hairline}/>
+  <TouchableOpacity onPress={this.onButtonPress5.bind(this)} style={styles.buttonContainer}>
+<Text style={styles.buttonText}>Back</Text>
+  </TouchableOpacity>
+  <View style={styles.hairline}/>
+
+
+  </View>
+);
+}
 }
 
+
+// StyleSheet
 const styles = StyleSheet.create({
-  headerText: {
-    color: 'black',
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    fontFamily:'Arial'
-},
-buttonText:{
-  textAlign: 'center',
-  color: '#FFF',
-  marginTop: 10,
-  opacity: 0.7,
-},
-backgroundColor:{
-  width: 380,
-  height: 700,
-  backgroundColor: '#3498db'
-},
-box:{
-  borderColor: 'black',
-  flexDirection: 'row',
-  //height: 100,
-  padding: 2
-}
-});
+container: {
+  padding: 20,
+  backgroundColor: 'white',
+  flex: 1,
 
+},
+input: {
+  height: 40,
+  backgroundColor: 'white',
+  marginBottom: 10,
+  color: 'black',
+  paddingHorizontal:10,
+  padding: 10,
+    },
+buttonContainer: {
+  backgroundColor: 'white',
+  paddingVertical: 1,
+  borderColor: 'black'
+},
+buttonText: {
+  textAlign: 'center',
+  color: 'black',
+  fontWeight: '700',
+  borderColor: 'black'
+
+},
+hairline:{
+height:1,
+backgroundColor:'black',
+marginBottom:40,
+marginLeft:10,
+marginRight:10
+},
+text:{
+  flex: 0.2,
+  justifyContent: 'center',
+  alignItems: 'center',
+
+}
+})
 module.exports = Settings;

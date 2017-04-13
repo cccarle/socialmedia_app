@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+//import { firebaseRef } from './src/components/Login/firebase';
 
-// Importing varibels
 import {
   StyleSheet,
   View,
@@ -8,63 +8,92 @@ import {
   Text,
   KeyboardAvoidingView,
   TouchableOpacity,
-  Button,
-  navigate
+  TextInput
+
 } from 'react-native';
 
-// Homescreen after login
- class HomeScreen extends Component {
-   onButtonPress1(){
-     this.props.navigator.push({
-       id: 'Settings'
-     });
-   }
-   onButtonPress2(){
-     this.props.navigator.push({
-       id: 'CreateSettings'
-     });
-   }
-  render() {
-    return (
-      <View style={styles.box}>
-      <View style={styles.backgroundColor}>
-      <TouchableOpacity onPress={this.onButtonPress1.bind(this)}>
-    <Text style={styles.buttonText}>Choose settings</Text>
-    </TouchableOpacity>
-    <TouchableOpacity onPress={this.onButtonPress2.bind(this)}>
-    <Text style={styles.buttonText}>Create setting</Text>
-    </TouchableOpacity>
+
+class HomeScreen extends React.Component {
+  onButtonPress1(){
+      this.props.navigator.push({
+          id: 'Settings',
+      });
+  }
+  onButtonPress2(){
+      this.props.navigator.push({
+          id: 'Login',
+      });
+  }
+    render(){
+      return (
+          <View style= {styles.container}>
+            <View style={{
+     flex: 1,
+     flexDirection: 'column',
+     justifyContent: 'center',
+     alignItems: 'center',
+   }}>
+     <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+     <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
+     <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
+        </View>
+  <TouchableOpacity onPress={this.onButtonPress1.bind(this)} style={styles.buttonContainer}>
+  <Text style={styles.buttonText}>Choose Setting </Text>
+      </TouchableOpacity>
+      <View style={styles.hairline}/>
+      <TouchableOpacity onPress={this.onButtonPress2.bind(this)} style={styles.buttonContainer}>
+  <Text style={styles.buttonText}>Back</Text>
+      </TouchableOpacity>
+      <View style={styles.hairline}/>
+
 
       </View>
-      </View>
-    );
+  );
   }
 }
 
-// Stylesheet
+
+// StyleSheet
 const styles = StyleSheet.create({
-  headerText: {
-    color: 'black',
-    fontSize: 40,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    fontFamily:'Arial'
-},
-buttonText:{
-  textAlign: 'center',
-  color: '#FFF',
-  marginTop: 10,
-  opacity: 0.7,
-},
-backgroundColor:{
-  width: 380,
-  height: 700,
-  backgroundColor: '#3498db'
-},
-box:{
-  flexDirection: 'row',
-  //height: 100,
-}
-});
+  container: {
+      padding: 20,
+      backgroundColor: 'white',
+      flex: 1,
+
+  },
+  input: {
+      height: 40,
+      backgroundColor: 'white',
+      marginBottom: 10,
+      color: 'black',
+      paddingHorizontal:10,
+      padding: 10,
+        },
+  buttonContainer: {
+      backgroundColor: 'white',
+      paddingVertical: 1,
+      borderColor: 'black'
+  },
+  buttonText: {
+      textAlign: 'center',
+      color: 'black',
+      fontWeight: '700',
+      borderColor: 'black'
+
+  },
+  hairline:{
+    height:1,
+    backgroundColor:'black',
+    marginBottom:40,
+    marginLeft:10,
+    marginRight:10
+  },
+  text:{
+      flex: 0.2,
+      justifyContent: 'center',
+      alignItems: 'center',
+
+  }
+})
 
 module.exports = HomeScreen;

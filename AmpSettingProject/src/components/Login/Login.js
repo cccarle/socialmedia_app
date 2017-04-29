@@ -35,6 +35,8 @@ export default class Login extends Component {
         this._loginForm = this._loginForm.bind(this)
     }
 
+
+
 // log in function
     _loginForm(){
         firebaseRef.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
@@ -45,7 +47,11 @@ export default class Login extends Component {
             id: 'HomeScreen',
         });
 
+        console.log('logged in');
+
     }
+
+
     render(){
         return (
             <View style= {styles.container}>
@@ -70,7 +76,6 @@ export default class Login extends Component {
         keyboardType='email-address'
         style={styles.input}
     />
-  <View style={styles.hairline}/>
     <TextInput
         placeholder='password'
         placeholderTextColor='black'
@@ -81,7 +86,6 @@ export default class Login extends Component {
         style={styles.input}
         ref={(input) => this.passwordInput = input}
     />
-    <View style={styles.hairline}/>
 
     <TouchableOpacity onPress={this._loginForm} style={styles.buttonContainer}>
     <Text style={styles.buttonText}>LOGIN</Text>
@@ -113,7 +117,11 @@ const styles = StyleSheet.create({
         color: 'black',
         paddingHorizontal:10,
         padding: 10,
-          },
+        borderWidth:0.8,
+        borderColor:'black',
+        color:'black'
+
+    },
     buttonContainer: {
         backgroundColor: 'white',
         paddingVertical: 1,

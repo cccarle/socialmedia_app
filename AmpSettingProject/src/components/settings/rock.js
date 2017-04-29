@@ -19,7 +19,12 @@ import {
 import LocalImage from './LocalImage'
 
 export default class RockSetting extends Component {
-  onButtonPress(){
+  onButtonPress1(){
+    this.props.navigator.push({
+      id: 'Settings'
+    });
+  }
+  onButtonPress2(){
     this.props.navigator.push({
       id: 'Settings'
     });
@@ -30,10 +35,12 @@ export default class RockSetting extends Component {
 
         <View style={styles.PinHeader}>
           <View style={styles.UtilityNav}>
-              <TouchableOpacity onPress={this.onButtonPress.bind(this)}>
+              <TouchableOpacity onPress={this.onButtonPress1.bind(this)}>
             <Back />
             </TouchableOpacity>
-            <Heart />
+            <TouchableOpacity onPress={this.onButtonPress2.bind(this)}>
+              <Heart />
+            </TouchableOpacity>
             <Share />
             <More />
           </View>

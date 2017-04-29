@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import { firebaseRef } from './src/components/Login/firebase';
 
 import {
   StyleSheet,
@@ -19,11 +18,17 @@ class HomeScreen extends React.Component {
           id: 'Settings',
       });
   }
-  onButtonPress2(){
-      this.props.navigator.push({
-          id: 'Login',
-      });
-  }
+
+    onButtonPress2(){
+        this.props.navigator.push({
+            id: 'CreateSettings',
+        });
+    }
+    onButtonPress3(){
+        this.props.navigator.push({
+            id: 'Login',
+        });
+    }
     render(){
       return (
           <View style= {styles.container}>
@@ -41,13 +46,18 @@ class HomeScreen extends React.Component {
   <Text style={styles.buttonText}>Choose Setting </Text>
       </TouchableOpacity>
       <View style={styles.hairline}/>
-      <TouchableOpacity onPress={this.onButtonPress2.bind(this)} style={styles.buttonContainer}>
-  <Text style={styles.buttonText}>Back</Text>
-      </TouchableOpacity>
+              <TouchableOpacity onPress={this.onButtonPress2.bind(this)} style={styles.buttonContainer}>
+                  <Text style={styles.buttonText}>Create New Setting </Text>
+              </TouchableOpacity>
       <View style={styles.hairline}/>
+              <TouchableOpacity onPress={this.onButtonPress3.bind(this)} style={styles.buttonContainer}>
+                  <Text style={styles.buttonText}>Back</Text>
+              </TouchableOpacity>
+              <View style={styles.hairline}/>
 
 
-      </View>
+
+          </View>
   );
   }
 }

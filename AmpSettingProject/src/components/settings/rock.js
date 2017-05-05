@@ -5,7 +5,9 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Image
+  Image,
+  AsyncStorage,
+  TextInput
 } from 'react-native'
 
 import {
@@ -16,6 +18,10 @@ import {
   Share
 } from '.././icons'
 
+
+
+
+
 import LocalImage from './LocalImage'
 
 export default class RockSetting extends Component {
@@ -23,12 +29,41 @@ export default class RockSetting extends Component {
     this.props.navigator.push({
       id: 'Settings'
     });
+
+}
+
+    constructor(props){
+        super(props)
+
+        this.state = {
+            setting:'',
+        }
+
+        this._saveText = this._saveText.bind(this)
+        this._getText = this._getText.bind(this)
+
+}
+
+        _saveText(){
+          try {
+            AsyncStorage.setItem("name", "Bass : 6 Middle : 6 Treble: 7 Gain:5");
+            console.log('stored key');
+} catch (error) {
+  console.log(error);
+  // Error saving data
+}
+        }
+
+_getText(){
+
+    AsyncStorage.getItem("name").then((value) => {
+     console.log("Get Value >> ", value);
+  }).done();
   }
-  onButtonPress2(){
-    this.props.navigator.push({
-      id: 'Settings'
-    });
-  }
+
+
+
+
   render(){
     return (
       <View style={styles.PinContainer}>
@@ -38,10 +73,15 @@ export default class RockSetting extends Component {
               <TouchableOpacity onPress={this.onButtonPress1.bind(this)}>
             <Back />
             </TouchableOpacity>
-            <TouchableOpacity onPress={this.onButtonPress2.bind(this)}>
+            <TouchableOpacity onPress={this._saveText.bind(this)}>
+
               <Heart />
-            </TouchableOpacity>
-            <Share />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={this._getText.bind(this)}>
+
+              <Share />
+              </TouchableOpacity>
+
             <More />
           </View>
           <View style={styles.PinButtonContainer}>
@@ -63,7 +103,7 @@ export default class RockSetting extends Component {
         <View style={styles.PinMeta}>
           <View style={styles.PinMetaTextContainer}>
             <Text style={styles.PinMetaText}>Rock Settings</Text>
-            <Text style={[styles.PinMetaText, styles.TextBold]}>Bass : 6 Middle : 6 Treble: 7 Gain:5 </Text>
+              <Text style={[styles.PinMetaText, styles.TextBold]}>Bass : 6 Middle : 6 Treble: 7 Gain:5 </Text>
           </View>
           <View style={styles.PinButtonContainer}>
             <View style={[styles.PinButton, styles.UtilityButton]}>
@@ -170,7 +210,19 @@ const styles = StyleSheet.create({
   },
   TextBold: {
     fontWeight: 'bold'
-  }
+  },
+  input: {
+      height: 40,
+      backgroundColor: 'white',
+      marginBottom: 10,
+      color: 'black',
+      paddingHorizontal:10,
+      padding: 10,
+      borderWidth:0.8,
+      borderColor:'black',
+      color:'black'
+
+  },
 })
 
 module.exports = RockSetting;

@@ -23,7 +23,7 @@ import JazzSetting from './src/components/settings/jazz';
 import User from './src/components/regUser/RegisterUser';
 import CreateSettings from './src/components/settings/CreateSettings';
 import createnewsetting from './src/components/actions/createnewsettings';
-
+import MyFavoriteSettings from './src/components/settings/MyFavoriteSettings';
 // setting up to navigate to Login as firstpage
 class AmpSettingProject extends React.Component{
 
@@ -64,6 +64,8 @@ AmpSettingProject(route,navigator){
     return(<CreateSettings navigator={navigator} title='CreateSettings'/>);
       case 'createnewsetting':
           return(<createnewsetting navigator={navigator} title='createnewsetting'/>);
+          case 'MyFavoriteSettings':
+              return(<MyFavoriteSettings navigator={navigator} title='MyFavoriteSettings'/>);
 
 
   }

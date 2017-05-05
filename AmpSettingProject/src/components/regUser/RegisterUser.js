@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import { firebaseRef } from './src/components/Login/firebase';
 
 import {
   StyleSheet,

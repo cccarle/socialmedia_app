@@ -6,10 +6,14 @@ import {
     Text,
     KeyboardAvoidingView,
     TouchableOpacity,
-    TextInput
+    TextInput,
+    AsyncStorage
 } from 'react-native';
 
+
+
 import { firebaseRef } from '../regUser/firebase';
+
 
 export default class Login extends Component {
 // Function that refer to this & bind. Navigates to HomeScreen.
@@ -23,33 +27,41 @@ export default class Login extends Component {
             id: 'User',
         });
     }
-    constructor(propss){
-        super(propss)
+    constructor(props){
+        super(props)
 
         this.state = {
             email:'',
             password:'',
-            status: ''
+            loading: false
         }
 
-        this._loginForm = this._loginForm.bind(this)
+      this._loginForm = this._loginForm.bind(this)
     }
 
-
-
-// log in function
     _loginForm(){
-        firebaseRef.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
-            console.log(error.code);
-            console.log(error.message);
-        })
-        this.props.navigator.push({
-            id: 'HomeScreen',
-        });
+      this.setState({
+    loading: true
+  });
 
-        console.log('logged in');
-
-    }
+        firebaseRef.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((userData) =>
+      {
+        this.setState({
+                loading: false
+              });
+              AsyncStorage.setItem('userData', JSON.stringify(userData));
+              console.log(userData);
+              this.props.navigator.push({
+                id: 'HomeScreen'
+              });
+      }).catch((error) =>
+        {
+              this.setState({
+                loading: false
+              });
+        alert('Login Failed. Please try again'+error);
+    });
+  }
 
 
     render(){
@@ -64,7 +76,8 @@ export default class Login extends Component {
        <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
        <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
        <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
-
+       <Text> Your Portabel Amp-setting-app 
+       </Text>
      </View>
     <TextInput
         placeholder='email'
@@ -99,6 +112,8 @@ export default class Login extends Component {
         </View>
     );
     }
+
+
 }
 
 

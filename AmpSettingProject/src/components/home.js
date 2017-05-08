@@ -41,8 +41,7 @@ class HomeScreen extends React.Component {
      <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
      <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
      <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
-       <Text>Guitar acquisition Syndrome, or rather "GAS" is when you check out an awesome new guitar or amp that you just HAVE to own, no matter what the cost. You lose sleep. You can't eat. It drives you mad!
-       </Text>
+    
         </View>
   <TouchableOpacity onPress={this.onButtonPress1.bind(this)} style={styles.buttonContainer}>
   <Text style={styles.buttonText}>Choose Setting </Text>

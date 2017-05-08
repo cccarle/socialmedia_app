@@ -84,13 +84,13 @@ _getText(){
                 <Content>
                     <List>
                         <ListItem >
-                            <Text>Add setting</Text>
+                            <Text>Rock</Text>
                         </ListItem>
                         <ListItem>
-                            <Text>Add setting</Text>
+                            <Text>Pop</Text>
                         </ListItem>
                         <ListItem>
-                            <Text>Add setting</Text>
+                            <Text>Add new favorite setting</Text>
                         </ListItem>
                     </List>
                 </Content>

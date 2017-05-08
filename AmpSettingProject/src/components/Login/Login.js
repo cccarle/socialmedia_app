@@ -76,9 +76,8 @@ export default class Login extends Component {
        <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
        <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
        <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
-       <Text> Your Portabel Amp-setting-app 
-       </Text>
      </View>
+  
     <TextInput
         placeholder='email'
         placeholderTextColor='black'
@@ -89,6 +88,7 @@ export default class Login extends Component {
         keyboardType='email-address'
         style={styles.input}
     />
+    <View style={styles.hairline}/>
     <TextInput
         placeholder='password'
         placeholderTextColor='black'
@@ -99,6 +99,8 @@ export default class Login extends Component {
         style={styles.input}
         ref={(input) => this.passwordInput = input}
     />
+    <View style={styles.hairline}/>
+
 
     <TouchableOpacity onPress={this._loginForm} style={styles.buttonContainer}>
     <Text style={styles.buttonText}>LOGIN</Text>
@@ -132,11 +134,7 @@ const styles = StyleSheet.create({
         color: 'black',
         paddingHorizontal:10,
         padding: 10,
-        borderWidth:0.8,
-        borderColor:'black',
-        color:'black'
-
-    },
+          },
     buttonContainer: {
         backgroundColor: 'white',
         paddingVertical: 1,

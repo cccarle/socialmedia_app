@@ -1,17 +1,11 @@
+import React from 'react';
 
-import React, { Component } from 'react';
+import RockSetting from './src/components/settings/rock';
+import MyFavoriteSetting from './src/components/settings/MyFavoriteSettings';
 
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
 
-import RockSetting from './rock';
-import MyFavoriteSetting from './MyFavoriteSettings';
+class ParentSetting extends React.Component {
 
-export default class ParentSetting extends Component {
   constructor(props) {
     super(props);
     // ...
@@ -23,7 +17,7 @@ export default class ParentSetting extends Component {
 
   updateFavoriteSetting = () => {
     // We will change state for updating the MyFavoriteSetting component here
-    let list_data = 'hello';
+    let list_data = 'hello' ;
     // actually, you can set an array or object, then we will loop through the object to render data correctly in MyFavoriteSetting. You can also add some react element (which contains some View and Button, just like you described)
 
     this.setState({

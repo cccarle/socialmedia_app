@@ -18,10 +18,6 @@ import {
   Share
 } from '.././icons'
 
-
-
-
-
 import LocalImage from './LocalImage'
 
 export default class RockSetting extends Component {
@@ -31,7 +27,6 @@ export default class RockSetting extends Component {
     });
 
 }
-
     constructor(props){
         super(props)
 
@@ -61,9 +56,6 @@ _getText(){
   }).done();
   }
 
-
-
-
   render(){
     return (
       <View style={styles.PinContainer}>
@@ -73,22 +65,18 @@ _getText(){
               <TouchableOpacity onPress={this.onButtonPress1.bind(this)}>
             <Back />
             </TouchableOpacity>
-            <TouchableOpacity onPress={this._saveText.bind(this)}>
-
+            <TouchableOpacity>
               <Heart />
               </TouchableOpacity>
               <TouchableOpacity onPress={this._getText.bind(this)}>
 
-              <Share />
+            <Share />
               </TouchableOpacity>
 
             <More />
           </View>
           <View style={styles.PinButtonContainer}>
-            <View style={styles.PinButton}>
-              <PinIcon />
-              <Text style={styles.PinButtonText}>Save</Text>
-            </View>
+
           </View>
         </View>
 
@@ -107,7 +95,11 @@ _getText(){
           </View>
           <View style={styles.PinButtonContainer}>
             <View style={[styles.PinButton, styles.UtilityButton]}>
-              <Text style={[styles.PinButtonText, styles.UtilityButtonText]}>Visit</Text>
+              <TouchableOpacity onClick={this.props.updateFavoriteSetting} >
+
+              <Text style={[styles.PinButtonText, styles.UtilityButtonText]}>Save</Text>
+              </TouchableOpacity>
+
             </View>
           </View>
         </View>

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Container, Content, List, ListItem, Thumbnail, Text, Body } from 'native-base';
 
 // Importing varibels
 import {
   StyleSheet,
   View,
   Image,
+  Text,
   KeyboardAvoidingView,
   TouchableOpacity,
   Button,
@@ -40,87 +40,39 @@ class Settings extends React.Component {
       id: 'HomeScreen'
     });
   }
-
   render() {
     return (
       <View style= {styles.container}>
-
-
-    <Container>
-        <Content>
-            <List>
-                <ListItem>
-                  <TouchableOpacity onPress={this.onButtonPress1.bind(this)}>
-
-                    <Thumbnail square size={80} source={require('../../images/amp1.jpg')} />
-                    <Body>
-                        <Text>RockSetting</Text>
-                        <Text note>Crushing acdc rock noise </Text>
-                    </Body>
-                  </TouchableOpacity>
-
-                </ListItem>
-            </List>
-        </Content>
-    </Container>
-
-    <Container>
-        <Content>
-            <List>
-                <ListItem>
-                  <TouchableOpacity onPress={this.onButtonPress2.bind(this)}>
-
-                    <Thumbnail square size={80} source={require('../../images/amp1.jpg')} />
-                    <Body>
-                        <Text>BluesSetting</Text>
-                        <Text note> BB.King anyone ? </Text>
-                    </Body>
-                  </TouchableOpacity>
-
-                </ListItem>
-            </List>
-        </Content>
-    </Container>
-
-    <Container>
-        <Content>
-            <List>
-                <ListItem>
-                  <TouchableOpacity onPress={this.onButtonPress3.bind(this)}>
-
-                    <Thumbnail square size={80} source={require('../../images/amp1.jpg')} />
-                    <Body>
-                        <Text>PopSetting</Text>
-                        <Text note>Popelipop</Text>
-                    </Body>
-                  </TouchableOpacity>
-
-                </ListItem>
-            </List>
-        </Content>
-    </Container>
-
-    <Container>
-        <Content>
-            <List>
-                <ListItem>
-                  <TouchableOpacity onPress={this.onButtonPress4.bind(this)}>
-
-                    <Thumbnail square size={80} source={require('../../images/amp1.jpg')} />
-                    <Body>
-                        <Text>JazzSetting</Text>
-                        <Text note>Lights out and jazz</Text>
-                    </Body>
-                  </TouchableOpacity>
-
-                </ListItem>
-            </List>
-        </Content>
-    </Container>
-
+        <View style={{
+ flex: 1,
+ flexDirection: 'column',
+ justifyContent: 'center',
+ alignItems: 'center',
+}}>
+ <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+ <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
+ <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
+    </View>
+<TouchableOpacity onPress={this.onButtonPress1.bind(this)} style={styles.buttonContainer}>
+<Text style={styles.buttonText}>Rock Setting</Text>
+  </TouchableOpacity>
+  <View style={styles.hairline}/>
+  <TouchableOpacity onPress={this.onButtonPress2.bind(this)} style={styles.buttonContainer}>
+  <Text style={styles.buttonText}>Blues Setting</Text>
+    </TouchableOpacity>
+    <View style={styles.hairline}/>
+    <TouchableOpacity onPress={this.onButtonPress3.bind(this)} style={styles.buttonContainer}>
+    <Text style={styles.buttonText}>Pop Setting</Text>
+      </TouchableOpacity>
+      <View style={styles.hairline}/>
+      <TouchableOpacity onPress={this.onButtonPress4.bind(this)} style={styles.buttonContainer}>
+      <Text style={styles.buttonText}>Jazz Setting</Text>
+        </TouchableOpacity>
+  <View style={styles.hairline}/>
   <TouchableOpacity onPress={this.onButtonPress5.bind(this)} style={styles.buttonContainer}>
 <Text style={styles.buttonText}>Back</Text>
   </TouchableOpacity>
+  <View style={styles.hairline}/>
 
 
   </View>

@@ -37,6 +37,7 @@ export default class RockSetting extends Component {
         this._saveText = this._saveText.bind(this)
         this._getText = this._getText.bind(this)
 
+
 }
 
         _saveText(){
@@ -54,6 +55,16 @@ _getText(){
     AsyncStorage.getItem("name").then((value) => {
      console.log("Get Value >> ", value);
   }).done();
+  }
+
+  updateFavoriteSetting = () => {
+    // We will change state for updating the MyFavoriteSetting component here
+      let list_data = <Text>hej</Text>;
+    // actually, you can set an array or object, then we will loop through the object to render data correctly in MyFavoriteSetting. You can also add some react element (which contains some View and Button, just like you described)
+
+    this.setState({
+      favoriteData: list_data
+    });
   }
 
   render(){
@@ -95,7 +106,7 @@ _getText(){
           </View>
           <View style={styles.PinButtonContainer}>
             <View style={[styles.PinButton, styles.UtilityButton]}>
-              <TouchableOpacity onClick={this.props.updateFavoriteSetting} >
+              <TouchableOpacity onPress={this.updateFavoriteSetting} >
 
               <Text style={[styles.PinButtonText, styles.UtilityButtonText]}>Save</Text>
               </TouchableOpacity>

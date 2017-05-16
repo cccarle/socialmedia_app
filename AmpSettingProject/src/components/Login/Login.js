@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Container, Content, Toast, Button} from 'native-base';
+import { firebaseRef } from '../regUser/firebase';
+
 import {
     StyleSheet,
     View,
@@ -10,13 +13,20 @@ import {
     AsyncStorage
 } from 'react-native';
 
-
-
-import { firebaseRef } from '../regUser/firebase';
-
-
 export default class Login extends Component {
-// Function that refer to this & bind. Navigates to HomeScreen.
+  constructor(props){
+      super(props)
+
+      this.state = {
+          email:'',
+          password:'',
+          loading: false,
+          showToast: false
+      }
+
+    this._loginForm = this._loginForm.bind(this)
+  }
+
     onButtonPress1(){
         this.props.navigator.push({
             id: 'HomeScreen',
@@ -26,17 +36,6 @@ export default class Login extends Component {
         this.props.navigator.push({
             id: 'User',
         });
-    }
-    constructor(props){
-        super(props)
-
-        this.state = {
-            email:'',
-            password:'',
-            loading: false
-        }
-
-      this._loginForm = this._loginForm.bind(this)
     }
 
     _loginForm(){
@@ -52,17 +51,20 @@ export default class Login extends Component {
               AsyncStorage.setItem('userData', JSON.stringify(userData));
               console.log(userData);
               this.props.navigator.push({
-                id: 'HomeScreen'
+                id: 'HomeScreenLoggedIn'
               });
       }).catch((error) =>
         {
               this.setState({
                 loading: false
               });
-        alert('Login Failed. Please try again'+error);
+              Toast.show({
+                              text: ' Something went wrong !',
+                              position: 'bottom',
+                              buttonText: 'Okay'
+                            });
     });
   }
-
 
     render(){
         return (
@@ -77,7 +79,16 @@ export default class Login extends Component {
        <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
        <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
      </View>
-  
+
+     <View>
+       <Text style={styles.HeadText}>
+         Register a user to get full access to all functionallity
+      </Text>
+     </View>
+
+     <Container style={StyleSheet.flatten(styles.Container)}>
+     </Container>
+
     <TextInput
         placeholder='email'
         placeholderTextColor='black'
@@ -153,5 +164,19 @@ const styles = StyleSheet.create({
       marginBottom:40,
       marginLeft:10,
       marginRight:10
+    },
+    HeadText:{
+      textAlign: 'center',
+      height: 40,
+      backgroundColor: 'white',
+      marginBottom: 10,
+      color: 'black',
+      paddingHorizontal:10,
+      padding: 10,
+
+    },
+    Container:{
+      height:1,
+      flex:0.2
     }
-})
+});

@@ -1,23 +1,30 @@
 import React, { Component } from 'react';
+import { Container, Content, List, ListItem, Text } from 'native-base';
 
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
-
-
-
-export default class Myfavoritesetting extends Component {
-  // Please render your button properly, this is just an example of how to bind click function to it
-  render(){
-    return (
-      <View>
-        <Text>
-          {this.props.favoriteData}
-        </Text>
-      </View>
-    )
-  }
+export default class ListDividerExample extends Component {
+    render() {
+        return (
+            <Container>
+                <Content>
+                    <List>
+                        <ListItem itemDivider>
+                            <Text>A</Text>
+                        </ListItem>
+                        <ListItem >
+                            <Text>Aaron Bennet</Text>
+                        </ListItem>
+                        <ListItem>
+                            <Text>Ali Connors</Text>
+                        </ListItem>
+                        <ListItem itemDivider>
+                            <Text>B</Text>
+                        </ListItem>
+                        <ListItem>
+                            <Text>Bradley Horowitz</Text>
+                        </ListItem>
+                    </List>
+                </Content>
+            </Container>
+        );
+    }
 }

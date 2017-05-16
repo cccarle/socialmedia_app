@@ -36,8 +36,9 @@ class User extends React.Component {
   console.log(error.code);
   console.log(error.message);
   })
+  firebaseRef.auth().currentUser.sendEmailVerification()
     this.props.navigator.push({
-      id: 'HomeScreen',
+      id: 'Login',
     });
   }
 
@@ -128,9 +129,14 @@ const styles = StyleSheet.create({
     marginRight:10
   },
   text:{
-      flex: 0.2,
-      justifyContent: 'center',
-      alignItems: 'center',
+    textAlign: 'center',
+    height: 40,
+    backgroundColor: 'white',
+    marginBottom: 10,
+    color: 'black',
+    paddingHorizontal:10,
+    padding: 10,
+
 
   }
 })

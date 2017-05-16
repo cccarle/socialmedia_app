@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Container, Content, Toast, Button} from 'native-base';
 
 import {
   StyleSheet,
@@ -13,14 +12,7 @@ import {
 
 } from 'react-native';
 
-export default class HomeScreen extends Component {
-
-  constructor(props) {
-super(props);
-this.state = {
-  showToast: false
-}
-}
+class HomeScreenLoggedIn extends React.Component {
 
   onButtonPress1(){
       this.props.navigator.push({
@@ -28,9 +20,14 @@ this.state = {
       });
   }
 
-  onButtonPress3(){
+    onButtonPress2(){
         this.props.navigator.push({
             id: 'CreateNewSetting',
+        });
+    }
+    onButtonPress3(){
+        this.props.navigator.push({
+            id: 'MyFavoriteSettings',
         });
     }
 
@@ -58,17 +55,10 @@ this.state = {
   <Text style={styles.buttonText}>Choose Setting </Text>
       </TouchableOpacity>
       <View style={styles.hairline}/>
-
-
-              <Container style={StyleSheet.flatten(styles.Container)}>
-          <Text onPress={()=> Toast.show({
-              text: 'requires a registerd user!',
-              position: 'bottom',
-              buttonText: 'Okay'
-            })}></Text>
-            <Text style={styles.buttonText}>Create New Setting</Text>
-              <View style={styles.hairline}/>
-      </Container>
+              <TouchableOpacity onPress={this.onButtonPress2.bind(this)} style={styles.buttonContainer}>
+                  <Text style={styles.buttonText}>Create New Setting </Text>
+              </TouchableOpacity>
+      <View style={styles.hairline}/>
               <TouchableOpacity onPress={this.onButtonPress3.bind(this)} style={styles.buttonContainer}>
                   <Text style={styles.buttonText}>My Favorite Settings </Text>
               </TouchableOpacity>
@@ -121,13 +111,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
 
-  },
-  Container:{
-    height:1,
-    flex:0.2
   }
 })
 
-module.exports = HomeScreen;
-
-AppRegistry.registerComponent('HomeScreen', () => HomeScreen);
+module.exports = HomeScreenLoggedIn;

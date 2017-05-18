@@ -72,7 +72,6 @@ AmpSettingProject(route,navigator){
     case 'CreateNewSetting':
     return(<CreateNewSetting navigator={navigator} title='CreateNewSetting'/>);
 
-
   }
 }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Content, Toast, Button} from 'native-base';
 import { firebaseRef } from '../regUser/firebase';
+import FadeInView from '../animation/FadeInView';
 
 import {
     StyleSheet,
@@ -10,22 +11,49 @@ import {
     KeyboardAvoidingView,
     TouchableOpacity,
     TextInput,
-    AsyncStorage
+    AsyncStorage,
+    Animated,
+    TouchableWithoutFeedback,
+    Easing
 } from 'react-native';
 
 export default class Login extends Component {
   constructor(props){
       super(props)
+      this.spinValue = new Animated.Value(0)
+
 
       this.state = {
           email:'',
           password:'',
           loading: false,
-          showToast: false
+          showToast: false,
+          animate: new Animated.Value(0),
+          sucess:false,
       }
+      this._loginForm = this._loginForm.bind(this)
+      this.componentDidMount = this.componentDidMount.bind(this)
+      this.spin = this.spin.bind(this)
 
-    this._loginForm = this._loginForm.bind(this)
+
   }
+
+  componentDidMount () {
+    this.spin()
+  }
+
+  spin () {
+    this.spinValue.setValue(0)
+    Animated.timing(
+      this.spinValue,
+      {
+        toValue: 1,
+        duration: 4000,
+        easing: Easing.linear
+      }
+    ).start(() => this.spin())
+  }
+
 
     onButtonPress1(){
         this.props.navigator.push({
@@ -67,27 +95,38 @@ export default class Login extends Component {
   }
 
     render(){
-        return (
-            <View style= {styles.container}>
-              <View style={{
-       flex: 1,
-       flexDirection: 'column',
-       justifyContent: 'center',
-       alignItems: 'center',
-     }}>
-       <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
-       <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
-       <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
-     </View>
 
+      const spin = this.spinValue.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['0deg', '360deg']
+  })
+
+        return (
+
+
+            <View style= {styles.container}>
+              <View style={styles.containers}>
+          <Animated.Image
+            style={{
+              width: 227,
+              height: 200,
+              transform: [{rotate: spin}] }}
+              source={{uri: 'https://s3.amazonaws.com/media-p.slid.es/uploads/alexanderfarennikov/images/1198519/reactjs.png'}}
+          />
+        </View>
+
+     <FadeInView style={{width: 340, height: 70,}}>
      <View>
        <Text style={styles.HeadText}>
          Register a user to get full access to all functionallity
       </Text>
      </View>
+   </FadeInView>
+
 
      <Container style={StyleSheet.flatten(styles.Container)}>
      </Container>
+     <FadeInView style={{width: 340, height: 70,}}>
 
     <TextInput
         placeholder='email'
@@ -100,6 +139,10 @@ export default class Login extends Component {
         style={styles.input}
     />
     <View style={styles.hairline}/>
+    </FadeInView>
+
+      <FadeInView style={{width: 340, height: 70,}}>
+
     <TextInput
         placeholder='password'
         placeholderTextColor='black'
@@ -110,8 +153,12 @@ export default class Login extends Component {
         style={styles.input}
         ref={(input) => this.passwordInput = input}
     />
-    <View style={styles.hairline}/>
 
+
+    <View style={styles.hairline}/>
+    </FadeInView>
+
+    <FadeInView style={{width: 340, height: 70,}}>
 
     <TouchableOpacity onPress={this._loginForm} style={styles.buttonContainer}>
     <Text style={styles.buttonText}>LOGIN</Text>
@@ -122,7 +169,10 @@ export default class Login extends Component {
         <TouchableOpacity onPress={this.onButtonPress2.bind(this)} style={styles.buttonContainer}>
     <Text style={styles.buttonText}>Create User</Text>
         </TouchableOpacity>
+      </FadeInView>
+
         </View>
+
     );
     }
 
@@ -138,6 +188,11 @@ const styles = StyleSheet.create({
         flex: 1,
 
     },
+    containers:{
+      flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
     input: {
         height: 40,
         backgroundColor: 'white',
@@ -179,4 +234,5 @@ const styles = StyleSheet.create({
       height:1,
       flex:0.2
     }
+
 });

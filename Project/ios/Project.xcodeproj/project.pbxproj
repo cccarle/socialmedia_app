@@ -12,7 +12,6 @@
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* ProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ProjectTests.m */; };
-		0626BADEC5BF4F19BFACED9A /* Bungasai.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAFB18ED32CB4E83ACA42E0A /* Bungasai.ttf */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -34,16 +33,12 @@
 		2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */; };
 		2D16E6881FA4F8E400B85C8A /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D16E6891FA4F8E400B85C8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* ProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ProjectTests.m */; };
-		480D51F70D2046E7BCF3A9E1 /* meatbuckets.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42D21B164447441C8B3A085C /* meatbuckets.ttf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
-		78A310FC100B4FEC86A4B523 /* GeosansLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D2BE71F4A4B48F19F2CCF67 /* GeosansLight.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		A9753388D9454537A0D9858C /* meatbuckets.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B323016C407044B2A025E985 /* meatbuckets.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
-		E08EA2C9D533491A965A5A03 /* meatbuckets.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E37B4FCAF2884156B6BB30EA /* meatbuckets.ttf */; };
-		F1E5035311F24B668067E1AC /* GeosansLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 648648F158264DFE82F3259A /* GeosansLight.ttf */; };
-		C3F01CB89E1C40019BFFF140 /* Meat Buckets.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BFA869C902F4A1186B366D1 /* Meat Buckets.ttf */; };
-		7D543F3931874DA5BD007906 /* meat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACD5A680FB35483A9C2F63D9 /* meat.ttf */; };
+		7ECB572327A34BF79CF4303F /* Bungasai.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17D2232A0CA24587B702C61B /* Bungasai.ttf */; };
+		3B41CF58F8C8410B83433DAE /* GeosansLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B79A32CB64741598CDCD4D2 /* GeosansLight.ttf */; };
+		C67DAB01F2704E71BFC0DD3C /* Meatbuckets.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78F815A6C82A4AB98C18F749 /* Meatbuckets.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -345,18 +340,13 @@
 		2D02E47B1E0B4A5D006451C7 /* Project-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Project-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Project-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		42D21B164447441C8B3A085C /* meatbuckets.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = meatbuckets.ttf; path = ../src/assets/fonts/meatbuckets.ttf; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
-		648648F158264DFE82F3259A /* GeosansLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = GeosansLight.ttf; path = ../src/assets/fonts/GeosansLight.ttf; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		9D2BE71F4A4B48F19F2CCF67 /* GeosansLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = GeosansLight.ttf; path = ../src/fonts/GeosansLight.ttf; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
-		B323016C407044B2A025E985 /* meatbuckets.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = meatbuckets.ttf; path = ../src/fonts/meatbuckets.ttf; sourceTree = "<group>"; };
-		E37B4FCAF2884156B6BB30EA /* meatbuckets.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = file; name = meatbuckets.ttf; path = ../src/assets/fonts/meatbuckets.ttf; sourceTree = "<group>"; };
-		FAFB18ED32CB4E83ACA42E0A /* Bungasai.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Bungasai.ttf; path = ../src/assets/fonts/Bungasai.ttf; sourceTree = "<group>"; };
-		5BFA869C902F4A1186B366D1 /* Meat Buckets.ttf */ = {isa = PBXFileReference; name = "Meat Buckets.ttf"; path = "../src/assets/fonts/Meat Buckets.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		ACD5A680FB35483A9C2F63D9 /* meat.ttf */ = {isa = PBXFileReference; name = "meat.ttf"; path = "../src/assets/fonts/meat.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		17D2232A0CA24587B702C61B /* Bungasai.ttf */ = {isa = PBXFileReference; name = "Bungasai.ttf"; path = "../src/assets/fonts/Bungasai.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4B79A32CB64741598CDCD4D2 /* GeosansLight.ttf */ = {isa = PBXFileReference; name = "GeosansLight.ttf"; path = "../src/assets/fonts/GeosansLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		78F815A6C82A4AB98C18F749 /* Meatbuckets.ttf */ = {isa = PBXFileReference; name = "Meatbuckets.ttf"; path = "../src/assets/fonts/Meatbuckets.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -591,7 +581,7 @@
 				00E356EF1AD99517003FC87E /* ProjectTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				D18A7EB83C8948F8B69C48EB /* Resources */,
+				5590DA96D1AF4DC2AB8F1149 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -618,20 +608,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D18A7EB83C8948F8B69C48EB /* Resources */ = {
-			isa = PBXGroup;
+		5590DA96D1AF4DC2AB8F1149 /* Resources */ = {
+			isa = "PBXGroup";
 			children = (
-				B323016C407044B2A025E985 /* meatbuckets.ttf */,
-				9D2BE71F4A4B48F19F2CCF67 /* GeosansLight.ttf */,
-				FAFB18ED32CB4E83ACA42E0A /* Bungasai.ttf */,
-				648648F158264DFE82F3259A /* GeosansLight.ttf */,
-				E37B4FCAF2884156B6BB30EA /* meatbuckets.ttf */,
-				42D21B164447441C8B3A085C /* meatbuckets.ttf */,
-				5BFA869C902F4A1186B366D1 /* Meat Buckets.ttf */,
-				ACD5A680FB35483A9C2F63D9 /* meat.ttf */,
+				17D2232A0CA24587B702C61B /* Bungasai.ttf */,
+				4B79A32CB64741598CDCD4D2 /* GeosansLight.ttf */,
+				78F815A6C82A4AB98C18F749 /* Meatbuckets.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -1079,14 +1065,9 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				A9753388D9454537A0D9858C /* meatbuckets.ttf in Resources */,
-				78A310FC100B4FEC86A4B523 /* GeosansLight.ttf in Resources */,
-				0626BADEC5BF4F19BFACED9A /* Bungasai.ttf in Resources */,
-				F1E5035311F24B668067E1AC /* GeosansLight.ttf in Resources */,
-				E08EA2C9D533491A965A5A03 /* meatbuckets.ttf in Resources */,
-				480D51F70D2046E7BCF3A9E1 /* meatbuckets.ttf in Resources */,
-				C3F01CB89E1C40019BFFF140 /* Meat Buckets.ttf in Resources */,
-				7D543F3931874DA5BD007906 /* meat.ttf in Resources */,
+				7ECB572327A34BF79CF4303F /* Bungasai.ttf in Resources */,
+				3B41CF58F8C8410B83433DAE /* GeosansLight.ttf in Resources */,
+				C67DAB01F2704E71BFC0DD3C /* Meatbuckets.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

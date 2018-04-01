@@ -5,7 +5,7 @@ class createProfile extends Component {
   render () {
     return (
       <View>
-        <Text> Create profile </Text>
+        <Text> Profile dpic </Text>
       </View>
     )
   }

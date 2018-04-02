@@ -2,6 +2,7 @@ import React from 'react'
 import { Router, Scene, Actions } from 'react-native-router-flux'
 import LoginForm from './components/LogIn/LogInForm'
 import CreateProfile from './components/CreateProfile/createProfile'
+import SelectStatus from './components/SelectStatus/SelectStatus'
 
 const RouterComponent = () => {
   return (
@@ -10,11 +11,18 @@ const RouterComponent = () => {
         <Scene key='auth'>
           <Scene key='login' component={LoginForm} hideNavBar />
         </Scene>
-        <Scene key='main'>
+        <Scene key='profile'>
           <Scene
             key='createProfile'
             component={CreateProfile}
-            title='Create Profile'
+            hideNavBar
+        />
+        </Scene>
+        <Scene key='main'>
+          <Scene
+            key='selectStatus'
+            component={SelectStatus}
+            title='Select Status'
         />
         </Scene>
       </Scene>

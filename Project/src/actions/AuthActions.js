@@ -45,7 +45,7 @@ const loginUserSucess = (dispatch, user) => {
     payload: user
   })
 
-  Actions.main()
+  Actions.profile()
 }
 
 const loginUserFail = (dispatch) => {

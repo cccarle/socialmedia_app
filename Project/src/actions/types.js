@@ -8,3 +8,10 @@ export const PASSWORD_CHANGED = 'password_changed'
 export const LOGIN_USER_SUCESS = 'login_user_sucess'
 export const LOGIN_USER_FAIL = 'login_user_fail'
 export const LOGIN_USER = 'login_user'
+
+// Create Profile
+export const NAME_CHANGED = 'name_changed'
+export const AGE_CHANGED = 'age_changed'
+export const CREATE_PROFILE = 'create_profile'
+export const PROFILE_UPDATE = 'profile_update'
+export const CREATE_PROFILE_SUCCESS = 'create_profile_success'

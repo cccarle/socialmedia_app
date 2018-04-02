@@ -6,6 +6,8 @@ import ReduxThunk from 'redux-thunk'
 import Router from './Router'
 import firebase from 'firebase'
 
+import RNFetchBlob from 'react-native-fetch-blob'
+
 class App extends Component {
   componentWillMount () {
       // Initialize Firebase
@@ -14,7 +16,7 @@ class App extends Component {
       authDomain: 'theproject-12c94.firebaseapp.com',
       databaseURL: 'https://theproject-12c94.firebaseio.com',
       projectId: 'theproject-12c94',
-      storageBucket: '',
+      storageBucket: 'theproject-12c94.appspot.com',
       messagingSenderId: '1026203008937'
     }
     firebase.initializeApp(config)

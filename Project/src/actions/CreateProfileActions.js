@@ -33,7 +33,7 @@ export const createProfiles = ({ name, age }) => {
 
     dispatch({ type: CREATE_PROFILE })
     firebase.database().ref(`/users/${currentUser.uid}/profile`)
-            .push({ name, age })
+            .update({ name, age })
             .then(() => {
               console.log('added profile')
               Actions.selectStatus()

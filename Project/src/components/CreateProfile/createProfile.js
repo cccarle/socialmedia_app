@@ -1,12 +1,20 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, TextInput, Image } from 'react-native'
+import firebase from 'firebase'
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  TextInput
+} from 'react-native'
+
 import { Spinner } from '../common'
 import { connect } from 'react-redux'
 import { nameChanged, ageChanged, createProfiles } from '../../actions'
-
+import ProfilePictureHandeler from '../../utils/ProfilePictureHandeler'
 import styles from './CreateProfile.style'
 
 class createProfile extends Component {
+
   onNameChange (text) {
     this.props.nameChanged(text)
     console.log(this.props.name)
@@ -44,10 +52,8 @@ class createProfile extends Component {
           alignItems: 'center'
         }}>
 
-          <Image
-            style={{ width: 245, height: 235 }}
-            source={require('../../assets/man.png')}
-      />
+          <ProfilePictureHandeler />
+
         </View>
         <Text style={styles.HeadText}>
         Whats your name ?

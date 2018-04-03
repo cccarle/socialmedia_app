@@ -55,6 +55,7 @@ class createProfile extends Component {
           <ProfilePictureHandeler />
 
         </View>
+        <View style={{marginBottom:25 }}>
         <Text style={styles.HeadText}>
         Whats your name ?
         </Text>
@@ -76,7 +77,7 @@ class createProfile extends Component {
             placeholder='Age'
             placeholderTextColor='white'
             returnKeyType='go'
-            keyboardType='numeric'
+            keyboardType={'numeric'}     
             value={this.props.age}
             onChangeText={this.onAgeChange.bind(this)}
             style={styles.texts}
@@ -86,6 +87,7 @@ class createProfile extends Component {
         </View>
         <View style={styles.spinnerAndButton}>
           {this.renderButton()}
+        </View>
         </View>
       </View>
     )

@@ -40,7 +40,16 @@ const styles = {
     marginLeft: 25,
     fontFamily: 'GeosansLight'
   },
-
+  descriptionText: {
+    textAlign: 'center',
+    height: 15,
+    backgroundColor: 'black',
+    color: 'white',
+    paddingHorizontal: 0,
+    fontSize: 12,
+    marginBottom: 40,
+    fontFamily: 'GeosansLight'
+},
   hairline: {
     height: 1,
     backgroundColor: 'white',

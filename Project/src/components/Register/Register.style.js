@@ -37,34 +37,34 @@ const styles = {
     },
     texts: {
       color: 'white',
-      marginLeft: 53,
+      marginLeft: 25,
       fontFamily: 'GeosansLight'
     },
     descriptionText: {
-        textAlign: 'center',
-        height: 15,
-        backgroundColor: 'black',
-        color: 'white',
-        paddingHorizontal: 0,
-        fontSize: 12,
-        marginBottom: 40,
-        fontFamily: 'GeosansLight'
-    },
+      textAlign: 'center',
+      height: 15,
+      backgroundColor: 'black',
+      color: 'white',
+      paddingHorizontal: 0,
+      fontSize: 12,
+      marginBottom: 40,
+      fontFamily: 'GeosansLight'
+  },
     hairline: {
       height: 1,
       backgroundColor: 'white',
       marginBottom: 40,
-      marginLeft: 50,
-      marginRight: 50
+      marginLeft: 25,
+      marginRight: 25
     },
     HeadText: {
       textAlign: 'center',
-      height: 40,
+      height: 70,
       backgroundColor: 'black',
       color: 'white',
       paddingHorizontal: 0,
-      fontSize: 50,
-      marginBottom: 10,
+      fontSize: 70,
+      marginBottom: 1,
       fontFamily: 'Meatbuckets'
     },
     errorTextStyle: {

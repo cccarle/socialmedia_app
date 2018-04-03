@@ -3,13 +3,12 @@ import { Actions } from 'react-native-router-flux'
 import { Text, View, TouchableOpacity, TextInput, Image } from 'react-native'
 import { Spinner } from '../common'
 import { connect } from 'react-redux'
-import { emailChanged, passwordChanged, loginUser } from '../../actions'
+import { emailChanged, passwordChanged, registerUser } from '../../actions'
 
-// StyleSheet
-import styles from './LogInForm.style'
+import styles from './Register.style'
 
-class LogInForm extends Component {
-    // when user write something, create a action creator
+class Register extends Component {
+  // when user write something, create a action creator
   onEmailChange (text) {
     this.props.emailChanged(text)
     console.log(this.props.email)
@@ -23,7 +22,7 @@ class LogInForm extends Component {
   // Try to log  in with email and password
   onButtonPress () {
     const {email, password} = this.props
-    this.props.loginUser({email, password})
+    this.props.registerUser({email, password})
   }
 
   // If auth fails, shows an error message
@@ -39,10 +38,9 @@ class LogInForm extends Component {
     }
   }
 
-  renderRegisterScreen () {
-    Actions.register()
+  renderLogInScreen () {
+    Actions.login()
   }
-
   // If the state is "loading" show the spinner, else show the button
   renderButton () {
     if (this.props.loading) {
@@ -65,47 +63,44 @@ class LogInForm extends Component {
           alignItems: 'center'
         }}>
           <Text style={styles.HeadText}>
-          Who´s Out ?
+          Register.
       </Text>
-          <Image
-            style={{ width: 245, height: 235 }}
-            source={require('../../assets/logo.png')}
-        />
         </View>
-        <View style={styles.inputContainer}>
-          <TextInput
-            placeholder='Email'
-            placeholderTextColor='white'
-            returnKeyType='next'
-            keyboardType='email-address'
-            value={this.props.email}
-            onChangeText={this.onEmailChange.bind(this)}
-            style={styles.texts}
+        <View style={{ marginBottom: 90 }}>
+          <View style={styles.inputContainer}>
+            <TextInput
+              placeholder='Email'
+              placeholderTextColor='white'
+              returnKeyType='next'
+              keyboardType='email-address'
+              value={this.props.email}
+              onChangeText={this.onEmailChange.bind(this)}
+              style={styles.texts}
       />
-          <View style={styles.hairline} />
-          <TextInput
-            placeholder='Password'
-            placeholderTextColor='white'
-            returnKeyType='go'
-            onChangeText={this.onPasswordChange.bind(this)}
-            value={this.props.password}
-            secureTextEntry
-            style={styles.texts}
+            <View style={styles.hairline} />
+            <TextInput
+              placeholder='Password'
+              placeholderTextColor='white'
+              returnKeyType='go'
+              onChangeText={this.onPasswordChange.bind(this)}
+              value={this.props.password}
+              secureTextEntry
+              style={styles.texts}
 
       />
-          <View style={styles.hairline} />
-          {this.renderError()}
-        </View>
-        <View style={styles.spinnerAndButton}>
-          {this.renderButton()}
+            <View style={styles.hairline} />
+            {this.renderError()}
+          </View>
+          <View style={styles.spinnerAndButton}>
+            {this.renderButton()}
 
-        </View>
-        <Text style={styles.descriptionText}
-          
-          onPress={this.renderRegisterScreen.bind(this)}
-        >
-        Not a account ? Register here.
+          </View>
+          <Text style={styles.descriptionText}
+            onPress={this.renderLogInScreen.bind(this)}
+          >
+        Already have a account ? Sign in here.
         </Text>
+        </View>
       </View>
     )
   }
@@ -120,7 +115,4 @@ const mapStateToProps = state => {
     loading: state.auth.loading
   }
 }
-export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser })(LogInForm)
-
-// connect the component to redux
-// passes mapsettoprop and second the action creator
+export default connect(mapStateToProps, { emailChanged, passwordChanged, registerUser })(Register)

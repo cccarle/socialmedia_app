@@ -8,7 +8,8 @@ import {
   PASSWORD_CHANGED,
   LOGIN_USER_SUCESS,
   LOGIN_USER_FAIL,
-  LOGIN_USER
+  LOGIN_USER,
+  REGISTER_USER
 } from '../actions/types'
 
 const INTIAL_STATE = {
@@ -34,6 +35,9 @@ export default (state = INTIAL_STATE, action) => {
       // if fail 0 password
 
     case LOGIN_USER:
+      return {...state, loading: true, error: ''}
+
+    case REGISTER_USER:
       return {...state, loading: true, error: ''}
 
     default:

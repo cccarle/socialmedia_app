@@ -32,8 +32,8 @@ class ProfilePictureHandeler extends Component {
     const { currentUser } = firebase.auth()
 
     ImagePicker.openPicker({
-      width: 550,
-      height: 550,
+      width: 245,
+      height: 235,
       borderRadius: 50,
       cropping: false,
       mediaType: 'photo'

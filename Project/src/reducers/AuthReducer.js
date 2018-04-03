@@ -21,10 +21,10 @@ const INTIAL_STATE = {
 export default (state = INTIAL_STATE, action) => {
   switch (action.type) {
     case EMAIL_CHANGED:
-      return { ...state, email: action.payload }
+      return { ...state, email: action.payload, error: '' }
 
     case PASSWORD_CHANGED:
-      return { ...state, password: action.payload }
+      return { ...state, password: action.payload, error: ''}
 
     case LOGIN_USER_SUCESS:
       return {...state, user: action.payload, error: '', loading: false}

@@ -3,7 +3,7 @@ import { Actions } from 'react-native-router-flux'
 import { Text, View, TouchableOpacity, TextInput, Image } from 'react-native'
 import { Spinner } from '../common'
 import { connect } from 'react-redux'
-import { emailChanged, passwordChanged, loginUser } from '../../actions'
+import { emailChanged, passwordChanged, loginUser, deleteErrorMessage } from '../../actions'
 
 // StyleSheet
 import styles from './LogInForm.style'
@@ -40,7 +40,9 @@ class LogInForm extends Component {
   }
 
   renderRegisterScreen () {
-    Actions.register()
+    Actions.register()  
+    this.props.deleteErrorMessage()
+      
   }
 
   // If the state is "loading" show the spinner, else show the button
@@ -120,7 +122,7 @@ const mapStateToProps = state => {
     loading: state.auth.loading
   }
 }
-export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser })(LogInForm)
+export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser, deleteErrorMessage })(LogInForm)
 
 // connect the component to redux
 // passes mapsettoprop and second the action creator

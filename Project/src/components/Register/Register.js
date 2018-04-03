@@ -9,10 +9,12 @@ import styles from './Register.style'
 
 class Register extends Component {
   // when user write something, create a action creator
+
   onEmailChange (text) {
     this.props.emailChanged(text)
     console.log(this.props.email)
   }
+  
 
   onPasswordChange (text) {
     this.props.passwordChanged(text)
@@ -115,4 +117,4 @@ const mapStateToProps = state => {
     loading: state.auth.loading
   }
 }
-export default connect(mapStateToProps, { emailChanged, passwordChanged, registerUser })(Register)
+export default connect(mapStateToProps, { emailChanged, passwordChanged, registerUser})(Register)

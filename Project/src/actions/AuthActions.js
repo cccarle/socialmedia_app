@@ -6,7 +6,8 @@ import {
   LOGIN_USER_SUCESS,
   LOGIN_USER_FAIL,
   LOGIN_USER,
-  REGISTER_USER
+  REGISTER_USER,
+  DELETE_ERROR
 } from './types'
 
 import { Actions } from 'react-native-router-flux'
@@ -59,11 +60,19 @@ export const registerUser = ({ email, password }) => {
     dispatch({ type: REGISTER_USER })
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(user => loginUserSucess(dispatch, user))
-      .then(Actions.profile())
+      .then(() => {
+        Actions.profile()
+      })
+      .catch(() => loginUserFail(dispatch))
       .catch(() => loginUserFail(dispatch))
   }
 }
 
+export const deleteErrorMessage = () => {
+  return (dispatch) => {
+    dispatch({type: DELETE_ERROR})
+  }
+}
 const loginUserSucess = (dispatch, user) => {
   dispatch({
     type: LOGIN_USER_SUCESS,

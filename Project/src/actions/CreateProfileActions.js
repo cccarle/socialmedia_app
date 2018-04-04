@@ -1,10 +1,9 @@
-import firebase from 'firebase'
+import {firebaseRef} from '../firebase/firebase'
 
 import {
     NAME_CHANGED,
     AGE_CHANGED,
-    CREATE_PROFILE,
-    CREATE_PROFILE_SUCCESS
+    CREATE_PROFILE
 } from './types'
 
 import { Actions } from 'react-native-router-flux'
@@ -29,10 +28,10 @@ Saves profile to firebase datastore and then redirect to selecStatus scene
 
 export const createProfiles = ({ name, age }) => {
   return (dispatch) => {
-    const { currentUser } = firebase.auth()
+    const { currentUser } = firebaseRef.auth()
 
     dispatch({ type: CREATE_PROFILE })
-    firebase.database().ref(`/users/${currentUser.uid}/profile`)
+    firebaseRef.database().ref(`/users/${currentUser.uid}/profile`)
             .update({ name, age })
             .then(() => {
               console.log('added profile')
@@ -40,10 +39,3 @@ export const createProfiles = ({ name, age }) => {
             })
   }
 }
-
-// export const createProfilesSuccess = () => {
-//   return {
-//     type: CREATE_PROFILE_SUCCESS,
-//     payload: loading
-//   }
-// }

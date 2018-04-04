@@ -1,4 +1,5 @@
-import firebase from 'firebase'
+
+import {firebaseRef} from '../firebase/firebase'
 
 import {
   EMAIL_CHANGED,
@@ -33,12 +34,12 @@ if a user has created a account but not yet created a profile it will be redirec
 export const loginUser = ({ email, password }) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_USER })
-    firebase.auth().signInWithEmailAndPassword(email, password)
+    firebaseRef.auth().signInWithEmailAndPassword(email, password)
       .then(user => loginUserSucess(dispatch, user))
       .then(() => {
-        let userId = firebase.auth().currentUser.uid
+        let userId = firebaseRef.auth().currentUser.uid
         // Check if the current signed in user have value in the database
-        return firebase.database().ref(`/users/${userId}`).once('value').then(function (snapshot) {
+        return firebaseRef.database().ref(`/users/${userId}`).once('value').then(function (snapshot) {
           if (!snapshot.val()) {
             Actions.profile()
           } else if (snapshot.val()) {
@@ -58,7 +59,7 @@ Register user - redirected to "createProfile" scene
 export const registerUser = ({ email, password }) => {
   return (dispatch) => {
     dispatch({ type: REGISTER_USER })
-    firebase.auth().createUserWithEmailAndPassword(email, password)
+    firebaseRef.auth().createUserWithEmailAndPassword(email, password)
       .then(user => loginUserSucess(dispatch, user))
       .then(() => {
         Actions.profile()

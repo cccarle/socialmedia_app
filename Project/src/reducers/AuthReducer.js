@@ -25,7 +25,7 @@ export default (state = INTIAL_STATE, action) => {
       return { ...state, email: action.payload, error: '' }
 
     case PASSWORD_CHANGED:
-      return { ...state, password: action.payload, error: ''}
+      return {...state, password: action.payload, error: ''}
 
     case LOGIN_USER_SUCESS:
       return {...state, user: action.payload, error: '', loading: false}

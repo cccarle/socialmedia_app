@@ -4,6 +4,10 @@ import LoginForm from './components/LogIn/LogInForm'
 import CreateProfile from './components/CreateProfile/createProfile'
 import SelectStatus from './components/SelectStatus/SelectStatus'
 import Register from './components/Register/Register'
+
+import GoingOut from './components/GoingOut/GoingOut'
+import NotGoingOut from './components/NotGoingOut/NotGoingOut'
+
 const RouterComponent = () => {
   return (
     <Router>
@@ -12,7 +16,7 @@ const RouterComponent = () => {
           <Scene key='login' component={LoginForm} hideNavBar initial />
           <Scene key='register' component={Register} hideNavBar />
         </Scene>
-        
+
         <Scene key='profile'>
           <Scene
             key='createProfile'
@@ -24,8 +28,20 @@ const RouterComponent = () => {
           <Scene
             key='selectStatus'
             component={SelectStatus}
-            title='Select Status'
-        />
+            hideNavBar
+/>
+          <Scene
+            onLeft={() => Actions.selectStatus()}
+            leftTitle='Change Status'
+            key='goingOut'
+            component={GoingOut}
+/>
+          <Scene
+            onLeft={() => Actions.selectStatus()}
+            leftTitle='Change Status'
+            key='notGoingOut'
+            component={NotGoingOut}
+/>
         </Scene>
       </Scene>
     </Router>

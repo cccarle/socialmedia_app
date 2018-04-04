@@ -8,8 +8,6 @@ import {
   TouchableHighlight
 } from 'react-native'
 
-import { Spinner } from '.././components/common'
-import { connect } from 'react-redux'
 import RNFetchBlob from 'react-native-fetch-blob'
 import ImagePicker from 'react-native-image-crop-picker'
 
@@ -95,7 +93,7 @@ class ProfilePictureHandeler extends Component {
       </TouchableHighlight>
 
 )
-
+    // Default picture, d
     const standardPicture = this.state.loading ? <ActivityIndicator animating={this.state.loading} /> : (
       <View>
         {selectedPicture}

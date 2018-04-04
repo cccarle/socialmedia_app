@@ -6,8 +6,6 @@ import ReduxThunk from 'redux-thunk'
 import Router from './Router'
 import firebase from 'firebase'
 
-import RNFetchBlob from 'react-native-fetch-blob'
-
 class App extends Component {
   componentWillMount () {
       // Initialize Firebase

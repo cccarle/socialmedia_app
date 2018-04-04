@@ -14,7 +14,6 @@ class Register extends Component {
     this.props.emailChanged(text)
     console.log(this.props.email)
   }
-  
 
   onPasswordChange (text) {
     this.props.passwordChanged(text)
@@ -50,7 +49,7 @@ class Register extends Component {
     }
     return (
       <TouchableOpacity onPress={this.onButtonPress.bind(this)} style={styles.buttonContainer}>
-        <Text style={styles.buttonText}>Sign In</Text>
+        <Text style={styles.buttonText}>Register</Text>
       </TouchableOpacity>
     )
   }

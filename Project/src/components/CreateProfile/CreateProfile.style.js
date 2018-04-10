@@ -1,9 +1,7 @@
 
 const styles = {
     container: {
-      padding: 20,
-      backgroundColor: 'black',
-      flex: 1
+      flex: 1,
   
     },
     input: {
@@ -16,7 +14,7 @@ const styles = {
       fontFamily: 'GeosansLight'
     },
     inputContainer: {
-      marginBottom: 20
+      marginBottom: 1
     },
     buttonContainer: {
       height: 30,
@@ -78,11 +76,6 @@ const styles = {
     spinnerAndButton: {
       height: 20,
       marginBottom: 50
-    },
-    Container: {
-      height: 1,
-      flex: 0.2,
-      backgroundColor: 'black'
     }
   }
   

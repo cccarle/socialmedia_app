@@ -7,6 +7,7 @@ import {
   ActivityIndicator,
   TouchableHighlight
 } from 'react-native'
+import { Avatar } from 'react-native-elements'
 
 import RNFetchBlob from 'react-native-fetch-blob'
 import ImagePicker from 'react-native-image-crop-picker'
@@ -30,9 +31,6 @@ class ProfilePictureHandeler extends Component {
     const { currentUser } = firebase.auth()
 
     ImagePicker.openPicker({
-      width: 245,
-      height: 235,
-      borderRadius: 50,
       cropping: false,
       mediaType: 'photo'
     }).then(image => {
@@ -79,17 +77,22 @@ class ProfilePictureHandeler extends Component {
 
   render () {
     const selectedPicture = this.state.dp ? (<TouchableOpacity onPress={() => this.openPicker()}>
-      <Image
-        style={{ width: 245, height: 235, borderRadius: 110 }}
+      <Avatar
+        height={280}
+        rounded
         source={{ uri: this.state.dp }}
-  />
+        activeOpacity={0.7}
+/>
     </TouchableOpacity>) : (
 
       <TouchableHighlight onPress={() => this.openPicker()} >
-        <Image
-          style={{ width: 245, height: 235 }}
+
+        <Avatar
+          rounded
+          height={280}
           source={require('../../src/assets/man.png')}
-  />
+          activeOpacity={0.7}
+/>
       </TouchableHighlight>
 
 )

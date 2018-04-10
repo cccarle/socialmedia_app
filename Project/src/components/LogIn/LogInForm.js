@@ -4,6 +4,7 @@ import { Text, View, TouchableOpacity, TextInput, Image } from 'react-native'
 import { Spinner } from '../common'
 import { connect } from 'react-redux'
 import { emailChanged, passwordChanged, loginUser, deleteErrorMessage } from '../../actions'
+import { Tile } from 'react-native-elements'
 
 // StyleSheet
 import styles from './LogInForm.style'
@@ -30,7 +31,7 @@ class LogInForm extends Component {
   renderError () {
     if (this.props.error) {
       return (
-        <View style={{backgroundColor: 'black'}}>
+        <View>
           <Text style={styles.errorTextStyle}>
             {this.props.error}
           </Text>
@@ -40,9 +41,8 @@ class LogInForm extends Component {
   }
 
   renderRegisterScreen () {
-    Actions.register()  
+    Actions.register()
     this.props.deleteErrorMessage()
-      
   }
 
   // If the state is "loading" show the spinner, else show the button
@@ -66,14 +66,26 @@ class LogInForm extends Component {
           justifyContent: 'center',
           alignItems: 'center'
         }}>
-          <Text style={styles.HeadText}>
+          {/* <Text style={styles.HeadText}>
           Who´s Out ?
-      </Text>
-          <Image
-            style={{ width: 245, height: 235 }}
-            source={require('../../assets/logo.png')}
-        />
+      </Text> */}
+
+          <Tile
+            imageSrc={require('../../assets/action.jpg')}
+            imageContainerStyle={{ }}
+            title='Who´s Out?'
+            activeOpacity={1}
+            featured
+            caption='Meet New People'
+            captionStyle={{ fontFamily: 'GeosansLight'
+            }}
+            titleStyle={{fontFamily: 'Meatbuckets', fontSize: 55, justifyContent: 'center', alignItems: 'center'}}
+            icon={{name: 'zoom-in', color: 'white', size: 50 }}
+            height={1200}
+/>
+
         </View>
+
         <View style={styles.inputContainer}>
           <TextInput
             placeholder='Email'
@@ -103,7 +115,7 @@ class LogInForm extends Component {
 
         </View>
         <Text style={styles.descriptionText}
-          
+
           onPress={this.renderRegisterScreen.bind(this)}
         >
         Not a account ? Register here.

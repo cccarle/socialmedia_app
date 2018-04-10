@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, Button } from 'react-native'
+import { View, Button, Image, Text, TouchableHighlight } from 'react-native'
 import styles from './SelectStatus.style'
 import { connect } from 'react-redux'
 import { upDateStatus, upDateStatusToNotGoOut } from '../../actions'
+import { Tile } from 'react-native-elements'
 
 class SelectStatus extends Component {
   goOutButtonPress () {
@@ -22,13 +23,37 @@ class SelectStatus extends Component {
           justifyContent: 'center',
           alignItems: 'center'
         }}>
-          <Text style={styles.HeadText}>
-          What are you doing tonight ?
-      </Text>
+
+          <Tile
+            imageSrc={require('../../assets/status.jpg')}
+            imageContainerStyle={{ }}
+            title='What are u up for tonight ? '
+            featured
+            caption='Click on the icon of your choice'
+            captionStyle={{ fontFamily: 'GeosansLight'
+            }}
+            titleStyle={{fontFamily: 'GeosansLight', fontSize: 55, justifyContent: 'center', alignItems: 'center'}}
+            height={1200}
+/>
         </View>
-        <View style={{ marginBottom: 90 }}>
-          <Button onPress={this.goOutButtonPress.bind(this)} title='Go Out' />
-          <Button onPress={this.notGoOutButtonPress.bind(this)} title='Stay Home' />
+        <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+          <TouchableHighlight underlayColor='transparent' style={{ }}onPress={() => this.goOutButtonPress()} >
+            <Image
+              style={{ width: 145, height: 145 }}
+              source={require('../../assets/pint1.png')}
+        />
+          </TouchableHighlight>
+          <TouchableHighlight underlayColor='transparent' style={{ }}onPress={() => this.notGoOutButtonPress()} >
+
+            <Image
+              style={{ width: 145, height: 145 }}
+              source={require('../../assets/sleep.png')}
+        />
+          </TouchableHighlight>
+        </View>
+        <View style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center',paddingTop: 5}} >
+          <Text style={{fontFamily: 'GeosansLight', color: 'white'}}> Im Going Out </Text>
+          <Text style={{fontFamily: 'GeosansLight', color: 'white'}}> Im Going To Bed </Text>
         </View>
       </View>
     )

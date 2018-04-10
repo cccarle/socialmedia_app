@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   TextInput
 } from 'react-native'
-
+import { Tile } from 'react-native-elements'
 import { Spinner } from '../common'
 import { connect } from 'react-redux'
 import { nameChanged, ageChanged, createProfiles } from '../../actions'
@@ -14,7 +14,6 @@ import ProfilePictureHandeler from '../../utils/ProfilePictureHandeler'
 import styles from './CreateProfile.style'
 
 class createProfile extends Component {
-
   onNameChange (text) {
     this.props.nameChanged(text)
     console.log(this.props.name)
@@ -45,24 +44,40 @@ class createProfile extends Component {
   render () {
     return (
       <View style={styles.container}>
+
         <View style={{
           flex: 1,
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
+          marginTop:10
         }}>
 
-          <ProfilePictureHandeler />
+          <Tile
+            imageSrc={require('../../assets/blurr.jpg')}
+            imageContainerStyle={{ }}
+            activeOpacity={1}
+            title='What´s Your Name ?'
+            featured
+            caption='Click on the image for uploading a profile picture'
+            captionStyle={{ fontFamily: 'GeosansLight'
+            }}
+            titleStyle={{fontFamily: 'Meatbuckets', fontSize: 55, justifyContent: 'center', alignItems: 'center'}}
+            height={1330}
+/>
 
         </View>
-        <View style={{marginBottom:25 }}>
-        <Text style={styles.HeadText}>
-        Whats your name ?
-        </Text>
-        <Text style={styles.descriptionText}>
-        Click on the image for uploading a profile picture
-        </Text>
+        <View style={{
+          flex: 1,
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginBottom: 60
+        }} >
+          <ProfilePictureHandeler />
+        </View>
         <View style={styles.inputContainer}>
+
           <TextInput
             placeholder='Name'
             placeholderTextColor='white'
@@ -77,7 +92,7 @@ class createProfile extends Component {
             placeholder='Age'
             placeholderTextColor='white'
             returnKeyType='go'
-            keyboardType={'numeric'}     
+            keyboardType={'numeric'}
             value={this.props.age}
             onChangeText={this.onAgeChange.bind(this)}
             style={styles.texts}
@@ -87,7 +102,6 @@ class createProfile extends Component {
         </View>
         <View style={styles.spinnerAndButton}>
           {this.renderButton()}
-        </View>
         </View>
       </View>
     )

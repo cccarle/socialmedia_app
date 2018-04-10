@@ -43,7 +43,6 @@ const styles = {
   descriptionText: {
     textAlign: 'center',
     height: 15,
-    backgroundColor: 'black',
     color: 'white',
     paddingHorizontal: 0,
     fontSize: 12,
@@ -71,7 +70,6 @@ const styles = {
     fontSize: 20,
     alignSelf: 'center',
     color: 'red',
-    backgroundColor: 'black',
     fontFamily: 'GeosansLight'
 
   },

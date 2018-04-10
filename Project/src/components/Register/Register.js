@@ -4,6 +4,7 @@ import { Text, View, TouchableOpacity, TextInput, Image } from 'react-native'
 import { Spinner } from '../common'
 import { connect } from 'react-redux'
 import { emailChanged, passwordChanged, registerUser } from '../../actions'
+import { Tile } from 'react-native-elements'
 
 import styles from './Register.style'
 
@@ -30,7 +31,7 @@ class Register extends Component {
   renderError () {
     if (this.props.error) {
       return (
-        <View style={{backgroundColor: 'black'}}>
+        <View>
           <Text style={styles.errorTextStyle}>
             {this.props.error}
           </Text>
@@ -63,9 +64,18 @@ class Register extends Component {
           justifyContent: 'center',
           alignItems: 'center'
         }}>
-          <Text style={styles.HeadText}>
-          Register.
-      </Text>
+          <Tile
+            imageSrc={require('../../assets/action.jpg')}
+            imageContainerStyle={{ }}
+            title='Register.'
+            activeOpacity={1}
+            featured
+            caption=''
+            captionStyle={{ fontFamily: 'GeosansLight'
+            }}
+            titleStyle={{fontFamily: 'Meatbuckets', fontSize: 55, justifyContent: 'center', alignItems: 'center'}}
+            height={1200}
+/>
         </View>
         <View style={{ marginBottom: 90 }}>
           <View style={styles.inputContainer}>

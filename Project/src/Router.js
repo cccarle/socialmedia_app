@@ -13,7 +13,7 @@ const RouterComponent = () => {
     <Router>
       <Scene key='root' hideNavBar>
         <Scene key='auth'>
-          <Scene key='login' component={LoginForm} hideNavBar />
+          <Scene key='login' component={LoginForm} hideNavBar  />
           <Scene key='register' component={Register} hideNavBar />
         </Scene>
 
@@ -31,7 +31,7 @@ const RouterComponent = () => {
             hideNavBar
 />
           <Scene
-            initial
+          initial
             hideNavBar
             // onLeft={() => Actions.selectStatus()}
             // leftTitle='Change Status'

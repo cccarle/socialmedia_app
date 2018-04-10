@@ -20,3 +20,6 @@ export const CREATE_PROFILE_SUCCESS = 'create_profile_success'
 // Status
 export const SET_STATUS_TO_OUT = 'set_status_to_out'
 export const SET_STATUS_TO_NOT_OUT = 'set_status_to_not_out'
+
+// LIST
+export const UPDATE_LIST_SUCCESS = 'update_list_success'

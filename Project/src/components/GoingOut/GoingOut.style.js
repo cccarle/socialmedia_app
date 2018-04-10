@@ -50,6 +50,9 @@ const styles = {
       marginBottom: 40,
       fontFamily: 'GeosansLight'
   },
+  teext: {
+    color:'blue'
+  },
     hairline: {
       height: 1,
       backgroundColor: 'white',
@@ -60,12 +63,11 @@ const styles = {
     HeadText: {
       textAlign: 'center',
       height: 70,
-      backgroundColor: 'black',
-      color: 'white',
+      color: 'black',
       paddingHorizontal: 0,
-      fontSize: 30,
+      fontSize: 20,
       marginBottom: 1,
-      fontFamily: 'Meatbuckets'
+      fontFamily: 'GeosansLight'
     },
     errorTextStyle: {
       fontSize: 20,

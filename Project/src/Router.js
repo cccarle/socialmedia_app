@@ -13,7 +13,7 @@ const RouterComponent = () => {
     <Router>
       <Scene key='root' hideNavBar>
         <Scene key='auth'>
-          <Scene key='login' component={LoginForm} hideNavBar initial />
+          <Scene key='login' component={LoginForm} hideNavBar />
           <Scene key='register' component={Register} hideNavBar />
         </Scene>
 
@@ -24,15 +24,17 @@ const RouterComponent = () => {
             hideNavBar
         />
         </Scene>
-        <Scene key='main'>
+        <Scene key='main' initial>
           <Scene
             key='selectStatus'
             component={SelectStatus}
             hideNavBar
 />
           <Scene
-            onLeft={() => Actions.selectStatus()}
-            leftTitle='Change Status'
+            initial
+            hideNavBar
+            // onLeft={() => Actions.selectStatus()}
+            // leftTitle='Change Status'
             key='goingOut'
             component={GoingOut}
 />

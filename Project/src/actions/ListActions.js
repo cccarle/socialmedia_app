@@ -12,14 +12,16 @@ export const fetchList = () => {
     .on('value', snapshot => {
       let snap = snapshot.val()
 
+      // Get acces to the keys in the object i got from firebase
       let keys = Object.keys(snap)
 
+      //  iterate the keys and put them in an User object
       for (var i = 0; i < keys.length; i++) {
-        var k = keys[i]
-        var name = snap[k].profile.name
-        var age = snap[k].profile.age
-        var status = snap[k].profile.status
-        var profile_picture = snap[k].profile.profile_picture
+        let k = keys[i]
+        let name = snap[k].profile.name
+        let age = snap[k].profile.age
+        let status = snap[k].profile.status
+        let profile_picture = snap[k].profile.profile_picture
 
         let users = {name: '', age: '', status: Boolean, profile_picture: ''}
 
@@ -27,10 +29,11 @@ export const fetchList = () => {
         users.age = age
         users.status = status
         users.profile_picture = profile_picture
+        // adding the user object to an array
         arrayToFilter.push(users)
       }
-
-      var arr = arrayToFilter.filter(child => child.status === true)
+      // filter and creates a new array with users depending if their status is true
+      let arr = arrayToFilter.filter(child => child.status === true)
 
       dispatch({ type: UPDATE_LIST_SUCCESS, payload: arr })
     })

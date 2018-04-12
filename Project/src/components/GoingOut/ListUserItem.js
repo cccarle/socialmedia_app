@@ -6,16 +6,29 @@ class ListUserItem extends Component {
   render (user) {
     return (
 
-      <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 5}}>
+      <View style={{ position: 'relative',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 5,
+        right: 25 }}>
         <Avatar
           medium
           rounded
           source={{uri: this.props.user.profile_picture}}
           onPress={() => console.log('Works!')}
           activeOpacity={0.7}
-/>
-        <Text style={{fontSize: 15, fontFamily: 'GeosansLight'}}> {this.props.user.name} </Text>
-        <Text style={{fontSize: 15, fontFamily: 'GeosansLight'}}> {this.props.user.age} </Text>
+    />
+        <View style={{ position: 'absolute',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'baseline',
+          right: 100,
+          top: 15 }}>
+          <Text style={{fontSize: 15,position: 'absolute', fontFamily: 'GeosansLight'}}>
+            {this.props.user.name}  {this.props.user.age} 
+          </Text>
+        </View>
       </View>
     )
   }

@@ -26,10 +26,9 @@ class GoingOut extends Component {
 
     this.createDataSource(this.props)
   }
-
+  // When user scrolls, the list will update
   updateData () {
     this.props.fetchList()
-    this.createDataSource(this.props)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -84,7 +83,7 @@ class GoingOut extends Component {
             textStyle={{fontFamily: 'GeosansLight'}}
           />
         </View>
-        <View style={{ height: 320, justifyContent: 'center', alignItems: 'center', marginTop: 35 }} >
+        <View style={{ height: 320, marginTop: 35 }} >
 
           <ListView
             showsVerticalScrollIndicator={false}

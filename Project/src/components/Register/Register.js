@@ -27,7 +27,7 @@ class Register extends Component {
     this.props.registerUser({email, password})
   }
 
-  // If auth fails, shows an error message
+  // If auth fails, shows an error messagethisssss
   renderError () {
     if (this.props.error) {
       return (

@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import { View, Text} from 'react-native'
-// import {firebaseRef} from '../../firebase/firebase'
-import {Avatar, Divider, Tile, ButtonGroup} from 'react-native-elements'
+import { View, ListView } from 'react-native'
+import { Divider, Tile, ButtonGroup } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { fetchList } from '../../actions'
 import _ from 'lodash'
-import FooterNav from '../FooterNav/FooterNav'
 import HeaderBlack from '../common/HeaderBlack'
+import ListUserItem from './ListUserItem'
 
 class GoingOut extends Component {
   constructor () {
@@ -21,13 +20,42 @@ class GoingOut extends Component {
     this.setState({selectedIndex})
   }
 
+  // Call fetchList to get access to the users
   componentWillMount () {
     this.props.fetchList()
+
+    this.createDataSource(this.props)
   }
+
+  updateData () {
+    this.props.fetchList()
+    this.createDataSource(this.props)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    // nextProps are the next set of props that this component
+    // will be rendered with
+    // this.props is still the old set of props
+
+    this.createDataSource(nextProps)
+  }
+
+  createDataSource ({ users }) {
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    })
+
+    this.dataSource = ds.cloneWithRows(users)
+  }
+
+  // Render out the users
+  renderRow (user) {
+    return <ListUserItem user={user} />
+  }
+
   render () {
     const buttons = ['All', 'Female', 'Male']
     const { selectedIndex } = this.state
-    console.log(this.props)
 
     return (
 
@@ -47,72 +75,24 @@ class GoingOut extends Component {
 
         <Divider style={{ backgroundColor: 'black' }} />
 
-        <View style={{ justifyContent: 'center', alignItems: 'center'}} >
+        <View style={{ justifyContent: 'center', alignItems: 'center' }} >
           <ButtonGroup
             onPress={this.updateIndex}
             selectedIndex={selectedIndex}
             buttons={buttons}
-            containerStyle={{height: 30, width: 200, marginTop: 30, justifyContent: 'center', alignItems: 'baseline' }}
+            containerStyle={{ height: 30, width: 200, marginTop: 30, justifyContent: 'center', alignItems: 'baseline' }}
             textStyle={{fontFamily: 'GeosansLight'}}
           />
         </View>
+        <View style={{ height: 320, justifyContent: 'center', alignItems: 'center', marginTop: 35 }} >
 
-        <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 35}} >
-          <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 5}}>
-            <Avatar
-              medium
-              rounded
-              source={{uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'}}
-              onPress={() => console.log('Works!')}
-              activeOpacity={0.7}
-/>
-            <Text style={{fontSize: 15, fontFamily: 'GeosansLight'}}> Johanna </Text>
-            <Text style={{fontSize: 15, fontFamily: 'GeosansLight'}}> 23 </Text>
-          </View>
-          <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 5}}>
-            <Avatar
-              medium
-              rounded
-              source={{uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'}}
-              onPress={() => console.log('Works!')}
-              activeOpacity={0.7}
-/>
-            <Text style={{fontSize: 15, fontFamily: 'GeosansLight'}}> Johanna </Text>
-            <Text style={{fontSize: 15, fontFamily: 'GeosansLight'}}> 23 </Text>
-          </View>
-          <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 5}}>
-            <Avatar
-              medium
-              rounded
-              source={{uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'}}
-              onPress={() => console.log('Works!')}
-              activeOpacity={0.7}
-/>
-            <Text style={{fontSize: 15, fontFamily: 'GeosansLight'}}> Johanna </Text>
-            <Text style={{fontSize: 15, fontFamily: 'GeosansLight'}}> 23 </Text>
-          </View>
-          <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 5}}>
-            <Avatar
-              medium
-              rounded
-              source={{uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'}}
-              onPress={() => console.log('Works!')}
-              activeOpacity={0.7}
-/>
-            <Text style={{fontSize: 15, fontFamily: 'GeosansLight'}}> Johanna </Text>
-            <Text style={{fontSize: 15, fontFamily: 'GeosansLight'}}> 23 </Text>
-          </View>
-          <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 5}}>
-            <Avatar
-              medium
-              rounded
-              source={{uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'}}
-              onPress={() => console.log('Works!')}
-              activeOpacity={0.7}
-/>
-            <Text style={{fontSize: 15, fontFamily: 'GeosansLight'}}> Johanna </Text>
-            <Text style={{fontSize: 15, fontFamily: 'GeosansLight'}}> 23 </Text>
-          </View>
+          <ListView
+            showsVerticalScrollIndicator={false}
+            enableEmptySections
+            dataSource={this.dataSource}
+            renderRow={this.renderRow}
+            onScroll={this.updateData.bind(this)}
+      />
         </View>
       </View>
 
@@ -121,6 +101,10 @@ class GoingOut extends Component {
 }
 
 const mapStateToProps = state => {
-  return { users: state.list }
+  const users = _.map(state.list, (val) => {
+    return {...val}
+  })
+  return { users }
 }
+
 export default connect(mapStateToProps, {fetchList})(GoingOut)

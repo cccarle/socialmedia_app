@@ -4,7 +4,6 @@ import LoginForm from './components/LogIn/LogInForm'
 import CreateProfile from './components/CreateProfile/createProfile'
 import SelectStatus from './components/SelectStatus/SelectStatus'
 import Register from './components/Register/Register'
-
 import GoingOut from './components/GoingOut/GoingOut'
 import NotGoingOut from './components/NotGoingOut/NotGoingOut'
 
@@ -13,7 +12,7 @@ const RouterComponent = () => {
     <Router>
       <Scene key='root' hideNavBar>
         <Scene key='auth'>
-          <Scene key='login' component={LoginForm} hideNavBar />
+          <Scene key='login' component={LoginForm} hideNavBar initial />
           <Scene key='register' component={Register} hideNavBar />
         </Scene>
 
@@ -24,7 +23,7 @@ const RouterComponent = () => {
             hideNavBar
         />
         </Scene>
-        <Scene key='main'  initial>
+        <Scene key='main' >
           <Scene
             key='selectStatus'
             component={SelectStatus}

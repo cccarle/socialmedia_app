@@ -1,17 +1,20 @@
 import React, { Component } from 'react'
-import { View, ListView } from 'react-native'
+import { View, ListView, Text} from 'react-native'
 import { Divider, Tile, ButtonGroup } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { fetchList } from '../../actions'
 import _ from 'lodash'
 import HeaderBlack from '../common/HeaderBlack'
+import {Spinner} from '../common'
 import ListUserItem from './ListUserItem'
+import Modal from 'react-native-modal'
 
 class GoingOut extends Component {
   constructor () {
     super()
     this.state = {
-      selectedIndex: 2
+      selectedIndex: 2,
+      loading: false
     }
     this.updateIndex = this.updateIndex.bind(this)
   }
@@ -31,6 +34,9 @@ class GoingOut extends Component {
     this.props.fetchList()
   }
 
+  renderSpinner () {
+    if (this.state.loading == true) { return <Spinner size='large' /> }
+  }
   componentWillReceiveProps (nextProps) {
     // nextProps are the next set of props that this component
     // will be rendered with
@@ -57,8 +63,8 @@ class GoingOut extends Component {
     const { selectedIndex } = this.state
 
     return (
-
       <View>
+        
         <HeaderBlack />
 
         <Tile
@@ -83,15 +89,16 @@ class GoingOut extends Component {
             textStyle={{fontFamily: 'GeosansLight'}}
           />
         </View>
-        <View style={{ height: 320, marginTop: 35 }} >
-
+        <View style={{ height: 380, marginTop: 35 }} >
+          {this.renderSpinner()}
           <ListView
             showsVerticalScrollIndicator={false}
             enableEmptySections
             dataSource={this.dataSource}
             renderRow={this.renderRow}
             onScroll={this.updateData.bind(this)}
-      />
+
+/>
         </View>
       </View>
 

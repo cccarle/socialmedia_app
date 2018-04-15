@@ -11,9 +11,9 @@ class ListUserItem extends Component {
         justifyContent: 'center',
         alignItems: 'center',
         padding: 5,
-        right: 25 }}>
+        right: 54 }}>
         <Avatar
-          medium
+          large
           rounded
           source={{uri: this.props.user.profile_picture}}
           onPress={() => console.log('Works!')}
@@ -24,7 +24,7 @@ class ListUserItem extends Component {
           justifyContent: 'center',
           alignItems: 'baseline',
           right: 100,
-          top: 15 }}>
+          top: 36 }}>
           <Text style={{fontSize: 15,position: 'absolute', fontFamily: 'GeosansLight'}}>
             {this.props.user.name}  {this.props.user.age} 
           </Text>

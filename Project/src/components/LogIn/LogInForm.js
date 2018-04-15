@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Actions } from 'react-native-router-flux'
-import { Text, View, TouchableOpacity, TextInput, Image } from 'react-native'
+import { Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native'
 import { Spinner } from '../common'
 import { connect } from 'react-redux'
 import { emailChanged, passwordChanged, loginUser, deleteErrorMessage } from '../../actions'
@@ -66,12 +66,9 @@ class LogInForm extends Component {
           justifyContent: 'center',
           alignItems: 'center'
         }}>
-          {/* <Text style={styles.HeadText}>
-          Who´s Out ?
-      </Text> */}
 
           <Tile
-            imageSrc={require('../../assets/action.jpg')}
+            imageSrc={require('../../assets/status.jpg')}
             imageContainerStyle={{ }}
             title='Who´s Out?'
             activeOpacity={1}
@@ -86,7 +83,8 @@ class LogInForm extends Component {
 
         </View>
 
-        <View style={styles.inputContainer}>
+        <KeyboardAvoidingView behavior='padding' style={styles.inputContainer}>
+
           <TextInput
             placeholder='Email'
             placeholderTextColor='white'
@@ -109,16 +107,17 @@ class LogInForm extends Component {
       />
           <View style={styles.hairline} />
           {this.renderError()}
-        </View>
+
         <View style={styles.spinnerAndButton}>
           {this.renderButton()}
-
         </View>
+        </KeyboardAvoidingView>
+
         <Text style={styles.descriptionText}
 
           onPress={this.renderRegisterScreen.bind(this)}
         >
-        Not a account ? Register here.
+        Not a account ? <Text style={{ textDecorationLine: 'underline'}}>Register here.</Text>
         </Text>
       </View>
     )

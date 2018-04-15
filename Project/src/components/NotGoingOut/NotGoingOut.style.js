@@ -2,7 +2,6 @@
 const styles = {
     container: {
       padding: 20,
-      backgroundColor: 'black',
       flex: 1
   
     },

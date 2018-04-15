@@ -3,9 +3,11 @@ import AuthReducer from './AuthReducer'
 import CreateProfileReducer from './CreateProfileReducer'
 import SetStatusReducer from './SetStatusReducer'
 import ListReducer from './ListReducer'
+import CurrentProfileReducer from './CurrentProfileReducer'
 export default combineReducers({
   auth: AuthReducer,
   create: CreateProfileReducer,
   status: SetStatusReducer,
-  list: ListReducer
+  list: ListReducer,
+  profile: CurrentProfileReducer
 })

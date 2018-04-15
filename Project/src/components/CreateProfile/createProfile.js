@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import firebase from 'firebase'
 import {
   Text,
   View,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  KeyboardAvoidingView
 } from 'react-native'
 import { Tile } from 'react-native-elements'
 import { Spinner } from '../common'
@@ -14,6 +14,14 @@ import ProfilePictureHandeler from '../../utils/ProfilePictureHandeler'
 import styles from './CreateProfile.style'
 
 class createProfile extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+
+      keyboardType: 'default'
+    }
+  }
+
   onNameChange (text) {
     this.props.nameChanged(text)
     console.log(this.props.name)
@@ -50,18 +58,17 @@ class createProfile extends Component {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          marginTop:10
+          marginTop: 10
         }}>
 
           <Tile
-            imageSrc={require('../../assets/blurr.jpg')}
+            imageSrc={require('../../assets/action.jpg')}
             imageContainerStyle={{ }}
             activeOpacity={1}
             title='What´s Your Name ?'
             featured
             caption='Click on the image for uploading a profile picture'
-            captionStyle={{ fontFamily: 'GeosansLight'
-            }}
+            captionStyle={{ fontFamily: 'GeosansLight' }}
             titleStyle={{fontFamily: 'Meatbuckets', fontSize: 55, justifyContent: 'center', alignItems: 'center'}}
             height={1330}
 />
@@ -76,7 +83,8 @@ class createProfile extends Component {
         }} >
           <ProfilePictureHandeler />
         </View>
-        <View style={styles.inputContainer}>
+        <KeyboardAvoidingView behavior='padding' style={styles.inputContainer}>
+
 
           <TextInput
             placeholder='Name'
@@ -89,9 +97,9 @@ class createProfile extends Component {
     />
           <View style={styles.hairline} />
           <TextInput
+            returnKeyType='done'
             placeholder='Age'
             placeholderTextColor='white'
-            returnKeyType='go'
             keyboardType={'numeric'}
             value={this.props.age}
             onChangeText={this.onAgeChange.bind(this)}
@@ -99,7 +107,7 @@ class createProfile extends Component {
 
     />
           <View style={styles.hairline} />
-        </View>
+        </KeyboardAvoidingView>
         <View style={styles.spinnerAndButton}>
           {this.renderButton()}
         </View>

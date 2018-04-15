@@ -47,8 +47,9 @@ const styles = {
     paddingHorizontal: 0,
     fontSize: 12,
     marginBottom: 40,
-    fontFamily: 'GeosansLight'
-},
+    fontFamily: 'GeosansLight',
+
+  },
   hairline: {
     height: 1,
     backgroundColor: 'white',

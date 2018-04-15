@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Actions } from 'react-native-router-flux'
-import { Text, View, TouchableOpacity, TextInput, Image } from 'react-native'
+import { Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView} from 'react-native'
 import { Spinner } from '../common'
 import { connect } from 'react-redux'
 import { emailChanged, passwordChanged, registerUser } from '../../actions'
@@ -65,7 +65,7 @@ class Register extends Component {
           alignItems: 'center'
         }}>
           <Tile
-            imageSrc={require('../../assets/action.jpg')}
+            imageSrc={require('../../assets/action3.jpg')}
             imageContainerStyle={{ }}
             title='Register.'
             activeOpacity={1}
@@ -77,41 +77,40 @@ class Register extends Component {
             height={1200}
 />
         </View>
-        <View style={{ marginBottom: 90 }}>
-          <View style={styles.inputContainer}>
-            <TextInput
-              placeholder='Email'
-              placeholderTextColor='white'
-              returnKeyType='next'
-              keyboardType='email-address'
-              value={this.props.email}
-              onChangeText={this.onEmailChange.bind(this)}
-              style={styles.texts}
+        <KeyboardAvoidingView behavior='padding' style={styles.inputContainer}>
+          <TextInput
+            placeholder='Email'
+            placeholderTextColor='white'
+            returnKeyType='next'
+            keyboardType='email-address'
+            value={this.props.email}
+            onChangeText={this.onEmailChange.bind(this)}
+            style={styles.texts}
       />
-            <View style={styles.hairline} />
-            <TextInput
-              placeholder='Password'
-              placeholderTextColor='white'
-              returnKeyType='go'
-              onChangeText={this.onPasswordChange.bind(this)}
-              value={this.props.password}
-              secureTextEntry
-              style={styles.texts}
+          <View style={styles.hairline} />
+          <TextInput
+            placeholder='Password'
+            placeholderTextColor='white'
+            returnKeyType='go'
+            onChangeText={this.onPasswordChange.bind(this)}
+            value={this.props.password}
+            secureTextEntry
+            style={styles.texts}
 
       />
-            <View style={styles.hairline} />
-            {this.renderError()}
-          </View>
+
+          <View style={styles.hairline} />
+          {this.renderError()}
           <View style={styles.spinnerAndButton}>
             {this.renderButton()}
-
           </View>
-          <Text style={styles.descriptionText}
-            onPress={this.renderLogInScreen.bind(this)}
+        </KeyboardAvoidingView>
+
+        <Text style={styles.descriptionText}
+          onPress={this.renderLogInScreen.bind(this)}
           >
-        Already have a account ? Sign in here.
+        Already have a account ? <Text style={{ textDecorationLine: 'underline'}}>Sign in here.</Text>
         </Text>
-        </View>
       </View>
     )
   }

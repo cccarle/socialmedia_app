@@ -3,7 +3,6 @@ import firebase from 'firebase'
 import {
   View,
   TouchableOpacity,
-  Image,
   ActivityIndicator,
   TouchableHighlight
 } from 'react-native'
@@ -31,7 +30,9 @@ class ProfilePictureHandeler extends Component {
     const { currentUser } = firebase.auth()
 
     ImagePicker.openPicker({
-      cropping: false,
+      cropping: true,
+      height: 280,
+      width: 340,
       mediaType: 'photo'
     }).then(image => {
       const imagePath = image.path

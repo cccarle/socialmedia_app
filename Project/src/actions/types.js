@@ -23,3 +23,6 @@ export const SET_STATUS_TO_NOT_OUT = 'set_status_to_not_out'
 
 // LIST
 export const UPDATE_LIST_SUCCESS = 'update_list_success'
+
+// Profile Data
+export const CURRENT_PROFILE_DATA = 'current_profile_data'

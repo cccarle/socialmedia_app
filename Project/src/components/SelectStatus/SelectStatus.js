@@ -25,7 +25,7 @@ class SelectStatus extends Component {
         }}>
 
           <Tile
-            imageSrc={require('../../assets/status.jpg')}
+            imageSrc={require('../../assets/action.jpg')}
             imageContainerStyle={{ }}
             title='What are u up for tonight ? '
             featured

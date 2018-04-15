@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+
 import styles from './NotGoingOut.style'
+import { View, Text, Image } from 'react-native'
+import { Card, ListItem, Button } from 'react-native-elements'
 
 class NotGoingOut extends Component {
   render () {
@@ -12,12 +14,22 @@ class NotGoingOut extends Component {
           justifyContent: 'center',
           alignItems: 'center'
         }}>
-          <Text style={styles.HeadText}>
-          I understand you, sometime it´s nice to be home
-      </Text>
-          <Text style={styles.HeadText}>
-          Here if netlfix top series right know
-      </Text>
+          <Card
+            title='Tarzan'
+            image={require('../../assets/outback.jpg')}>
+            <Text style={{marginBottom: 10}}>
+    The idea with React Native Elements is more about component structure than actual design.
+  </Text>
+            <Button
+              icon={{name: 'movie'}}
+              backgroundColor='#03A9F4'
+              fontFamily='GeosansLight'
+              buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+              containerStyle={{height: 200, width:100}}
+              title='Read more' />
+              
+          </Card>
+          
         </View>
         <View style={{ marginBottom: 90 }} />
       </View>

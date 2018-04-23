@@ -10,6 +10,7 @@ export const LOGIN_USER_FAIL = 'login_user_fail'
 export const LOGIN_USER = 'login_user'
 export const REGISTER_USER = 'register_user'
 export const DELETE_ERROR = 'delete_error'
+export const SIGN_OUT = 'sign_out'
 // Create Profile
 export const NAME_CHANGED = 'name_changed'
 export const AGE_CHANGED = 'age_changed'

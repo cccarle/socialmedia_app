@@ -10,7 +10,8 @@ import {
   LOGIN_USER_FAIL,
   LOGIN_USER,
   REGISTER_USER,
-  DELETE_ERROR
+  DELETE_ERROR,
+  SIGN_OUT
 } from '../actions/types'
 
 const INTIAL_STATE = {
@@ -40,6 +41,9 @@ export default (state = INTIAL_STATE, action) => {
 
     case REGISTER_USER:
       return {...state, loading: true, error: ''}
+
+    case SIGN_OUT:
+      return {...state, loading: false , error: '', email: '', password: ''}
 
     case DELETE_ERROR:
       return {...state, error: ''}

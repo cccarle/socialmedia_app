@@ -6,13 +6,14 @@ import SelectStatus from './components/SelectStatus/SelectStatus'
 import Register from './components/Register/Register'
 import GoingOut from './components/GoingOut/GoingOut'
 import NotGoingOut from './components/NotGoingOut/NotGoingOut'
+import EditProfile from './components/EditProfile/EditProfile'
 
 const RouterComponent = () => {
   return (
     <Router>
       <Scene key='root' hideNavBar>
         <Scene key='auth'>
-          <Scene key='login' component={LoginForm} hideNavBar initial />
+          <Scene key='login' component={LoginForm} hideNavBar />
           <Scene key='register' component={Register} hideNavBar />
         </Scene>
 
@@ -28,21 +29,24 @@ const RouterComponent = () => {
             key='selectStatus'
             component={SelectStatus}
             hideNavBar
-/>
+        />
           <Scene
             hideNavBar
-            initial
-            // onLeft={() => Actions.selectStatus()}
-            // leftTitle='Change Status'
             key='goingOut'
             component={GoingOut}
-/>
+        />
           <Scene
             onLeft={() => Actions.selectStatus()}
             leftTitle='Change Status'
             key='notGoingOut'
             component={NotGoingOut}
-/>
+        />
+          <Scene
+            navigationBarStyle={{color: 'white'}}
+            key='editProfile'
+            component={EditProfile}
+            navTransparent
+        />
         </Scene>
       </Scene>
     </Router>

@@ -1,10 +1,21 @@
 
 const styles = {
   container: {
-    padding: 20,
-    backgroundColor: 'black',
-    flex: 1
-
+    flex: 1,
+  },
+  backgroundTile: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
+    backgroundColor:'red'
+  },
+  titleStyles:{
+    fontFamily:  'GeosansLight', 
+    fontSize: 40, 
+    justifyContent: 'center', 
+    alignItems: 'center' 
   },
   input: {
     color: 'white',
@@ -15,8 +26,12 @@ const styles = {
     padding: 10,
     fontFamily: 'GeosansLight'
   },
-  inputContainer: {
-    marginBottom: 20
+  uploadImageContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 60
   },
   buttonContainer: {
     height: 30,
@@ -36,53 +51,28 @@ const styles = {
 
   },
   texts: {
-    fontSize: 17,
     color: 'white',
-    marginLeft: 25,
+    marginLeft: 53,
     fontFamily: 'GeosansLight'
-  },
-  descriptionText: {
-    textAlign: 'center',
-    height: 15,
-    color: 'white',
-    paddingHorizontal: 0,
-    fontSize: 12,
-    marginBottom: 40,
-    fontFamily: 'GeosansLight',
-
   },
   hairline: {
     height: 1,
     backgroundColor: 'white',
     marginBottom: 40,
-    marginLeft: 25,
-    marginRight: 25
-  },
-  HeadText: {
-    textAlign: 'center',
-    height: 50,
-    backgroundColor: 'black',
-    color: 'white',
-    paddingHorizontal: 0,
-    fontSize: 50,
-    marginBottom: 50,
-    fontFamily: 'Meatbuckets'
+    marginLeft: 50,
+    marginRight: 50
   },
   errorTextStyle: {
     fontSize: 20,
     alignSelf: 'center',
     color: 'red',
+    backgroundColor: 'black',
     fontFamily: 'GeosansLight'
 
   },
   spinnerAndButton: {
     height: 20,
     marginBottom: 50
-  },
-  Container: {
-    height: 1,
-    flex: 0.2,
-    backgroundColor: 'black'
   }
 }
 

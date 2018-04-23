@@ -16,7 +16,7 @@ class NotGoingOut extends Component {
         }}>
           <Card
             title='Tarzan'
-            image={require('../../assets/outback.jpg')}>
+            image={require('../../assets/outbackmin.jpg')}>
             <Text style={{marginBottom: 10}}>
     The idea with React Native Elements is more about component structure than actual design.
   </Text>

@@ -1,15 +1,12 @@
-import React, {Component } from 'react'
+import React, { Component } from 'react'
 import { View, Text } from 'react-native'
-import { Header, Icon, Avatar, Button } from 'react-native-elements'
-import { Actions } from 'react-native-router-flux'
-import { fetchProfileData } from '../../actions'
-import { connect } from 'react-redux'
+import { Header, Icon, Avatar, Button, Divider } from 'react-native-elements'
 import _ from 'lodash'
-import ProfilePictureHandeler from '../../utils/ProfilePictureHandeler'
-
-import {firebaseRef} from '../../firebase/firebase'
-
+import { Actions } from 'react-native-router-flux'
+import { fetchProfileData, signOut } from '../../actions'
+import { connect } from 'react-redux'
 import Modal from 'react-native-modal'
+import styles from './HeaderBlack.style'
 
 class HeaderBlack extends Component {
   constructor () {
@@ -18,84 +15,64 @@ class HeaderBlack extends Component {
       isModalVisible: false
     }
   }
-
-    // Call fetchList to get access to the users
+  // Call fetchList to get access to the users
   componentWillMount () {
     this.props.fetchProfileData()
   }
 
+  // toggle if to show modal or not
   toggleModal () {
     this.setState({ isModalVisible: !this.state.isModalVisible })
     this.profile()
   }
+  // Render editProfile Scene & Closes modal
   changeProfile () {
-    Actions.createProfile()
+    Actions.editProfile()
     this.toggleModal()
   }
-
+// Render selectStatus Scene & Closes modal
   changeStatus () {
     Actions.selectStatus()
     this.toggleModal()
   }
-
+// Signs out the user, close modal and render Sign in Scene
   signOut () {
     Actions.login()
     this.toggleModal()
-    firebaseRef.auth().signOut().then(function () {
-      console.log('Signed Out')
-    }, function (error) {
-      console.error('Sign Out Error', error)
-    })
+    this.props.signOut()
   }
 
+  // When modal is true/visibal show this content
   profile () {
-    if (this.state.isModalVisible == true) {
+    if (this.state.isModalVisible === true) {
       return (
-        <View style={{ position: 'relative',
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: 5,
-          right: 54 }}>
 
+        <View style={styles.profileContainer}>
           <Avatar
-            height={200}
+            height={180}
             rounded
             source={{ uri: this.props.profile[0].profile_picture }}
             activeOpacity={0.7}
-        />
+          />
 
-          <View style={{ position: 'absolute',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'baseline',
-            left: 240,
-            top: 100 }}>
-
-            <Text style={{color: '#fff', fontFamily: 'GeosansLight', fontSize: 20}} >{this.props.profile[0].name} {this.props.profile[0].age} </Text>
+          <View style={styles.profileDataContainer}>
+            <Text style={styles.profileDataSettings} >{this.props.profile[0].name} {this.props.profile[0].age} </Text>
           </View>
 
-          <View style={{ position: 'absolute',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'baseline',
-            left: 237,
-            top: 125 }}>
-            <Text style={{color: '#fff', fontFamily: 'GeosansLight', fontSize: 15}}onPress={this.changeProfile.bind(this)}> Edit Profile </Text>
-
+          <View style={styles.editProfileDataSettingsContainer}>
+            <Text style={styles.editProfileDataSettings} onPress={this.changeProfile.bind(this)}> Edit Profile </Text>
             <Icon
-              iconStyle={{marginBottom: 10}}
-              containerStyle={{marginBottom: 10}}
+              iconStyle={{ marginBottom: 10 }}
+              containerStyle={{ marginBottom: 10 }}
               size={13}
               name='cog'
               type='font-awesome'
               color='#FFF'
               onPress={this.changeProfile.bind(this)}
-/>
+            />
           </View>
 
         </View>
-
       )
     }
   }
@@ -107,56 +84,87 @@ class HeaderBlack extends Component {
             onSwipe={() => this.setState({ isModalVisible: false })}
             swipeDirection='up'
             onSwipeThreshold={50}
-            backdropOpacity={0.70}
-            >
-            <View style={{flexDirection: 'row' }}>
-              <View style={{ marginTop: 12, marginRight: 312, width: 30}}>
+            backdropOpacity={0.90}
+          >
+            <View style={{ flexDirection: 'row' }}>
+              <View style={styles.exitModalIcon}>
                 <Icon
                   name='clear'
                   type='clear'
                   color='#FFF'
                   onPress={this.toggleModal.bind(this)}
-              />
+                />
               </View>
 
-              <View style={{ position: 'absolute',
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'baseline',
-                left: 290,
-                top: 15 }}>
-                <Text style={{color: '#fff', fontFamily: 'GeosansLight', fontSize: 15}} onPress={this.signOut.bind(this)}>Sign Out</Text>
+              <View style={styles.signOut}>
+                <Text style={styles.editProfileDataSettings} onPress={this.signOut.bind(this)}>Sign Out</Text>
               </View>
             </View>
-            <View style={{
-              flex: 1,
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}>
-
+            <View style={styles.profileContainerInPlace}>
               {this.profile()}
             </View>
-            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-              <Button
-                raised
-                icon={{name: 'cached'}}
-                title='Change Status'
-                rounded
-                onPress={this.changeStatus.bind(this)}
-                />
+
+            <Divider style={{ backgroundColor: 'white'}} />
+
+            <View style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginLeft: 5,
+              marginTop: 10
+            }}>
+              <View>
+                <Icon
+                  name='message'
+                  type='message'
+                  color='#FFF'
+                  size={50}
+
+          />
+                <Text style={{color: 'white', marginTop: 4}}>Message</Text>
+              </View>
+
+              <View >
+                <Icon
+                  name='replay'
+                  type='replay'
+                  color='#FFF'
+                  size={50}
+                  iconStyle={{marginLeft: 13}}
+                  onPress={this.changeStatus.bind(this)}
+
+          />
+                <Text onPress={this.changeStatus.bind(this)} style={{color: 'white', marginTop: 5, marginLeft: 13}}> Change Status </Text>
+              </View>
+
+              <View>
+                <Icon
+                  name='place'
+                  type='place'
+                  color='#FFF'
+                  size={50}
+
+          />
+                <Text style={{color: 'white', marginTop: 5}}> Oskarshamn </Text>
+              </View>
             </View>
+
+            <View style={styles.changeStatusButtonContainer} />
           </Modal>
         </View>
 
         <Header
-          style={{padding: 0}}
+          style={{ padding: 0 }}
           backgroundColor='#1E1E1E'
           outerContainerStyles={{ height: 80 }}
-          leftComponent={{ icon: 'menu', color: '#fff', onPress: () => this.toggleModal() }}
-          centerComponent={{ text: 'People Out Tonight ', style: {color: '#fff', fontFamily: 'GeosansLight', fontSize: 15} }}
+          leftComponent={<Avatar
+            small
+            rounded
+            // source={console.log(this.props.profile[0].profile_picture)}
+            onPress={this.toggleModal.bind(this)}
+  />}
+          centerComponent={{ text: 'People Out Tonight ', style: { color: '#fff', fontFamily: 'GeosansLight', fontSize: 15 } }}
           rightComponent={{ icon: 'forum', color: '#fff' }}
-      />
+  />
       </View>
     )
   }
@@ -164,9 +172,9 @@ class HeaderBlack extends Component {
 
 const mapStateToProps = state => {
   const profile = _.map(state.profile, (val) => {
-    return {...val}
+    return { ...val }
   })
   return { profile }
 }
 
-export default connect(mapStateToProps, {fetchProfileData})(HeaderBlack)
+export default connect(mapStateToProps, { fetchProfileData, signOut })(HeaderBlack)

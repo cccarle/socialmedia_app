@@ -65,7 +65,7 @@ class Register extends Component {
           alignItems: 'center'
         }}>
           <Tile
-            imageSrc={require('../../assets/action3.jpg')}
+            imageSrc={require('../../assets/registerback.jpg')}
             imageContainerStyle={{ }}
             title='Register.'
             activeOpacity={1}

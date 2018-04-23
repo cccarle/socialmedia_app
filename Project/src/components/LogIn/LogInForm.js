@@ -68,7 +68,7 @@ class LogInForm extends Component {
         }}>
 
           <Tile
-            imageSrc={require('../../assets/status.jpg')}
+            imageSrc={require('../../assets/loginback.jpg')}
             imageContainerStyle={{ }}
             title='Who´s Out?'
             activeOpacity={1}
@@ -90,7 +90,6 @@ class LogInForm extends Component {
             placeholderTextColor='white'
             returnKeyType='next'
             keyboardType='email-address'
-            value={this.props.email}
             onChangeText={this.onEmailChange.bind(this)}
             style={styles.texts}
       />

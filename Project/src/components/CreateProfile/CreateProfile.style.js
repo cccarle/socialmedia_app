@@ -2,7 +2,19 @@
 const styles = {
     container: {
       flex: 1,
-  
+    },
+    backgroundTile: {
+      flex: 1,
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 10
+    },
+    titleStyles:{
+      fontFamily:  'GeosansLight', 
+      fontSize: 40, 
+      justifyContent: 'center', 
+      alignItems: 'center' 
     },
     input: {
       color: 'white',
@@ -13,8 +25,12 @@ const styles = {
       padding: 10,
       fontFamily: 'GeosansLight'
     },
-    inputContainer: {
-      marginBottom: 1
+    uploadImageContainer: {
+      flex: 1,
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginBottom: 60
     },
     buttonContainer: {
       height: 30,
@@ -38,32 +54,12 @@ const styles = {
       marginLeft: 53,
       fontFamily: 'GeosansLight'
     },
-    descriptionText: {
-        textAlign: 'center',
-        height: 15,
-        backgroundColor: 'black',
-        color: 'white',
-        paddingHorizontal: 0,
-        fontSize: 12,
-        marginBottom: 40,
-        fontFamily: 'GeosansLight'
-    },
     hairline: {
       height: 1,
       backgroundColor: 'white',
       marginBottom: 40,
       marginLeft: 50,
       marginRight: 50
-    },
-    HeadText: {
-      textAlign: 'center',
-      height: 40,
-      backgroundColor: 'black',
-      color: 'white',
-      paddingHorizontal: 0,
-      fontSize: 50,
-      marginBottom: 10,
-      fontFamily: 'Meatbuckets'
     },
     errorTextStyle: {
       fontSize: 20,

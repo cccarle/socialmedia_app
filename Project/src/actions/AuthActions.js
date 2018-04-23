@@ -8,7 +8,8 @@ import {
   LOGIN_USER_FAIL,
   LOGIN_USER,
   REGISTER_USER,
-  DELETE_ERROR
+  DELETE_ERROR,
+  SIGN_OUT
 } from './types'
 
 import { Actions } from 'react-native-router-flux'
@@ -50,6 +51,18 @@ export const loginUser = ({ email, password }) => {
       .catch(() =>
         loginUserFail(dispatch))
       .catch(() => loginUserFail(dispatch))
+  }
+}
+
+export const signOut = () => {
+  return (dispatch) => {
+    const { currentUser } = firebaseRef.auth()
+    dispatch({ type: SIGN_OUT })
+    firebaseRef.auth().signOut().then(function () {
+      console.log('Signed Out')
+    }, function (error) {
+      console.error('Sign Out Error', error)
+    })
   }
 }
 

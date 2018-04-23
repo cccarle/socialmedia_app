@@ -36,6 +36,7 @@ const styles = {
   
     },
     texts: {
+      fontSize: 17,
       color: 'white',
       marginLeft: 25,
       fontFamily: 'GeosansLight'

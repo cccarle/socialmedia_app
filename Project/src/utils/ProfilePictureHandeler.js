@@ -31,8 +31,8 @@ class ProfilePictureHandeler extends Component {
 
     ImagePicker.openPicker({
       cropping: true,
-      height: 280,
-      width: 340,
+      height: 265,
+      width: 265,
       mediaType: 'photo'
     }).then(image => {
       const imagePath = image.path
@@ -44,6 +44,9 @@ class ProfilePictureHandeler extends Component {
       let mime = 'image/jpg'
       fs.readFile(imagePath, 'base64')
             .then((data) => {
+              if(blob == null ) {
+                console.log('do something here')
+              }
               return Blob.build(data, { type: `${mime};BASE64` })
             })
           .then((blob) => {
@@ -58,20 +61,34 @@ class ProfilePictureHandeler extends Component {
              firebase.database().ref(`/users/${currentUser.uid}/profile`).update({
                profile_picture: url
              })
-
              let obj = {}
              obj['loading'] = false
              obj['dp'] = url
              this.setState(obj)
            })
            .catch((error) => {
-             console.log(error)
+             console.log(error + 'OPEN PICKER AGAIN')
+             if (error) {
+               this.setState({loading: false})
+             }
            })
            .catch((error) => {
              console.log(error)
+             if (error) {
+               this.setState({loading: false})
+             }
            })
            .catch((error) => {
              console.log(error)
+
+             if (error) {
+               this.setState({loading: false})
+             }
+           })
+           .catch((error) => {
+             if (error) {
+               this.setState({loading: false})
+             }
            })
     })
   }
@@ -79,7 +96,7 @@ class ProfilePictureHandeler extends Component {
   render () {
     const selectedPicture = this.state.dp ? (<TouchableOpacity onPress={() => this.openPicker()}>
       <Avatar
-        height={280}
+        height={265}
         rounded
         source={{ uri: this.state.dp }}
         activeOpacity={0.7}
@@ -90,7 +107,7 @@ class ProfilePictureHandeler extends Component {
 
         <Avatar
           rounded
-          height={280}
+          height={265}
           source={require('../../src/assets/man.png')}
           activeOpacity={0.7}
 />
@@ -105,9 +122,12 @@ class ProfilePictureHandeler extends Component {
   )
 
     return (
-      <View>
-        {standardPicture}
-      </View>
+      <TouchableHighlight onPress={() => this.openPicker()} >
+        <View>
+          {standardPicture}
+        </View>
+      </TouchableHighlight>
+
     )
   }
 }

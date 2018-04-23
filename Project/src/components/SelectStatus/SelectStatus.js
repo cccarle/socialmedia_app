@@ -25,10 +25,11 @@ class SelectStatus extends Component {
         }}>
 
           <Tile
-            imageSrc={require('../../assets/action.jpg')}
+            imageSrc={require('../../assets/outbackmin.jpg')}
             imageContainerStyle={{ }}
             title='What are u up for tonight ? '
             featured
+            activeOpacity={1}
             caption='Click on the icon of your choice'
             captionStyle={{ fontFamily: 'GeosansLight'
             }}

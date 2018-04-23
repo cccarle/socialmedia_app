@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { View, ListView, Text} from 'react-native'
-import { Divider, Tile, ButtonGroup } from 'react-native-elements'
+import { Divider, Tile, ButtonGroup, Header } from 'react-native-elements'
 import { connect } from 'react-redux'
-import { fetchList } from '../../actions'
+import { fetchList, fetchProfileData } from '../../actions'
 import _ from 'lodash'
 import HeaderBlack from '../common/HeaderBlack'
 import {Spinner} from '../common'
 import ListUserItem from './ListUserItem'
-import Modal from 'react-native-modal'
+import styles from './GoingOut.style'
 
 class GoingOut extends Component {
   constructor () {
@@ -26,22 +26,23 @@ class GoingOut extends Component {
   // Call fetchList to get access to the users
   componentWillMount () {
     this.props.fetchList()
-
+    this.props.fetchProfileData()
     this.createDataSource(this.props)
   }
+
   // When user scrolls, the list will update
   updateData () {
     this.props.fetchList()
   }
 
   renderSpinner () {
-    if (this.state.loading == true) { return <Spinner size='large' /> }
+    if (this.state.loading === true) { return <Spinner size='large' /> }
   }
+
   componentWillReceiveProps (nextProps) {
     // nextProps are the next set of props that this component
     // will be rendered with
     // this.props is still the old set of props
-
     this.createDataSource(nextProps)
   }
 
@@ -64,19 +65,19 @@ class GoingOut extends Component {
 
     return (
       <View>
-        
+
         <HeaderBlack />
 
         <Tile
-          imageSrc={require('../../assets/outback.jpg')}
+          imageSrc={require('../../assets/outbackmin.jpg')}
           title='HARRYS 20% OFF ON FRIDAY NIGHT'
           caption='Click for more information'
           captionStyle={{ fontFamily: 'GeosansLight'
           }}
           featured
           height={250}
-          titleStyle={{fontFamily: 'GeosansLight', justifyContent: 'center', alignItems: 'center'}}
-/>
+          titleStyle={styles.titleStyles}
+        />
 
         <Divider style={{ backgroundColor: 'black' }} />
 
@@ -85,11 +86,12 @@ class GoingOut extends Component {
             onPress={this.updateIndex}
             selectedIndex={selectedIndex}
             buttons={buttons}
-            containerStyle={{ height: 30, width: 200, marginTop: 30, justifyContent: 'center', alignItems: 'baseline' }}
+            containerStyle={styles.buttonGroupContainer}
             textStyle={{fontFamily: 'GeosansLight'}}
           />
         </View>
-        <View style={{ height: 380, marginTop: 35 }} >
+
+        <View style={{ height: 385, marginTop: 35 }} >
           {this.renderSpinner()}
           <ListView
             showsVerticalScrollIndicator={false}
@@ -98,10 +100,9 @@ class GoingOut extends Component {
             renderRow={this.renderRow}
             onScroll={this.updateData.bind(this)}
 
-/>
+        />
         </View>
       </View>
-
     )
   }
 }
@@ -110,7 +111,10 @@ const mapStateToProps = state => {
   const users = _.map(state.list, (val) => {
     return {...val}
   })
-  return { users }
+  const profile = _.map(state.profile, (val) => {
+    return { ...val }
+  })
+  return { users, profile }
 }
 
-export default connect(mapStateToProps, {fetchList})(GoingOut)
+export default connect(mapStateToProps, {fetchList, fetchProfileData})(GoingOut)

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Button, Image, Text, TouchableHighlight } from 'react-native'
+import { View, Image, Text, TouchableHighlight } from 'react-native'
 import styles from './SelectStatus.style'
 import { connect } from 'react-redux'
 import { upDateStatus, upDateStatusToNotGoOut } from '../../actions'

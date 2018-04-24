@@ -17,7 +17,6 @@ import {
         return {...state, name: action.payload}
 
         case AGE_CHANGED:
-        console.log(action.payload)
         return {...state, age: action.payload} 
 
         case CREATE_PROFILE:

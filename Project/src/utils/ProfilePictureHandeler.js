@@ -44,9 +44,6 @@ class ProfilePictureHandeler extends Component {
       let mime = 'image/jpg'
       fs.readFile(imagePath, 'base64')
             .then((data) => {
-              if(blob == null ) {
-                console.log('do something here')
-              }
               return Blob.build(data, { type: `${mime};BASE64` })
             })
           .then((blob) => {
@@ -69,26 +66,16 @@ class ProfilePictureHandeler extends Component {
            .catch((error) => {
              console.log(error + 'OPEN PICKER AGAIN')
              if (error) {
-               this.setState({loading: false})
              }
            })
            .catch((error) => {
              console.log(error)
-             if (error) {
-               this.setState({loading: false})
-             }
            })
            .catch((error) => {
              console.log(error)
-
-             if (error) {
-               this.setState({loading: false})
-             }
            })
            .catch((error) => {
-             if (error) {
-               this.setState({loading: false})
-             }
+             console.log(error)
            })
     })
   }

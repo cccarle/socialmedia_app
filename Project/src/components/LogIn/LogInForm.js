@@ -13,12 +13,10 @@ class LogInForm extends Component {
     // when user write something, create a action creator
   onEmailChange (text) {
     this.props.emailChanged(text)
-    console.log(this.props.email)
   }
 
   onPasswordChange (text) {
     this.props.passwordChanged(text)
-    console.log(this.props.password)
   }
 
   // Try to log  in with email and password
@@ -68,7 +66,7 @@ class LogInForm extends Component {
         }}>
 
           <Tile
-            imageSrc={require('../../assets/loginback.jpg')}
+            imageSrc={require('../../assets/loginback2.jpg')}
             imageContainerStyle={{ }}
             title='Who´s Out?'
             activeOpacity={1}

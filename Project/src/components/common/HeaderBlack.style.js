@@ -85,5 +85,5 @@ currentMoodStyle:
 }
 }
   
-  module.exports = styles
+  export default styles;
   

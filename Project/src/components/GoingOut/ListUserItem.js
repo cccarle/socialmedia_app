@@ -1,10 +1,11 @@
 import React, {Component } from 'react'
 import { View, Text } from 'react-native'
-import { Avatar } from 'react-native-elements'
+import { Avatar, Icon } from 'react-native-elements'
+import { Spinner } from '../common'
 
 class ListUserItem extends Component {
   renderMood () {
-    if (this.props.user.prop && this.props.user.value == undefined) {
+    if (this.props.user.prop && this.props.user.value === undefined) {
       return <Text />
     } else {
       return (
@@ -13,27 +14,51 @@ class ListUserItem extends Component {
     }
   }
 
+  renderAvatarOrSpinner () {
+    if (this.props.user.profile_picture) {
+      return <Avatar
+        large
+        rounded
+        source={{uri: this.props.user.profile_picture}}
+        onPress={() => console.log('Works!')}
+        avatarStyle={{borderColor: '#302F30', borderWidth: 1}}
+        activeOpacity={0.7}
+/>
+    } else {
+      return <Avatar
+        large
+        rounded
+        onPress={() => console.log('Works!')}
+        activeOpacity={0.7}
+        icon={{name: 'account', type: 'material-community', color: 'white', size: 40}}
+        avatarStyle={{borderColor: '#302F30', borderWidth: 1}}
+
+        />
+    }
+  }
+
   render (user) {
     return (
-      <View style={styles.container}>
-        <Avatar
-          large
-          rounded
-          source={{uri: this.props.user.profile_picture}}
-          onPress={() => console.log('Works!')}
-          activeOpacity={0.7}
-    />
-        <View style={styles.textContainer}>
-          <Text style={styles.text}>
-            {this.props.user.name} {this.props.user.age}
-          </Text>
+      <View style={{
+        width: 320,
+        left: 34
+      }}>
+
+        <View style={styles.container}>
+          {this.renderAvatarOrSpinner()}
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>
+              {this.props.user.name} {this.props.user.age}
+            </Text>
+          </View>
+
+          <View style={styles.textContainer2}>
+            <Text style={styles.text}>
+              {this.renderMood()}
+            </Text>
+          </View>
         </View>
 
-        <View style={styles.textContainer2}>
-          <Text style={styles.text}>
-            {this.renderMood()}
-          </Text>
-        </View>
       </View>
     )
   }
@@ -45,29 +70,29 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 5,
-    right: 54
+    padding: 10,
+    right: 75
   },
   textContainer: {
     position: 'absolute',
     flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'baseline',
-    right: 100,
-    top: 36
+    left: 230,
+    top: 33
   },
   textContainer2: {
     position: 'absolute',
     flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'baseline',
-    right: 100,
-    top: 50
+    left: 215,
+    top: 53
   },
   text: {
+    color: 'white',
     fontSize: 15,
     position: 'absolute',
     fontFamily: 'GeosansLight'
   }
 }
+
 export default ListUserItem

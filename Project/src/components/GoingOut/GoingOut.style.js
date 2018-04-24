@@ -5,17 +5,24 @@ const styles = {
       marginBottom: 50
     },
     titleStyles: {
-      fontFamily: 'GeosansLight', 
-      justifyContent: 'center',
-      alignItems: 'center'
+      color:'white',
+      fontSize: 25,
+      position: 'relative',
+      fontFamily: 'GeosansLight',
     },
-    buttonGroupContainer: {
-      height: 30,
-      width: 200,
-      marginTop: 30, 
+    textContainer: {
       justifyContent: 'center',
-      alignItems: 'baseline'
+      alignItems: 'center',
+      marginTop:10,
+      height: 30
+    },
+    container: {
+      flex: 1,
+      width: null,
+      height: null,
+      backgroundColor: 'black',
     }
+    
   }
   
   module.exports = styles

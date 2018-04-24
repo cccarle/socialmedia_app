@@ -6,6 +6,8 @@ import { Actions } from 'react-native-router-flux'
 import { fetchProfileData, signOut, currentMood } from '../../actions'
 import { connect } from 'react-redux'
 import Modal from 'react-native-modal'
+import { Spinner } from '../common'
+
 import styles from './HeaderBlack.style'
 
 class HeaderBlack extends Component {
@@ -53,6 +55,7 @@ class HeaderBlack extends Component {
             rounded
             source={{ uri: this.props.profile[0].profile_picture }}
             activeOpacity={0.7}
+            avatarStyle={{borderColor: '#302F30', borderWidth: 1}}
           />
 
           <View style={styles.profileDataContainer}>
@@ -76,7 +79,37 @@ class HeaderBlack extends Component {
       )
     }
   }
-  render () {
+
+  renderHeader () {
+    if (!this.props.profile[0] || this.props.profile[0] === undefined) {
+      return <Header
+        style={{ padding: 0 }}
+        backgroundColor='#1E1E1E'
+        outerContainerStyles={{ height: 120 }}
+        leftComponent={<Spinner size='small' />}
+        centerComponent={{ text: 'People Out Tonight ', style: { color: '#fff', fontFamily: 'GeosansLight', fontSize: 24 } }}
+        rightComponent={{ icon: 'forum', color: '#fff' }}
+/>
+    } else {
+      return <Header
+        style={{ padding: 0 }}
+        backgroundColor='#1E1E1E'
+        outerContainerStyles={{ height: 120 }}
+        leftComponent={<Avatar
+          medium
+          rounded
+          source={{ uri: this.props.profile[0].profile_picture }}
+          onPress={this.toggleModal.bind(this)}
+          avatarStyle={{borderColor: 'white', borderWidth: 1}}
+/>}
+        centerComponent={{ text: 'People Out Tonight ', style: { color: '#fff', fontFamily: 'GeosansLight', fontSize: 24 } }}
+        rightComponent={{ icon: 'forum', color: '#fff' }}
+/>
+    }
+  }
+
+  render (profile) {
+    console.log(this.props.profile[0])
     return (
       <View>
         <View>
@@ -85,8 +118,9 @@ class HeaderBlack extends Component {
             swipeDirection='up'
             onSwipeThreshold={50}
             backdropOpacity={0.90}
+            animationIn='slideInDown'
           >
-            <View style={{ flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row', marginTop: 10 }}>
               <View style={styles.exitModalIcon}>
                 <Icon
                   name='clear'
@@ -120,7 +154,7 @@ class HeaderBlack extends Component {
                   color='#FFF'
                   size={50}
           />
-                <Text style={{color: 'white', marginTop: 4}}>Message</Text>
+                <Text style={{color: 'white', marginTop: 4}}>Messages</Text>
               </View>
 
               <View >
@@ -154,27 +188,21 @@ class HeaderBlack extends Component {
                 onValueChange={value => this.props.currentMood({ prop: 'mood', value })}
                 itemStyle={{color: 'white', fontFamily: 'GeosansLight' }} style={{ height: 300, width: 230 }}>
                 <Picker.Item label='💃 Dancing' value=' 💃 Dancing' />
+                <Picker.Item label='🎶 Listening To Music' value=' 🎶 Listening To Music' />
+                <Picker.Item label='🔥 Feeling On Fire' value=' 🔥 Feeling On Fire' />
+                <Picker.Item label='😴 Feeling Tired' value=' 😴 Feeling Tired' />
+                <Picker.Item label='🤪 Feeling Crazy' value=' 🤪 Feeling Crazy' />
+                <Picker.Item label='🤔 Feeling Confused' value=' 🤔 Feeling Confused' />
                 <Picker.Item label='🍻 Drinking Beer' value=' 🍻 Drinking Beer' />
                 <Picker.Item label='🍷 Drinking Wine' value=' 🍷 Drinking Wine' />
-                <Picker.Item label='🔥 Feeling On Fire' value=' 🔥 Feeling On Fire' />
+                <Picker.Item label='🍕 Pizza Time' value=' 🍕 Pizza Time' />
               </Picker>
             </View>
           </Modal>
-        </View>
 
-        <Header
-          style={{ padding: 0 }}
-          backgroundColor='#1E1E1E'
-          outerContainerStyles={{ height: 80 }}
-          leftComponent={<Avatar
-            small
-            rounded
-            // source={console.log(this.props.profile[0].profile_picture)}
-            onPress={this.toggleModal.bind(this)}
-  />}
-          centerComponent={{ text: 'People Out Tonight ', style: { color: '#fff', fontFamily: 'GeosansLight', fontSize: 15 } }}
-          rightComponent={{ icon: 'forum', color: '#fff' }}
-  />
+          {this.renderHeader()}
+
+        </View>
       </View>
     )
   }

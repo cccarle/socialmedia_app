@@ -9,8 +9,7 @@ export const fetchProfileData = () => {
     let userId = firebaseRef.auth().currentUser.uid
         // Check if the current signed in user have value in the database
     firebaseRef.database().ref(`/users/${userId}`).once('value').then(function (snapshot) {
-      
-      dispatch({ type: CURRENT_PROFILE_DATA, payload: snapshot.val()})
+      dispatch({ type: CURRENT_PROFILE_DATA, payload: snapshot.val() })
     })
   }
 }

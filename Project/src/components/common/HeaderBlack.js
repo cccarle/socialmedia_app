@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Picker } from 'react-native'
 import { Header, Icon, Avatar, Button, Divider } from 'react-native-elements'
 import _ from 'lodash'
 import { Actions } from 'react-native-router-flux'
@@ -109,8 +109,9 @@ class HeaderBlack extends Component {
             <View style={{
               flexDirection: 'row',
               justifyContent: 'space-between',
-              marginLeft: 5,
-              marginTop: 10
+              marginLeft: 10,
+              marginRight: 10,
+              marginTop: 25
             }}>
               <View>
                 <Icon
@@ -118,7 +119,6 @@ class HeaderBlack extends Component {
                   type='message'
                   color='#FFF'
                   size={50}
-
           />
                 <Text style={{color: 'white', marginTop: 4}}>Message</Text>
               </View>
@@ -131,7 +131,6 @@ class HeaderBlack extends Component {
                   size={50}
                   iconStyle={{marginLeft: 13}}
                   onPress={this.changeStatus.bind(this)}
-
           />
                 <Text onPress={this.changeStatus.bind(this)} style={{color: 'white', marginTop: 5, marginLeft: 13}}> Change Status </Text>
               </View>
@@ -142,13 +141,21 @@ class HeaderBlack extends Component {
                   type='place'
                   color='#FFF'
                   size={50}
-
           />
                 <Text style={{color: 'white', marginTop: 5}}> Oskarshamn </Text>
               </View>
             </View>
+            <Divider style={{ backgroundColor: 'white', marginTop: 30}} />
 
-            <View style={styles.changeStatusButtonContainer} />
+            <View style={styles.changeStatusButtonContainer}>
+            <Text style={styles.currentMoodStyle} > Current Mood : </Text>
+              <Picker selectedValue='Dancing' itemStyle={{color: 'white', fontFamily: 'GeosansLight' }} style={{ height: 300, width:230 }}>
+                <Picker.Item label='💃 Dancing' value='Dancing' />  
+                <Picker.Item label='🍻 Drinking Beer' value='Beer' />
+                <Picker.Item label='🍷 Drinking Wine' value='Wine' />
+                <Picker.Item label='🔥 Feeling On Fire' value='Fire' />
+              </Picker>
+            </View>
           </Modal>
         </View>
 

@@ -5,7 +5,6 @@ import { Avatar } from 'react-native-elements'
 class ListUserItem extends Component {
   render (user) {
     return (
-
       <View style={styles.container}>
         <Avatar
           large

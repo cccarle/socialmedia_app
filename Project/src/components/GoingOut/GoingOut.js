@@ -99,7 +99,6 @@ class GoingOut extends Component {
             dataSource={this.dataSource}
             renderRow={this.renderRow}
             onScroll={this.updateData.bind(this)}
-
         />
         </View>
       </View>

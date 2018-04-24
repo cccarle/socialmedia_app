@@ -14,7 +14,7 @@ export const fetchList = () => {
 
       // Get acces to the keys in the object i got from firebase
       let keys = Object.keys(snap)
-
+      console.log(snap)
       //  iterate the keys and put them in an User object
       for (var i = 0; i < keys.length; i++) {
         let k = keys[i]
@@ -22,13 +22,17 @@ export const fetchList = () => {
         let age = snap[k].profile.age
         let status = snap[k].profile.status
         let profile_picture = snap[k].profile.profile_picture
+        let prop = snap[k].profile.prop
+        let value = snap[k].profile.value 
 
-        let users = {name: '', age: '', status: Boolean, profile_picture: ''}
+        let users = {name: '', age: '', status: Boolean, profile_picture: '', prop: '', value:''}
 
         users.name = name
         users.age = age
         users.status = status
         users.profile_picture = profile_picture
+        users.prop = prop
+        users.value = value
         // adding the user object to an array
         arrayToFilter.push(users)
       }

@@ -3,7 +3,7 @@ import { View, Text, Picker } from 'react-native'
 import { Header, Icon, Avatar, Button, Divider } from 'react-native-elements'
 import _ from 'lodash'
 import { Actions } from 'react-native-router-flux'
-import { fetchProfileData, signOut } from '../../actions'
+import { fetchProfileData, signOut, currentMood } from '../../actions'
 import { connect } from 'react-redux'
 import Modal from 'react-native-modal'
 import styles from './HeaderBlack.style'
@@ -148,12 +148,15 @@ class HeaderBlack extends Component {
             <Divider style={{ backgroundColor: 'white', marginTop: 30}} />
 
             <View style={styles.changeStatusButtonContainer}>
-            <Text style={styles.currentMoodStyle} > Current Mood : </Text>
-              <Picker selectedValue='Dancing' itemStyle={{color: 'white', fontFamily: 'GeosansLight' }} style={{ height: 300, width:230 }}>
-                <Picker.Item label='💃 Dancing' value='Dancing' />  
-                <Picker.Item label='🍻 Drinking Beer' value='Beer' />
-                <Picker.Item label='🍷 Drinking Wine' value='Wine' />
-                <Picker.Item label='🔥 Feeling On Fire' value='Fire' />
+              <Text style={styles.currentMoodStyle} > Current Mood : </Text>
+              <Picker
+                selectedValue={this.props.mood}
+                onValueChange={value => this.props.currentMood({ prop: 'mood', value })}
+                itemStyle={{color: 'white', fontFamily: 'GeosansLight' }} style={{ height: 300, width: 230 }}>
+                <Picker.Item label='💃 Dancing' value=' 💃 Dancing' />
+                <Picker.Item label='🍻 Drinking Beer' value=' 🍻 Drinking Beer' />
+                <Picker.Item label='🍷 Drinking Wine' value=' 🍷 Drinking Wine' />
+                <Picker.Item label='🔥 Feeling On Fire' value=' 🔥 Feeling On Fire' />
               </Picker>
             </View>
           </Modal>
@@ -181,7 +184,10 @@ const mapStateToProps = state => {
   const profile = _.map(state.profile, (val) => {
     return { ...val }
   })
-  return { profile }
+
+  const { mood } = state.moode
+
+  return { profile, mood }
 }
 
-export default connect(mapStateToProps, { fetchProfileData, signOut })(HeaderBlack)
+export default connect(mapStateToProps, { fetchProfileData, signOut, currentMood })(HeaderBlack)

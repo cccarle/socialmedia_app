@@ -4,7 +4,7 @@ import { Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'r
 import { Spinner } from '../common'
 import { connect } from 'react-redux'
 import { emailChanged, passwordChanged, loginUser, deleteErrorMessage } from '../../actions'
-import { Tile } from 'react-native-elements'
+import { Tile, Button, Icon} from 'react-native-elements'
 
 // StyleSheet
 import styles from './LogInForm.style'
@@ -49,9 +49,30 @@ class LogInForm extends Component {
       return <Spinner size='large' />
     }
     return (
-      <TouchableOpacity onPress={this.onButtonPress.bind(this)} style={styles.buttonContainer}>
-        <Text style={styles.buttonText}>Sign In</Text>
-      </TouchableOpacity>
+      <Button
+        icon={
+          <Icon
+            name='check-circle-outline'
+            type='material-community'
+            size={20}
+            color='white'
+/>
+}
+        title='Log In'
+        titleStyle={{ fontFamily: 'GeosansLight'}}
+        buttonStyle={{
+          backgroundColor: '#D1AF46',
+          //backgroundColor: '#2C4D69',
+          width: 250,
+          height: 40,
+          marginLeft: 45,
+          borderColor: 'transparent',
+          borderWidth: 0,
+          borderRadius: 5
+
+        }}
+        onPress={this.onButtonPress.bind(this)}
+/>
     )
   }
 
@@ -103,11 +124,12 @@ class LogInForm extends Component {
 
       />
           <View style={styles.hairline} />
+          <View style={{marginBottom:40}}>
           {this.renderError()}
-
-        <View style={styles.spinnerAndButton}>
-          {this.renderButton()}
-        </View>
+          </View>
+          <View style={styles.spinnerAndButton}>
+            {this.renderButton()}
+          </View>
         </KeyboardAvoidingView>
 
         <Text style={styles.descriptionText}

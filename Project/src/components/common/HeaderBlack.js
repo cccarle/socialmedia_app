@@ -119,6 +119,7 @@ class HeaderBlack extends Component {
             onSwipeThreshold={50}
             backdropOpacity={0.90}
             animationIn='slideInDown'
+            animationInTiming={270}
           >
             <View style={{ flexDirection: 'row', marginTop: 10 }}>
               <View style={styles.exitModalIcon}>

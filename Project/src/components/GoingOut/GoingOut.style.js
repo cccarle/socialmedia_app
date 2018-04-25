@@ -21,9 +21,8 @@ const styles = {
       width: null,
       height: null,
       backgroundColor: 'black',
-    }
-    
+    }  
   }
   
-  module.exports = styles
+  export default styles;
   

@@ -1,9 +1,21 @@
 import React, {Component } from 'react'
 import { View, Text } from 'react-native'
-import { Avatar, Icon } from 'react-native-elements'
-import { Spinner } from '../common'
+import { Avatar, Icon, Button} from 'react-native-elements'
+import Modal from 'react-native-modal'
 
 class ListUserItem extends Component {
+  constructor () {
+    super()
+    this.state = {
+      isModalVisible: false
+    }
+  }
+
+    // toggle if to show modal or not
+  toggleModal () {
+    this.setState({ isModalVisible: !this.state.isModalVisible })
+  }
+
   renderMood () {
     if (this.props.user.prop && this.props.user.value === undefined) {
       return <Text />
@@ -20,9 +32,10 @@ class ListUserItem extends Component {
         large
         rounded
         source={{uri: this.props.user.profile_picture}}
-        onPress={() => console.log('Works!')}
         avatarStyle={{borderColor: '#302F30', borderWidth: 1}}
         activeOpacity={0.7}
+        onPress={this.toggleModal.bind(this)}
+
 />
     } else {
       return <Avatar
@@ -34,6 +47,32 @@ class ListUserItem extends Component {
         avatarStyle={{borderColor: '#302F30', borderWidth: 1}}
 
         />
+    }
+  }
+
+  profile () {
+    if (this.state.isModalVisible === true) {
+      return (
+
+        <View style={styles.profileContainer}>
+          <Avatar
+            height={180}
+            rounded
+            source={{ uri: this.props.user.profile_picture }}
+            activeOpacity={0.7}
+            avatarStyle={{borderColor: '#302F30', borderWidth: 1}}
+          />
+
+          <View style={styles.profileDataContainer}>
+            <Text style={styles.profileDataSettings} >{this.props.user.name} {this.props.user.age} </Text>
+          </View>
+
+          <View style={styles.editProfileDataSettingsContainer}>
+            <Text style={styles.editProfileDataSettings}>{this.props.user.value} </Text>
+          </View>
+
+        </View>
+      )
     }
   }
 
@@ -58,6 +97,104 @@ class ListUserItem extends Component {
             </Text>
           </View>
         </View>
+
+        <Modal isVisible={this.state.isModalVisible}
+          onSwipe={() => this.setState({ isModalVisible: false })}
+          swipeDirection='up'
+          onSwipeThreshold={50}
+          backdropOpacity={0.90}
+          animationIn='slideInDown'
+          animationInTiming={270}
+          >
+          <View style={{ flexDirection: 'row', marginTop: 10 }}>
+            <View style={styles.exitModalIcon}>
+              <Icon
+                name='clear'
+                type='clear'
+                color='#FFF'
+                onPress={this.toggleModal.bind(this)}
+                />
+            </View>
+          </View>
+          <View style={styles.profileContainerInPlace}>
+            {this.profile()}
+          </View>
+
+          <View style={{ marginLeft: 20, marginBottom: 30}}>
+            {/* <View style={{
+              flexDirection: 'row',
+              alignItems: 'baseline'}}>
+
+              <Text style={{ fontSize: 22, color: 'white', fontFamily: 'GeosansLight', marginLeft: 80, marginTop: 30 }}>Say Something 💬 </Text>
+
+// <Text style={{ fontSize: 16, color: 'white', fontFamily: 'GeosansLight', marginLeft:65 }}> Start with something funny !</Text>
+
+            </View> */}
+
+            <View style={{flexDirection: 'column',
+              alignItems: 'baseline' }}>
+
+              <Text style={{ fontSize: 16, color: 'white', fontFamily: 'GeosansLight', marginLeft: 20 }}> Pick one of the lines to start a new conversation
+ </Text>
+
+            </View>
+            <View style={{
+              flexDirection: 'column',
+              justifyContent: 'center',
+              marginLeft: 50,
+              marginRight: 50,
+              marginBottom: 20,
+              marginTop: 0,
+              height: 230
+            // backgroundColor: 'blue'
+            }}>
+              <Text style={styles.texts}> ▫️ Where are we going tonight ? </Text>
+              <Text style={styles.texts}> ▫️ Do you think Leo will ever get that</Text>
+              <Text style={{color: 'white',
+                fontSize: 16,
+                fontFamily: 'GeosansLight',
+                marginTop: 2}}>      Oscar?</Text>
+              <Text style={styles.texts}> ▫️ Damn is your name Wifi ? Because</Text>
+              <Text style={{color: 'white',
+                fontSize: 16,
+                fontFamily: 'GeosansLight',
+                marginTop: 2}}>       I’m feeling a connection!</Text>
+              <Text style={styles.texts}> ▫️ My doctor says i’m lacking vitamin U </Text>
+
+            </View>
+
+            <View style={{flexDirection: 'row',
+              alignItems: 'baseline' }}>
+              <Text style={{ fontSize: 16, color: 'white', fontFamily: 'GeosansLight', marginLeft: 50, marginBottom: 40 }}> or just send a ordinary message . . . </Text>
+            </View>
+
+            <View style={styles.changeStatusButtonContainer} >
+
+              <Button
+                icon={
+                  <Icon
+                    name='message-plus'
+                    type='material-community'
+                    size={20}
+                    color='white'
+    />
+  }
+                title='Send a message'
+                titleStyle={{ fontFamily: 'GeosansLight'}}
+                buttonStyle={{
+                  backgroundColor: '#D1AF46',
+                  width: 300,
+                  height: 45,
+                  borderColor: 'transparent',
+                  borderWidth: 0,
+                  borderRadius: 5
+
+                }}
+/>
+
+            </View>
+          </View>
+        </Modal>
 
       </View>
     )
@@ -90,8 +227,102 @@ const styles = {
   text: {
     color: 'white',
     fontSize: 15,
-    position: 'absolute',
     fontFamily: 'GeosansLight'
+  },
+  texts: {
+    color: 'white',
+    fontSize: 14,
+    fontFamily: 'GeosansLight',
+    marginTop: 15
+  },
+  text3: {
+    color: 'white',
+    fontSize: 20,
+    fontFamily: 'GeosansLight'
+  },
+  profileContainer: {
+    position: 'relative',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 5,
+    right: 54
+  },
+  profileDataContainer:
+  {
+    position: 'absolute',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'baseline',
+    left: 200,
+    top: 70
+  },
+  profileDataSettings:
+  {
+    color: '#fff',
+    fontFamily: 'GeosansLight',
+    fontSize: 20
+  },
+  editProfileDataSettingsContainer:
+  {
+    position: 'absolute',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'baseline',
+    left: 195,
+    top: 95
+  },
+  editProfileDataSettings:
+  {
+    color: '#fff',
+    fontFamily: 'GeosansLight',
+    fontSize: 15
+  },
+  exitModalIcon:
+  {
+    marginTop: 12,
+    marginRight: 312,
+    width: 30
+  },
+  profileContainerInPlace:
+  {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 170
+    // backgroundColor:'blue'
+  },
+  signOut:
+  {
+    position: 'absolute',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'baseline',
+    left: 290,
+    top: 15
+  },
+  changeStatusButtonContainer:
+  {
+    height: 40,
+    width: 300,
+    marginBottom: 50,
+    flexDirection: 'row'
+
+  },
+  buttonStyleChange:
+  {
+    borderRadius: 50,
+    backgroundColor: '#0285A3',
+    marginBottom: 10
+
+  },
+  currentMoodStyle:
+  {
+    color: 'white',
+    fontFamily: 'GeosansLight',
+    fontSize: 20,
+    marginBottom: 85
   }
 }
 

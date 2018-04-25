@@ -5,6 +5,7 @@ import SetStatusReducer from './SetStatusReducer'
 import ListReducer from './ListReducer'
 import CurrentProfileReducer from './CurrentProfileReducer'
 import CurrentModeReducer from './CurrentModeReducer'
+import EditProfileReducer from './EditProfileReducer'
 
 export default combineReducers({
   auth: AuthReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
   status: SetStatusReducer,
   list: ListReducer,
   profile: CurrentProfileReducer,
-  moode: CurrentModeReducer
+  moode: CurrentModeReducer,
+  edit: EditProfileReducer
 })

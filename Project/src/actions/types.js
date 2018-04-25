@@ -18,6 +18,10 @@ export const CREATE_PROFILE = 'create_profile'
 export const PROFILE_UPDATE = 'profile_update'
 export const CREATE_PROFILE_SUCCESS = 'create_profile_success'
 
+// Edit Profile
+export const EDIT_NAME_CHANGED = 'edit_name_changed'
+export const EDIT_AGE_CHANGED = 'edit_age_changed'
+export const EDIT_PROFILE = 'edit_profile'
 // Status
 export const SET_STATUS_TO_OUT = 'set_status_to_out'
 export const SET_STATUS_TO_NOT_OUT = 'set_status_to_not_out'

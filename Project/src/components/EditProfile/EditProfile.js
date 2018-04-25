@@ -9,29 +9,37 @@ import {
 import { Tile, Avatar, Button, Icon, Header} from 'react-native-elements'
 import { Spinner } from '../common'
 import { connect } from 'react-redux'
-import { nameChanged, ageChanged, createProfiles, fetchProfileData } from '../../actions'
+import { nameChangedEdit, ageChangedEdit, updateProfile, updateProfileAge, updateProfileName, fetchProfileData } from '../../actions'
 import _ from 'lodash'
-import HeaderBlack from '../common/HeaderBlack'
 
 import styles from './EditProfile.style'
+import { Actions } from 'react-native-router-flux'
 
 class EditProfile extends Component {
   componentWillMount () {
     this.props.fetchProfileData()
   }
 
-  onNameChange (text) {
-    this.props.nameChanged(text)
+  onNameChangeEdit (text) {
+    console.log(text)
+    this.props.nameChangedEdit(text)
   }
 
-  onAgeChange (number) {
-    this.props.ageChanged(number)
+  onAgeChangeEdit (number) {
+    console.log(number)
+    this.props.ageChangedEdit(number)
   }
 
   onButtonPress () {
     const {name, age} = this.props
-
-    this.props.createProfiles({ name, age })
+    
+    if (!this.props.name) {
+      this.props.updateProfileAge({ age })
+    } else if (!this.props.age) {
+      this.props.updateProfileName({name})
+    } else {
+      this.props.updateProfile({name, age})
+    }
   }
 
   renderButton () {
@@ -74,21 +82,25 @@ class EditProfile extends Component {
         <KeyboardAvoidingView behavior='padding' style={styles.inputContainer}>
           <TextInput
             placeholder={this.props.profile[0].name}
+            defaultValue={this.props.profile[0].name}
             placeholderTextColor='white'
             returnKeyType='next'
-            keyboardType='email-address'
             value={this.props.name}
-            onChangeText={this.onNameChange.bind(this)}
+
+            keyboardType='email-address'
+            onChangeText={this.onNameChangeEdit.bind(this)}
             style={styles.texts}
     />
           <View style={styles.hairline} />
           <TextInput
             returnKeyType='done'
             placeholder={this.props.profile[0].age}
+            defaultValue={this.props.profile[0].age}
             placeholderTextColor='white'
             keyboardType={'numeric'}
             value={this.props.age}
-            onChangeText={this.onAgeChange.bind(this)}
+
+            onChangeText={this.onAgeChangeEdit.bind(this)}
             style={styles.texts}l
     />
           <View style={styles.hairline} />
@@ -107,11 +119,11 @@ const mapStateToProps = state => {
   })
 
   return {
-    name: state.create.name,
-    age: state.create.age,
-    loading: state.create.loading,
+    name: state.edit.name,
+    age: state.edit.age,
+    loading: state.edit.loading,
     profile: profile
   }
 }
 
-export default connect(mapStateToProps, { nameChanged, ageChanged, createProfiles, fetchProfileData })(EditProfile)
+export default connect(mapStateToProps, { nameChangedEdit, ageChangedEdit, updateProfile, updateProfileAge, updateProfileName, fetchProfileData })(EditProfile)

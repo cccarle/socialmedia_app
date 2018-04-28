@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Actions } from 'react-native-router-flux'
-import { Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView} from 'react-native'
+import { Text, View, TextInput, KeyboardAvoidingView, Keyboard } from 'react-native'
 import { Spinner } from '../common'
 import { connect } from 'react-redux'
 import { emailChanged, passwordChanged, registerUser } from '../../actions'
-import { Tile } from 'react-native-elements'
+import { Tile, Button, Icon } from 'react-native-elements'
 
 import styles from './Register.style'
 
@@ -25,6 +25,7 @@ class Register extends Component {
   onButtonPress () {
     const {email, password} = this.props
     this.props.registerUser({email, password})
+    Keyboard.dismiss()
   }
 
   // If auth fails, shows an error messagethisssss
@@ -49,9 +50,30 @@ class Register extends Component {
       return <Spinner size='large' />
     }
     return (
-      <TouchableOpacity onPress={this.onButtonPress.bind(this)} style={styles.buttonContainer}>
-        <Text style={styles.buttonText}>Register</Text>
-      </TouchableOpacity>
+      <Button
+        icon={
+          <Icon
+            name='account-plus'
+            type='material-community'
+            size={20}
+            color='white'
+/>
+}
+        title='Register'
+        titleStyle={{ fontFamily: 'GeosansLight'}}
+        buttonStyle={{
+          backgroundColor: '#D1AF46',
+        // backgroundColor: '#2C4D69',
+          width: 250,
+          height: 40,
+          marginLeft: 45,
+          borderColor: 'transparent',
+          borderWidth: 0,
+          borderRadius: 5
+
+        }}
+        onPress={this.onButtonPress.bind(this)}
+/>
     )
   }
 
@@ -100,7 +122,10 @@ class Register extends Component {
       />
 
           <View style={styles.hairline} />
-          {this.renderError()}
+          <View style={{marginBottom: 40}}>
+            {this.renderError()}
+          </View>
+
           <View style={styles.spinnerAndButton}>
             {this.renderButton()}
           </View>

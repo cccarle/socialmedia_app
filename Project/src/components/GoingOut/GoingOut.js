@@ -14,7 +14,7 @@ class GoingOut extends Component {
   constructor () {
     super()
     this.state = {
-      selectedIndex: 2,
+      selectedIndex: 0,
       loading: false
     }
     this.updateIndex = this.updateIndex.bind(this)
@@ -22,11 +22,35 @@ class GoingOut extends Component {
 
   updateIndex (selectedIndex) {
     this.setState({selectedIndex})
+    console.log(selectedIndex)
+    this.fetchAll(selectedIndex)
+    this.fetchFemale(selectedIndex)
+    this.fetchMale(selectedIndex)
+  }
+
+
+  fetchAll (index) {
+    if (index === 0) {
+      this.props.fetchList(index)
+    }
+  }
+
+  fetchFemale (index) {
+    if (index === 1) {
+      this.props.fetchList(index)
+    }
+  }
+
+  fetchMale (index) {
+    if (index === 2) {
+      this.props.fetchList(index)
+    }
   }
 
   // Call fetchList to get access to the users
   componentWillMount () {
-    this.props.fetchList()
+    let i = 0
+    this.props.fetchList(i)
     this.props.fetchProfileData()
     this.createDataSource(this.props)
   }
@@ -79,11 +103,10 @@ class GoingOut extends Component {
           <View style={{ justifyContent: 'center', alignItems: 'center' }} >
 
             <ButtonGroup
-              onPress={this.updateIndex}
+              onPress={this.updateIndex.bind(this)}
               selectedIndex={selectedIndex}
               selectedButtonStyle={{backgroundColor: 'black'}}
               buttons={buttons}
-              // onPress={this.setState({loading: true })}
               containerStyle={{ backgroundColor: 'transparent', height: 23, width: 200, marginTop: 30, marginBottom: -20, justifyContent: 'center', alignItems: 'baseline' }}
               textStyle={{fontFamily: 'GeosansLight', color: 'white'}}
           />

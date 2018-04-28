@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Actions } from 'react-native-router-flux'
-import { Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native'
+import { Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView,Keyboard } from 'react-native'
 import { Spinner } from '../common'
 import { connect } from 'react-redux'
 import { emailChanged, passwordChanged, loginUser, deleteErrorMessage } from '../../actions'
@@ -23,6 +23,7 @@ class LogInForm extends Component {
   onButtonPress () {
     const {email, password} = this.props
     this.props.loginUser({email, password})
+    Keyboard.dismiss()
   }
 
   // If auth fails, shows an error message
@@ -121,6 +122,7 @@ class LogInForm extends Component {
             value={this.props.password}
             secureTextEntry
             style={styles.texts}
+
 
       />
           <View style={styles.hairline} />

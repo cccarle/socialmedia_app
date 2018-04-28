@@ -60,7 +60,6 @@ class GoingOut extends Component {
   }
 
   render () {
-    console.log(this.props.profile[0])
     const buttons = ['All', 'Female', 'Male']
     const { selectedIndex } = this.state
     return (

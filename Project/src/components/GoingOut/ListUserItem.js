@@ -106,7 +106,7 @@ class ListUserItem extends Component {
           animationIn='slideInDown'
           animationInTiming={270}
           >
-          <View style={{ flexDirection: 'row', marginTop: 10 }}>
+          <View style={{ flexDirection: 'row', marginTop: 65 }}>
             <View style={styles.exitModalIcon}>
               <Icon
                 name='clear'
@@ -116,56 +116,128 @@ class ListUserItem extends Component {
                 />
             </View>
           </View>
+
           <View style={styles.profileContainerInPlace}>
             {this.profile()}
           </View>
 
-          <View style={{ marginLeft: 20, marginBottom: 30}}>
-            {/* <View style={{
-              flexDirection: 'row',
-              alignItems: 'baseline'}}>
-
-              <Text style={{ fontSize: 22, color: 'white', fontFamily: 'GeosansLight', marginLeft: 80, marginTop: 30 }}>Say Something 💬 </Text>
-
-// <Text style={{ fontSize: 16, color: 'white', fontFamily: 'GeosansLight', marginLeft:65 }}> Start with something funny !</Text>
-
-            </View> */}
+          <View style={{ marginLeft: 20, marginBottom: 30 }}>
 
             <View style={{flexDirection: 'column',
-              alignItems: 'baseline' }}>
+              alignItems: 'baseline',
+              marginBottom: 50,
+              marginTop: 40 }}>
 
-              <Text style={{ fontSize: 16, color: 'white', fontFamily: 'GeosansLight', marginLeft: 20 }}> Pick one of the lines to start a new conversation
+              <Text style={{fontSize: 40, color: 'white', fontFamily: 'GeosansLight', marginLeft: 5}}> Start a conversation
  </Text>
+              <Text style={{fontSize: 12, color: 'white', fontFamily: 'GeosansLight', marginLeft: 55}}> Pick one of the lines to start a new conversation</Text>
 
             </View>
             <View style={{
               flexDirection: 'column',
               justifyContent: 'center',
-              marginLeft: 50,
-              marginRight: 50,
-              marginBottom: 20,
-              marginTop: 0,
-              height: 230
-            // backgroundColor: 'blue'
-            }}>
-              <Text style={styles.texts}> ▫️ Where are we going tonight ? </Text>
-              <Text style={styles.texts}> ▫️ Do you think Leo will ever get that</Text>
-              <Text style={{color: 'white',
-                fontSize: 16,
-                fontFamily: 'GeosansLight',
-                marginTop: 2}}>      Oscar?</Text>
-              <Text style={styles.texts}> ▫️ Damn is your name Wifi ? Because</Text>
-              <Text style={{color: 'white',
-                fontSize: 16,
-                fontFamily: 'GeosansLight',
-                marginTop: 2}}>       I’m feeling a connection!</Text>
-              <Text style={styles.texts}> ▫️ My doctor says i’m lacking vitamin U </Text>
+              marginBottom: 10 }}>
+              <View style={{
+                flexDirection: 'column',
+                justifyContent: 'center',
+                marginBottom: 15,
+                height: 30
+              }}>
 
+                <Button
+                  icon={
+                    <Icon
+                      name='adjust'
+                      type='material-community'
+                      size={10}
+                      color='white' />}
+                  title='Where are we going tonight ?'
+                  titleStyle={{ fontFamily: 'GeosansLight', fontSize: 15}}
+                  buttonStyle={{
+                    backgroundColor: 'transparent',
+                    width: 210,
+                    height: 35,
+                    borderColor: 'white',
+                    borderWidth: 1,
+                    borderRadius: 10 }} />
+              </View>
+              <View style={{
+                flexDirection: 'column',
+                justifyContent: 'center',
+                marginTop: 5,
+                marginBottom: 15,
+                height: 30
+              }} >
+                <Button
+                  icon={
+                    <Icon
+                      name='adjust'
+                      type='material-community'
+                      size={10}
+                      color='white' />}
+                  title='Damn is your name Wifi? Cause i´m feeling a connection !'
+                  titleStyle={{ fontFamily: 'GeosansLight', fontSize: 13}}
+                  buttonStyle={{
+                    backgroundColor: 'transparent',
+                    width: 325,
+                    height: 35,
+                    borderColor: 'white',
+                    borderWidth: 1,
+                    borderRadius: 10 }} />
+              </View>
+
+              <View style={{
+                flexDirection: 'column',
+                justifyContent: 'center',
+                marginTop: 5,
+                marginBottom: 15,
+                height: 30
+              }} >
+                <Button
+                  icon={
+                    <Icon
+                      name='adjust'
+                      type='material-community'
+                      size={10}
+                      color='white' />}
+                  title=' Do you think Leo will ever get that Oscar ?'
+                  titleStyle={{ fontFamily: 'GeosansLight', fontSize: 15 }}
+                  buttonStyle={{
+                    backgroundColor: 'transparent',
+                    width: 280,
+                    height: 35,
+                    borderColor: 'white',
+                    borderWidth: 1,
+                    borderRadius: 10 }} />
+              </View>
+              <View style={{
+                flexDirection: 'column',
+                justifyContent: 'center',
+                marginTop: 5,
+                height: 30,
+                marginBottom: 30
+              }} >
+                <Button
+                  icon={
+                    <Icon
+                      name='adjust'
+                      type='material-community'
+                      size={10}
+                      color='white' />}
+                  title=' My doctor says i’m lacking vitamin U !'
+                  titleStyle={{ fontFamily: 'GeosansLight', fontSize: 15}}
+                  buttonStyle={{
+                    backgroundColor: 'transparent',
+                    width: 250,
+                    height: 35,
+                    borderColor: 'white',
+                    borderWidth: 1,
+                    borderRadius: 10 }} />
+              </View>
             </View>
-
             <View style={{flexDirection: 'row',
               alignItems: 'baseline' }}>
-              <Text style={{ fontSize: 16, color: 'white', fontFamily: 'GeosansLight', marginLeft: 50, marginBottom: 40 }}> or just send a ordinary message . . . </Text>
+              <Text style={{ fontSize: 16, color: 'white', fontFamily: 'GeosansLight', marginLeft: 50, marginBottom: 50, marginTop: 10 }}> or just send a ordinary message . . . </Text>
             </View>
 
             <View style={styles.changeStatusButtonContainer} >
@@ -286,12 +358,12 @@ const styles = {
   },
   profileContainerInPlace:
   {
-    flex: 1,
+
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 170
-    // backgroundColor:'blue'
+    height: 170,
+    marginTop: 20
   },
   signOut:
   {
@@ -300,7 +372,7 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'baseline',
     left: 290,
-    top: 15
+    top: 25
   },
   changeStatusButtonContainer:
   {

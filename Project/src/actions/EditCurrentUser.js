@@ -34,7 +34,7 @@ export const updateProfile = ({ age, name }) => {
     firebaseRef.database().ref(`/users/${currentUser.uid}/profile`)
             .update({ age, name })
             .then(() => {
-              console.log('added profile')
+              console.log('Edited profile')
               Actions.goingOut()
             })
   }
@@ -48,7 +48,7 @@ export const updateProfileName = ({ name }) => {
       firebaseRef.database().ref(`/users/${currentUser.uid}/profile`)
               .update({ name })
               .then(() => {
-                console.log('added profile')
+                console.log('Edited profile')
                 Actions.goingOut()
               })
     }
@@ -61,7 +61,7 @@ export const updateProfileName = ({ name }) => {
       firebaseRef.database().ref(`/users/${currentUser.uid}/profile`)
               .update({ age })
               .then(() => {
-                console.log('added profile')
+                console.log('Edited profile')
                 Actions.goingOut()
               })
     }

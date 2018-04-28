@@ -46,7 +46,7 @@ class createProfile extends Component {
 
         <View style={styles.backgroundTile}>
           <Tile
-            imageSrc={require('../../assets/action.jpg')}
+            imageSrc={require('../../assets/out.jpg')}
             imageContainerStyle={{ }}
             activeOpacity={1}
             title='Create Profile'

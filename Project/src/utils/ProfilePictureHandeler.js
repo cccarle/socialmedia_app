@@ -7,7 +7,9 @@ import {
   TouchableHighlight
 } from 'react-native'
 import { Avatar } from 'react-native-elements'
-
+import { fetchProfileData } from '../actions'
+import _ from 'lodash'
+import { connect } from 'react-redux'
 import RNFetchBlob from 'react-native-fetch-blob'
 import ImagePicker from 'react-native-image-crop-picker'
 
@@ -17,6 +19,28 @@ class ProfilePictureHandeler extends Component {
     this.state = {
       loading: false,
       dp: null
+    }
+  }
+
+  componentWillMount () {
+    this.props.fetchProfileData()
+  }
+
+  renderAvatarOrProfilePic () {
+    if (!this.props.profile[0] || this.props.profile[0] === undefined) {
+      return <Avatar
+        rounded
+        height={265}
+        source={require('../../src/assets/better.png')}
+        activeOpacity={0.7}
+/>
+    } else {
+      return <Avatar
+        rounded
+        height={265}
+        source={{ uri: this.props.profile[0].profile_picture}}
+        activeOpacity={0.7}
+    />
     }
   }
 
@@ -92,12 +116,7 @@ class ProfilePictureHandeler extends Component {
 
       <TouchableHighlight onPress={() => this.openPicker()} >
 
-        <Avatar
-          rounded
-          height={265}
-          source={require('../../src/assets/man.png')}
-          activeOpacity={0.7}
-/>
+        {this.renderAvatarOrProfilePic()}
       </TouchableHighlight>
 
 )
@@ -119,4 +138,14 @@ class ProfilePictureHandeler extends Component {
   }
 }
 
-export default ProfilePictureHandeler
+const mapStateToProps = state => {
+  const profile = _.map(state.profile, (val) => {
+    return {...val}
+  })
+
+  return {
+    profile: profile
+  }
+}
+
+export default connect(mapStateToProps, {fetchProfileData})(ProfilePictureHandeler)

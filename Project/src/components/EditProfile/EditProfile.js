@@ -14,6 +14,7 @@ import _ from 'lodash'
 
 import styles from './EditProfile.style'
 import { Actions } from 'react-native-router-flux'
+import ProfilePictureHandeler from '../../utils/ProfilePictureHandeler'
 
 class EditProfile extends Component {
   componentWillMount () {
@@ -32,13 +33,15 @@ class EditProfile extends Component {
 
   onButtonPress () {
     const {name, age} = this.props
-    
-    if (!this.props.name) {
-      this.props.updateProfileAge({ age })
+
+    if (!this.props.age && !this.props.name) {
+      Actions.goingOut()
     } else if (!this.props.age) {
       this.props.updateProfileName({name})
+    } else if (!this.props.name) {
+      this.props.updateProfileAge({ age })
     } else {
-      this.props.updateProfile({name, age})
+      Actions.goingOut()
     }
   }
 
@@ -72,12 +75,8 @@ class EditProfile extends Component {
         </View>
         <View style={styles.uploadImageContainer}>
 
-          <Avatar
-            height={265}
-            rounded
-            source={{ uri: this.props.profile[0].profile_picture }}
-            activeOpacity={0.7}
-        />
+          <ProfilePictureHandeler />
+
         </View>
         <KeyboardAvoidingView behavior='padding' style={styles.inputContainer}>
           <TextInput

@@ -4,7 +4,6 @@ import { ButtonGroup, Header, Avatar} from 'react-native-elements'
 import { connect } from 'react-redux'
 import { fetchList, fetchProfileData } from '../../actions'
 import _ from 'lodash'
-import { Spinner } from '../common'
 import HeaderBlack from '../common/HeaderBlack'
 import ListUserItem from './ListUserItem'
 import styles from './GoingOut.style'
@@ -20,16 +19,24 @@ class GoingOut extends Component {
     this.updateIndex = this.updateIndex.bind(this)
   }
 
-  updateIndex (selectedIndex) {
-    this.setState({selectedIndex})
-    console.log(selectedIndex)
-    this.fetchAll(selectedIndex)
-    this.fetchFemale(selectedIndex)
-    this.fetchMale(selectedIndex)
+  // Call fetchList with 0 to get access to all users
+  componentWillMount () {
+    let i = 0
+    this.props.fetchList(i)
+    this.props.fetchProfileData()
+    this.createDataSource(this.props)
   }
 
+  // updates the selectedIndex and calls the methods with the selectedindex
+  updateIndex (selectedIndex) {
+    this.setState({selectedIndex})
+    this.fetchAllUsers(selectedIndex)
+    this.fetchFemale(selectedIndex)
+    this.fetchMale(selectedIndex)
+    this.createDataSource(this.props)
+  }
 
-  fetchAll (index) {
+  fetchAllUsers (index) {
     if (index === 0) {
       this.props.fetchList(index)
     }
@@ -47,17 +54,9 @@ class GoingOut extends Component {
     }
   }
 
-  // Call fetchList to get access to the users
-  componentWillMount () {
-    let i = 0
-    this.props.fetchList(i)
-    this.props.fetchProfileData()
-    this.createDataSource(this.props)
-  }
-
   // When user scrolls, the list will update
   updateData () {
-    this.props.fetchList()
+    this.props.fetchList(this.selectedIndex)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -79,9 +78,7 @@ class GoingOut extends Component {
   renderRow (user) {
     return <ListUserItem user={user} />
   }
-  onButtonPress () {
-    this.setState({loading: true })
-  }
+
 
   render () {
     const buttons = ['All', 'Female', 'Male']
@@ -96,9 +93,10 @@ class GoingOut extends Component {
         <HeaderBlack />
         <View>
           <BlurView
-            style={styless.absolute}
+            style={styles.absolute}
             blurType='dark'
             blurAmount={0.001}
+            height={695}
         />
           <View style={{ justifyContent: 'center', alignItems: 'center' }} >
 
@@ -112,7 +110,7 @@ class GoingOut extends Component {
           />
           </View>
 
-          <View style={{ height: 650, marginTop: 50 }} >
+          <View style={{ height: 610, marginTop: 50 }} >
 
             <ListView
               showsVerticalScrollIndicator={false}
@@ -139,18 +137,6 @@ const mapStateToProps = state => {
   return { users, profile }
 }
 
-const styless = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  absolute: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0
-  }
-})
+
 
 export default connect(mapStateToProps, {fetchList, fetchProfileData})(GoingOut)

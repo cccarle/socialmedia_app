@@ -4,13 +4,15 @@ import {
   View,
   TouchableOpacity,
   TextInput,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  ImageBackground
 } from 'react-native'
-import { Tile, Avatar, Button, Icon, Header} from 'react-native-elements'
+import { Tile, Avatar, Button, Icon, Header, Overlay} from 'react-native-elements'
 import { Spinner } from '../common'
 import { connect } from 'react-redux'
 import { nameChangedEdit, ageChangedEdit, updateProfile, updateProfileAge, updateProfileName, fetchProfileData } from '../../actions'
 import _ from 'lodash'
+import { BlurView } from 'react-native-blur'
 
 import styles from './EditProfile.style'
 import { Actions } from 'react-native-router-flux'
@@ -50,29 +52,51 @@ class EditProfile extends Component {
       return <Spinner size='large' />
     }
     return (
-      <TouchableOpacity onPress={this.onButtonPress.bind(this)} style={styles.buttonContainer}>
-        <Text style={styles.buttonText}>Edit Profile</Text>
-      </TouchableOpacity>
+      <Button
+        icon={
+          <Icon
+            name='account-settings-variant'
+            type='material-community'
+            size={20}
+            color='white'
+/>
+}
+        title='Update Profile'
+        titleStyle={{ fontFamily: 'GeosansLight'}}
+        buttonStyle={{
+          backgroundColor: '#D1AF46',
+          width: 250,
+          height: 40,
+          marginLeft: 65,
+          borderColor: 'transparent',
+          borderWidth: 0,
+          borderRadius: 5
+
+        }}
+        onPress={this.onButtonPress.bind(this)}
+/>
     )
   }
 
   render () {
     return (
-      <View style={styles.container}>
-        <View style={styles.backgroundTile}>
-          <Tile
-            imageSrc={require('../../assets/test.jpg')}
-            imageContainerStyle={{ }}
-            activeOpacity={1}
-            title='Edit Profile'
-            featured
-            caption='Click on the image for selecting a new profile picture'
-            captionStyle={{ fontFamily: 'GeosansLight' }}
-            titleStyle={styles.titleStyles}
-            height={1330}
-/>
 
+      <ImageBackground
+        source={require('../../assets/thihi.png')}
+        style={styles.container}
+       >
+        <BlurView
+          style={styles.absolute}
+          blurType='dark'
+          blurAmount={0.1}
+        />
+
+        <View style={{ justifyContent: 'center',
+          alignItems: 'center',
+          marginTop: 100 }}>
+          <Text style={styles.titleStyles}>Edit Profile</Text>
         </View>
+
         <View style={styles.uploadImageContainer}>
 
           <ProfilePictureHandeler />
@@ -85,7 +109,6 @@ class EditProfile extends Component {
             placeholderTextColor='white'
             returnKeyType='next'
             value={this.props.name}
-
             keyboardType='email-address'
             onChangeText={this.onNameChangeEdit.bind(this)}
             style={styles.texts}
@@ -107,7 +130,7 @@ class EditProfile extends Component {
         <View style={styles.spinnerAndButton}>
           {this.renderButton()}
         </View>
-      </View>
+      </ImageBackground>
     )
   }
 }

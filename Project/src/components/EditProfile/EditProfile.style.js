@@ -9,13 +9,12 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10,
-    backgroundColor:'red'
+    backgroundColor: '#FFFFFF50'
   },
-  titleStyles:{
-    fontFamily:  'GeosansLight', 
-    fontSize: 40, 
-    justifyContent: 'center', 
-    alignItems: 'center' 
+  titleStyles: {
+    fontFamily: 'GeosansLight',
+    fontSize: 50,
+    color: 'white'
   },
   input: {
     color: 'white',
@@ -26,12 +25,21 @@ const styles = {
     padding: 10,
     fontFamily: 'GeosansLight'
   },
+  inputContainer: {
+    marginBottom: 20
+  },
   uploadImageContainer: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 60
+    alignItems: 'center'
+  },
+  absolute: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0
   },
   buttonContainer: {
     height: 30,
@@ -72,7 +80,7 @@ const styles = {
   },
   spinnerAndButton: {
     height: 20,
-    marginBottom: 50
+    marginBottom: 70
   }
 }
 

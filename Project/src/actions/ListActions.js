@@ -11,7 +11,6 @@ export const fetchList = (index) => {
     firebaseRef.database().ref().child('users')
     .on('value', snapshot => {
       let snap = snapshot.val()
-
       // Get acces to the keys in the object i got from firebase
       let keys = Object.keys(snap)
       //  iterate the keys and put them in an User object
@@ -34,24 +33,22 @@ export const fetchList = (index) => {
         users.prop = prop
         users.value = value
         users.gender = gender
+
         // adding the user object to an array
         arrayToFilter.push(users)
       }
 
+      // filter and creates a new array with users depending on thr conditions
+
       if (index === 0) {
-      // filter and creates a new array with users depending if their status is true
         let arr = arrayToFilter.filter(child => child.status === true)
         dispatch({ type: UPDATE_LIST_SUCCESS, payload: arr })
-        
       } else if (index === 1) {
-
         let arr = arrayToFilter.filter(child => child.status === true && child.gender === 'female')
         dispatch({ type: UPDATE_LIST_SUCCESS, payload: arr })
-      
       } else if (index === 2) {
         let arr = arrayToFilter.filter(child => child.status === true && child.gender === 'male')
         dispatch({ type: UPDATE_LIST_SUCCESS, payload: arr })
-      
       }
     })
   }

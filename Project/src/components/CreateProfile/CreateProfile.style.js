@@ -50,8 +50,9 @@ const styles = {
   
     },
     texts: {
+      fontSize: 17,
       color: 'white',
-      marginLeft: 53,
+      marginLeft: 50,
       fontFamily: 'GeosansLight'
     },
     hairline: {
@@ -71,7 +72,8 @@ const styles = {
     },
     spinnerAndButton: {
       height: 20,
-      marginBottom: 50
+      marginBottom: 50,
+      marginLeft:20 
     }
   }
   

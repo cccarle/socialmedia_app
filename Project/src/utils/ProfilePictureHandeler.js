@@ -33,6 +33,8 @@ class ProfilePictureHandeler extends Component {
         height={265}
         source={require('../../src/assets/better.png')}
         activeOpacity={0.7}
+        avatarStyle={{borderColor: 'white', borderWidth: 1}}
+
 />
     } else {
       return <Avatar
@@ -40,6 +42,8 @@ class ProfilePictureHandeler extends Component {
         height={265}
         source={{ uri: this.props.profile[0].profile_picture}}
         activeOpacity={0.7}
+        avatarStyle={{borderColor: 'white', borderWidth: 1}}
+
     />
     }
   }

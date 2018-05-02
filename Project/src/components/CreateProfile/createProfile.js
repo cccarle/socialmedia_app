@@ -6,7 +6,7 @@ import {
   TextInput,
   KeyboardAvoidingView
 } from 'react-native'
-import { Tile } from 'react-native-elements'
+import { Tile, Button, Icon } from 'react-native-elements'
 import { Spinner } from '../common'
 import { connect } from 'react-redux'
 import { nameChanged, ageChanged, createProfiles } from '../../actions'
@@ -34,9 +34,30 @@ class createProfile extends Component {
       return <Spinner size='large' />
     }
     return (
-      <TouchableOpacity onPress={this.onButtonPress.bind(this)} style={styles.buttonContainer}>
-        <Text style={styles.buttonText}>Create Profile</Text>
-      </TouchableOpacity>
+      <Button
+        icon={
+          <Icon
+            name='account-plus'
+            type='material-community'
+            size={20}
+            color='white'
+/>
+}
+        title='Register'
+        titleStyle={{ fontFamily: 'GeosansLight'}}
+        buttonStyle={{
+          backgroundColor: '#D1AF46',
+        // backgroundColor: '#2C4D69',
+          width: 250,
+          height: 40,
+          marginLeft: 45,
+          borderColor: 'transparent',
+          borderWidth: 0,
+          borderRadius: 5
+
+        }}
+        onPress={this.onButtonPress.bind(this)}
+/>
     )
   }
 
@@ -46,7 +67,7 @@ class createProfile extends Component {
 
         <View style={styles.backgroundTile}>
           <Tile
-            imageSrc={require('../../assets/out.jpg')}
+            imageSrc={require('../../assets/thihi.png')}
             imageContainerStyle={{ }}
             activeOpacity={1}
             title='Create Profile'

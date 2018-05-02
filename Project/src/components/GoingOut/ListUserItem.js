@@ -2,7 +2,8 @@ import React, {Component } from 'react'
 import { View, Text } from 'react-native'
 import { Avatar, Icon, Button} from 'react-native-elements'
 import Modal from 'react-native-modal'
-
+import { Actions } from 'react-native-router-flux'
+import Chat from '../Chatt/Chat'
 class ListUserItem extends Component {
   constructor () {
     super()
@@ -26,6 +27,18 @@ class ListUserItem extends Component {
     }
   }
 
+  startchat () {
+    this.toggleModal()
+
+    Actions.chat({data: this.props.user})
+  }
+
+  startchat1 () {
+    this.toggleModal()
+
+    Actions.chat({ data: this.props.user, text: ' My doctor says i’m lacking vitamin U !' })
+  }
+
   renderAvatarOrSpinner () {
     if (this.props.user.profile_picture) {
       return <Avatar
@@ -35,7 +48,6 @@ class ListUserItem extends Component {
         avatarStyle={{borderColor: '#302F30', borderWidth: 1}}
         activeOpacity={0.7}
         onPress={this.toggleModal.bind(this)}
-
 />
     } else {
       return <Avatar
@@ -51,6 +63,7 @@ class ListUserItem extends Component {
   }
 
   profile () {
+    var i = 0
     if (this.state.isModalVisible === true) {
       return (
 
@@ -226,6 +239,7 @@ class ListUserItem extends Component {
                       color='white' />}
                   title=' My doctor says i’m lacking vitamin U !'
                   titleStyle={{ fontFamily: 'GeosansLight', fontSize: 15}}
+                  onPress={this.startchat1.bind(this)}
                   buttonStyle={{
                     backgroundColor: 'transparent',
                     width: 250,
@@ -253,6 +267,7 @@ class ListUserItem extends Component {
   }
                 title='Send a message'
                 titleStyle={{ fontFamily: 'GeosansLight'}}
+                onPress={this.startchat.bind(this)}
                 buttonStyle={{
                   backgroundColor: '#D1AF46',
                   width: 300,

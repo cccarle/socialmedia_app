@@ -16,6 +16,7 @@ export const fetchList = (index) => {
       //  iterate the keys and put them in an User object
       for (var i = 0; i < keys.length; i++) {
         let k = keys[i]
+        let key = k
         let name = snap[k].profile.name
         let age = snap[k].profile.age
         let status = snap[k].profile.status
@@ -24,8 +25,8 @@ export const fetchList = (index) => {
         let value = snap[k].profile.value
         let gender = snap[k].profile.gender
 
-        let users = {name: '', age: '', status: Boolean, profile_picture: '', prop: '', value: '', gender: ''}
-
+        let users = { key: '',name: '', age: '', status: Boolean, profile_picture: '', prop: '', value: '', gender: ''}
+        users.key = key
         users.name = name
         users.age = age
         users.status = status
@@ -37,6 +38,8 @@ export const fetchList = (index) => {
         // adding the user object to an array
         arrayToFilter.push(users)
       }
+
+      console.log(arrayToFilter)
 
       // filter and creates a new array with users depending on thr conditions
 

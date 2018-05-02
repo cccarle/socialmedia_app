@@ -79,8 +79,8 @@ class GoingOut extends Component {
     return <ListUserItem user={user} />
   }
 
-
   render () {
+    console.log(this.props)
     const buttons = ['All', 'Female', 'Male']
     const { selectedIndex } = this.state
     return (
@@ -128,15 +128,13 @@ class GoingOut extends Component {
 }
 
 const mapStateToProps = state => {
-  const users = _.map(state.list, (val) => {
-    return {...val}
+  const users = _.map(state.list, (val, uid) => {
+    return {...val, uid}
   })
   const profile = _.map(state.profile, (val) => {
     return { ...val }
   })
   return { users, profile }
 }
-
-
 
 export default connect(mapStateToProps, {fetchList, fetchProfileData})(GoingOut)

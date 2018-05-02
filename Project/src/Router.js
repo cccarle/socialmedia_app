@@ -7,6 +7,7 @@ import Register from './components/Register/Register'
 import GoingOut from './components/GoingOut/GoingOut'
 import NotGoingOut from './components/NotGoingOut/NotGoingOut'
 import EditProfile from './components/EditProfile/EditProfile'
+import Chat from './components/Chatt/Chat'
 
 const RouterComponent = () => {
   return (
@@ -45,7 +46,13 @@ const RouterComponent = () => {
             navigationBarStyle={{color: 'white'}}
             key='editProfile'
             component={EditProfile}
+        />
+          <Scene
+            key='chat'
+            component={Chat}
             navTransparent
+            title='Chat'
+            titleStyle={{color:'white', fontFamily: 'GeosansLight',fontSize:30}}
         />
         </Scene>
       </Scene>

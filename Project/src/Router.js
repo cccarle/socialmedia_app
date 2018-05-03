@@ -52,7 +52,7 @@ const RouterComponent = () => {
             component={Chat}
             navTransparent
             title='Chat'
-            titleStyle={{color:'white', fontFamily: 'GeosansLight',fontSize:30}}
+            titleStyle={{color: 'white', fontFamily: 'GeosansLight', fontSize: 30}}
         />
         </Scene>
       </Scene>

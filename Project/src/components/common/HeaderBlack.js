@@ -109,7 +109,6 @@ class HeaderBlack extends Component {
   }
 
   render (profile) {
-    console.log(this.props.profile[0])
     return (
       <View>
         <View>

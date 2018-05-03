@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { View, ListView, ImageBackground, StyleSheet, Button} from 'react-native'
-import { ButtonGroup, Header, Avatar} from 'react-native-elements'
+import { View, ListView, ImageBackground } from 'react-native'
+import { ButtonGroup, Header, Avatar } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { fetchList, fetchProfileData } from '../../actions'
 import _ from 'lodash'
@@ -80,7 +80,7 @@ class GoingOut extends Component {
   }
 
   render () {
-    console.log(this.props)
+    console.log(this.props.profile)
     const buttons = ['All', 'Female', 'Male']
     const { selectedIndex } = this.state
     return (

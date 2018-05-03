@@ -1,15 +1,11 @@
 import React, {Component} from 'react'
 import {
     View,
-    Text,
     StyleSheet,
     ImageBackground
 } from 'react-native'
-import { GiftedChat, InputToolbar} from 'react-native-gifted-chat'
+import { GiftedChat, InputToolbar } from 'react-native-gifted-chat'
 import {firebaseRef} from '../../firebase/firebase'
-import md5 from './md5'
-import { Header } from 'react-native-elements'
-import { Tile } from 'react-native-elements'
 
 export default class Chat extends Component {
   constructor (props) {
@@ -33,8 +29,7 @@ export default class Chat extends Component {
 
   getRef () {
     const { currentUser } = firebaseRef.auth()
-
-    return firebaseRef.database().ref(`/users/${currentUser.uid}/chatroom`)
+    return firebaseRef.database().ref(`/users/${currentUser.uid}/profile/chatroom`)
   }
 
   listenForItems (chatRef) {
@@ -104,8 +99,8 @@ export default class Chat extends Component {
             messages={this.state.messages}
             onSend={this.onSend.bind(this)}
             user={{
-             _id: this.user.uid
-           }}
+              _id: this.user.uid
+            }}
                 />
         </View>
       </ImageBackground>

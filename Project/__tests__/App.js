@@ -19,3 +19,5 @@ describe('Auth reducer', () => {
     })
   })
 })
+
+// add user to firebase, check with snapshot

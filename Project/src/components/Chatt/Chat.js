@@ -20,7 +20,6 @@ export default class Chat extends Component {
     this.chatRef = this.getRef().child(this.generateChatId())
     this.chatRefData = this.chatRef.orderByChild('order')
     this.onSend = this.onSend.bind(this)
-    console.log(this.props.text)
   }
 
   generateChatId () {
@@ -38,6 +37,7 @@ export default class Chat extends Component {
       var items = []
 
       snap.forEach((child) => {
+        console.log(child.val())
         var avatar = this.props.data.profile_picture
         var name = child.val().uid == this.user.uid ? this.user.name : this.friend.name
         items.push({
@@ -45,9 +45,9 @@ export default class Chat extends Component {
           text: child.val().text,
           createdAt: new Date(child.val().createdAt),
           user: {
-            _id: child.val().uid,
-            name: name,
-            avatar: avatar
+            _id: child.val().uid
+            // name: name,
+            // avatar: avatar
           }
         })
       })

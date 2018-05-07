@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Actions } from 'react-native-router-flux'
-import { Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView,Keyboard } from 'react-native'
+import { Text, View, TextInput, KeyboardAvoidingView, Keyboard } from 'react-native'
 import { Spinner } from '../common'
 import { connect } from 'react-redux'
 import { emailChanged, passwordChanged, loginUser, deleteErrorMessage } from '../../actions'
-import { Tile, Button, Icon} from 'react-native-elements'
+import { Tile, Button, Icon } from 'react-native-elements'
 
 // StyleSheet
 import styles from './LogInForm.style'

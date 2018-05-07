@@ -39,10 +39,7 @@ export const fetchList = (index) => {
         arrayToFilter.push(users)
       }
 
-      console.log(arrayToFilter)
-
       // filter and creates a new array with users depending on thr conditions
-
       if (index === 0) {
         let arr = arrayToFilter.filter(child => child.status === true)
         dispatch({ type: UPDATE_LIST_SUCCESS, payload: arr })

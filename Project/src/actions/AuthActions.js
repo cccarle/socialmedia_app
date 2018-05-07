@@ -56,7 +56,6 @@ export const loginUser = ({ email, password }) => {
 
 export const signOut = () => {
   return (dispatch) => {
-    const { currentUser } = firebaseRef.auth()
     dispatch({ type: SIGN_OUT })
     firebaseRef.auth().signOut().then(function () {
       console.log('Signed Out')

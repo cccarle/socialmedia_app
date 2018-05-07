@@ -8,7 +8,6 @@ import {
 
 export const upDateStatus = ({ status }) => {
   return (dispatch) => {
-    console.log(status)
     const { currentUser } = firebaseRef.auth()
 
     dispatch({ type: SET_STATUS_TO_OUT })
@@ -24,7 +23,6 @@ export const upDateStatus = ({ status }) => {
 
 export const upDateStatusToNotGoOut = ({ status }) => {
   return (dispatch) => {
-    console.log(status)
     const { currentUser } = firebaseRef.auth()
 
     dispatch({ type: SET_STATUS_TO_NOT_OUT })

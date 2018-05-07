@@ -1,14 +1,21 @@
-import 'react-native';
-import React from 'react';
-import App from '../App';
+import 'react-native'
+import React from 'react'
+import App from '../../Project/App'
+import request from '../src/reducers/ListReducer'
+import authReducer from '../src/reducers/AuthReducer'
 
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
+describe('Request reducer', () => {
+  it('Initial state should be an empty object', () => {
+    expect(request(undefined, {})).toEqual({})
+  })
+})
 
-
-
-it('renders correctly', () => {
-  const tree = renderer.create(
-    <App />
-  );
-});
+describe('Auth reducer', () => {
+  it('Initial state should have email set to "", password to "" and loading to false', () => {
+    expect(authReducer(undefined, {})).toEqual({
+      email: '',
+      password: '',
+      loading: false
+    })
+  })
+})

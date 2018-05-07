@@ -16,7 +16,6 @@ import {
         case SET_STATUS_TO_NOT_OUT:
         return { ...state, status: false }
      
-
         default:
         return state
     }

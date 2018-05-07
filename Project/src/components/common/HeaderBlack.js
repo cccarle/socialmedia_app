@@ -103,7 +103,13 @@ class HeaderBlack extends Component {
           avatarStyle={{borderColor: 'white', borderWidth: 1}}
 />}
         centerComponent={{ text: 'People Out Tonight ', style: { color: '#fff', fontFamily: 'GeosansLight', fontSize: 24 } }}
-        rightComponent={{ icon: 'forum', color: '#fff' }}
+        rightComponent={
+          <Icon
+            name='forum'
+            color='white'
+            onPress={() => Actions.chatList({ data: this.props.profile })} />
+
+        }
 />
     }
   }

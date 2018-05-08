@@ -1,6 +1,5 @@
 import {firebaseRef} from '../firebase/firebase'
 import { Actions } from 'react-native-router-flux'
-
 import {
     SET_STATUS_TO_OUT,
     SET_STATUS_TO_NOT_OUT

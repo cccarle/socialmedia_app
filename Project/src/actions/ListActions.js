@@ -27,7 +27,7 @@ export const fetchList = (index) => {
         let latitude = snap[k].profile.latitude
         let longitude = snap[k].profile.longitude
 
-        let users = { key: '', name: '', age: '', status: Boolean, profile_picture: '', prop: '', value: '', gender: '', latitude: '', longitude: ''}
+        var users = { key: '', name: '', age: '', status: Boolean, profile_picture: '', prop: '', value: '', gender: '', latitude: '', longitude: ''}
         users.key = key
         users.name = name
         users.age = age
@@ -39,11 +39,11 @@ export const fetchList = (index) => {
         users.latitude = Math.floor(latitude)
         users.longitude = Math.floor(longitude)
 
-        // adding the user object to an array
+      // adding the user object to an array
         arrayToFilter.push(users)
       }
-
-      // Get current users latitude to compare with all users latidude
+      console.log(index)
+      console.log(arrayToFilter)
       let userId = firebaseRef.auth().currentUser.uid
       firebaseRef.database().ref(`/users/${userId}`).once('value').then(function (snapshot) {
         let snap = snapshot.val()
@@ -54,19 +54,25 @@ export const fetchList = (index) => {
           let k = keys[i]
           currentUsersLatitude = snap[k].latitude
         }
-
-      // filter and creates a new array with users depending on thr conditions
         if (index === 0) {
           let arr = arrayToFilter.filter(child => child.status === true && Math.floor(currentUsersLatitude) === child.latitude)
           dispatch({ type: UPDATE_LIST_SUCCESS, payload: arr })
+          arrayToFilter.length = 0
         } else if (index === 1) {
           let arr = arrayToFilter.filter(child => child.status === true && Math.floor(currentUsersLatitude) === child.latitude && child.gender === 'female')
           dispatch({ type: UPDATE_LIST_SUCCESS, payload: arr })
+          arrayToFilter.length = 0
         } else if (index === 2) {
           let arr = arrayToFilter.filter(child => child.status === true && Math.floor(currentUsersLatitude) === child.latitude && child.gender === 'male')
           dispatch({ type: UPDATE_LIST_SUCCESS, payload: arr })
+          arrayToFilter.length = 0
         }
       })
     })
   }
 }
+
+      // filter and creates a new array with users depending on thr conditions
+      // let arr1 = arrayToFilter.filter(child => child.status === true && Math.floor(currentUsersLatitude) === child.latitude && child.gender === 'female')
+      // dispatch({ type: UPDATE_LIST_SUCCESS, payload: arr1 })
+      // arrayToFilter.length = 0

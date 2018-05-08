@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { View, ListView, ImageBackground, Geolocation} from 'react-native'
-import { ButtonGroup, Header, Avatar } from 'react-native-elements'
+import { View, ListView, ImageBackground } from 'react-native'
+import { ButtonGroup } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { fetchList, fetchProfileData } from '../../actions'
 import _ from 'lodash'
@@ -46,13 +46,19 @@ class GoingOut extends Component {
     )
   }
 
+  componentWillReceiveProps (nextProps) {
+    // nextProps are the next set of props that this component
+    // will be rendered with
+    // this.props is still the old set of props
+    this.createDataSource(nextProps)
+  }
+
   // updates the selectedIndex and calls the methods with the selectedindex
   updateIndex (selectedIndex) {
     this.setState({selectedIndex})
     this.fetchAllUsers(selectedIndex)
     this.fetchFemale(selectedIndex)
     this.fetchMale(selectedIndex)
-    this.createDataSource(this.props)
   }
 
   fetchAllUsers (index) {
@@ -60,7 +66,6 @@ class GoingOut extends Component {
       this.props.fetchList(index)
     }
   }
-
   fetchFemale (index) {
     if (index === 1) {
       this.props.fetchList(index)
@@ -75,14 +80,7 @@ class GoingOut extends Component {
 
   // When user scrolls, the list will update
   updateData () {
-    this.props.fetchList(this.selectedIndex)
-  }
-
-  componentWillReceiveProps (nextProps) {
-    // nextProps are the next set of props that this component
-    // will be rendered with
-    // this.props is still the old set of props
-    this.createDataSource(nextProps)
+    this.props.fetchList()
   }
 
   createDataSource ({ users }) {
@@ -135,7 +133,7 @@ class GoingOut extends Component {
               enableEmptySections
               dataSource={this.dataSource}
               renderRow={this.renderRow}
-              onScroll={this.updateData.bind(this)}
+              // onScroll={this.updateData.bind(this)}
         />
           </View>
         </View>
@@ -146,8 +144,8 @@ class GoingOut extends Component {
 }
 
 const mapStateToProps = state => {
-  const users = _.map(state.list, (val, uid) => {
-    return {...val, uid}
+  const users = _.map(state.list, (val) => {
+    return {...val}
   })
   const profile = _.map(state.profile, (val) => {
     return { ...val }

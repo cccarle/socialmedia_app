@@ -3,7 +3,8 @@ import { View, Text } from 'react-native'
 import { Avatar, Icon, Button} from 'react-native-elements'
 import Modal from 'react-native-modal'
 import { Actions } from 'react-native-router-flux'
-import Chat from '../Chatt/Chat'
+
+
 class ListUserItem extends Component {
   constructor () {
     super()

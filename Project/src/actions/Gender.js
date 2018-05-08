@@ -1,18 +1,18 @@
 import {firebaseRef} from '../firebase/firebase'
 
 import {
-UPDATE_CURRENT_MODE
+GENDER_CHANGED
 } from './types'
 
-export const currentMood = ({ prop, value }) => {
+export const updateGender = ({ prop, gender }) => {
   return (dispatch) => {
     const { currentUser } = firebaseRef.auth()
 
-    dispatch({ type: UPDATE_CURRENT_MODE,
-      payload: { prop, value } })
+    dispatch({ type: GENDER_CHANGED,
+      payload: { prop, gender } })
 
     firebaseRef.database().ref(`/users/${currentUser.uid}/profile`)
-            .update({ prop, value })
+            .update({ prop, gender })
             .then(() => {
               console.log('updated mood')
             })

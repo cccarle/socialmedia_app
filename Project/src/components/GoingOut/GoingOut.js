@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, ListView, ImageBackground } from 'react-native'
+import { View, ListView, ImageBackground, Geolocation} from 'react-native'
 import { ButtonGroup, Header, Avatar } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { fetchList, fetchProfileData } from '../../actions'
@@ -8,6 +8,7 @@ import HeaderBlack from '../common/HeaderBlack'
 import ListUserItem from './ListUserItem'
 import styles from './GoingOut.style'
 import { BlurView } from 'react-native-blur'
+import {firebaseRef} from '../../firebase/firebase'
 
 class GoingOut extends Component {
   constructor () {
@@ -25,6 +26,24 @@ class GoingOut extends Component {
     this.props.fetchList(i)
     this.props.fetchProfileData()
     this.createDataSource(this.props)
+  }
+
+  componentDidMount () {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        console.log(position.coords.latitude)
+        console.log(position.coords.longitude)
+        const { currentUser } = firebaseRef.auth()
+
+        firebaseRef.database().ref(`/users/${currentUser.uid}/profile`)
+        .update({ latitude: position.coords.latitude, longitude: position.coords.longitude })
+        .then(() => {
+          console.log('added profile')
+        })
+      },
+      (error) => console.log(error),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    )
   }
 
   // updates the selectedIndex and calls the methods with the selectedindex
@@ -80,7 +99,6 @@ class GoingOut extends Component {
   }
 
   render () {
-    console.log(this.props.profile)
     const buttons = ['All', 'Female', 'Male']
     const { selectedIndex } = this.state
     return (

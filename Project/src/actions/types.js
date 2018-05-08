@@ -14,6 +14,7 @@ export const SIGN_OUT = 'sign_out'
 // Create Profile
 export const NAME_CHANGED = 'name_changed'
 export const AGE_CHANGED = 'age_changed'
+export const GENDER_CHANGED = 'gender_changed'
 export const CREATE_PROFILE = 'create_profile'
 export const PROFILE_UPDATE = 'profile_update'
 export const CREATE_PROFILE_SUCCESS = 'create_profile_success'
@@ -32,3 +33,4 @@ export const UPDATE_LIST_SUCCESS = 'update_list_success'
 
 // Profile Data
 export const CURRENT_PROFILE_DATA = 'current_profile_data'
+export const GET_LOCATION = 'get_location'

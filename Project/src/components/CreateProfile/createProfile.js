@@ -1,32 +1,30 @@
 import React, { Component } from 'react'
 import {
-  Text,
   View,
-  TouchableOpacity,
+  Picker,
   TextInput,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Text
 } from 'react-native'
 import { Tile, Button, Icon } from 'react-native-elements'
 import { Spinner } from '../common'
 import { connect } from 'react-redux'
-import { nameChanged, ageChanged, createProfiles } from '../../actions'
+import { nameChanged, ageChanged, createProfiles, updateGender} from '../../actions'
 import ProfilePictureHandeler from '../../utils/ProfilePictureHandeler'
 import styles from './CreateProfile.style'
 
 class createProfile extends Component {
   onNameChange (text) {
     this.props.nameChanged(text)
-    console.log(this.props.name)
   }
 
   onAgeChange (number) {
     this.props.ageChanged(number)
-    console.log(this.props.age)
   }
 
   onButtonPress () {
     const {name, age} = this.props
-    this.props.createProfiles({ name, age })
+    this.props.createProfiles({ name, age})
   }
 
   renderButton () {
@@ -62,6 +60,7 @@ class createProfile extends Component {
   }
 
   render () {
+    console.log(this.props.gender)
     return (
       <View style={styles.container}>
 
@@ -75,7 +74,7 @@ class createProfile extends Component {
             caption='Click on the image for uploading a profile picture'
             captionStyle={{ fontFamily: 'GeosansLight' }}
             titleStyle={styles.titleStyles}
-            height={1330}
+            height={1490}
           />
 
         </View>
@@ -105,21 +104,39 @@ class createProfile extends Component {
 
     />
           <View style={styles.hairline} />
+          <View style={styles.changeStatusButtonContainer}>
+
+            <Text style={styles.currentMoodStyle} > Select a gender : </Text>
+
+            <Picker
+              style={{width: 150, height: 80, marginBottom: 20}}
+              selectedValue={this.props.gender}
+              onValueChange={gender => this.props.updateGender({ prop: 'gender', gender })}
+              itemStyle={{ height: 90, fontSize: 20, color: 'white', fontFamily: 'GeosansLight' }}>
+              <Picker.Item label='♀ Female' value='female' />
+              <Picker.Item label='♂ ️Male' value='male' />
+            </Picker>
+          </View>
+
+          <View style={styles.spinnerAndButton}>
+            {this.renderButton()}
+          </View>
         </KeyboardAvoidingView>
-        <View style={styles.spinnerAndButton}>
-          {this.renderButton()}
-        </View>
+
       </View>
     )
   }
 }
 
 const mapStateToProps = state => {
+  const { gender } = state.gender
+
   return {
     name: state.create.name,
     age: state.create.age,
-    loading: state.create.loading
+    loading: state.create.loading,
+    gender
   }
 }
 
-export default connect(mapStateToProps, { nameChanged, ageChanged, createProfiles })(createProfile)
+export default connect(mapStateToProps, { nameChanged, ageChanged, createProfiles, updateGender })(createProfile)

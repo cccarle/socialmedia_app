@@ -6,6 +6,7 @@ import ListReducer from './ListReducer'
 import CurrentProfileReducer from './CurrentProfileReducer'
 import CurrentModeReducer from './CurrentModeReducer'
 import EditProfileReducer from './EditProfileReducer'
+import GenderReducer from './GenderReducer'
 
 export default combineReducers({
   auth: AuthReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   list: ListReducer,
   profile: CurrentProfileReducer,
   moode: CurrentModeReducer,
-  edit: EditProfileReducer
+  edit: EditProfileReducer,
+  gender: GenderReducer
 })

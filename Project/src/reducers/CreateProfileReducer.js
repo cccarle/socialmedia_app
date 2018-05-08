@@ -2,7 +2,7 @@ import {
     NAME_CHANGED,
     AGE_CHANGED,
     CREATE_PROFILE,
-    CREATE_PROFILE_SUCCESS
+    CREATE_PROFILE_SUCCESS,
   } from '../actions/types'
   
   const INTIAL_STATE = {

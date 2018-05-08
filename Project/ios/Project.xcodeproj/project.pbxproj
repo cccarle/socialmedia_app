@@ -451,6 +451,7 @@
 		1BCE11DA20104240B47C0697 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		1C5F28F3207FB5FC00A16470 /* QBImagePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = QBImagePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C5F28F7207FB62E00A16470 /* RSKImageCropper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RSKImageCropper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C6FF80A20A0DF9900EF4E18 /* Project.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Project.entitlements; path = Project/Project.entitlements; sourceTree = "<group>"; };
 		1CB1C027209B684B00B2038B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1F33184C3AAD468A93E0B57F /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		25F5804CC4D1406594EC6A2B /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
@@ -646,12 +647,13 @@
 		13B07FAE1A68108700A75B9A /* Project */ = {
 			isa = PBXGroup;
 			children = (
+				1C6FF80A20A0DF9900EF4E18 /* Project.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
-				1CB1C027209B684B00B2038B /* GoogleService-Info.plist */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
+				1CB1C027209B684B00B2038B /* GoogleService-Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
@@ -990,7 +992,13 @@
 						DevelopmentTeam = B4JBVUL3XQ;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 0;
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
 							};
 						};
 					};
@@ -1679,6 +1687,7 @@
 			baseConfigurationReference = D02FC292F9CE19D3BAF51B46 /* Pods-Project.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Project/Project.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = B4JBVUL3XQ;
@@ -1710,6 +1719,7 @@
 			baseConfigurationReference = E42815F6D794DC1E63E1C996 /* Pods-Project.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Project/Project.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B4JBVUL3XQ;
 				HEADER_SEARCH_PATHS = (

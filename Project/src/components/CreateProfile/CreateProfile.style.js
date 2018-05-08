@@ -8,13 +8,15 @@ const styles = {
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop: 10
     },
     titleStyles:{
       fontFamily:  'GeosansLight', 
       fontSize: 40, 
       justifyContent: 'center', 
       alignItems: 'center' 
+    },
+    inputContainer:{
+marginTop: 65
     },
     input: {
       color: 'white',
@@ -30,7 +32,6 @@ const styles = {
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      marginBottom: 60
     },
     buttonContainer: {
       height: 30,
@@ -39,6 +40,13 @@ const styles = {
       backgroundColor: '#0285A3',
       borderRadius: 20
     },
+    changeStatusButtonContainer:
+{
+    justifyContent: 'flex-start', 
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginBottom:20
+},
     buttonText: {
       color: 'white',
       borderColor: 'black',
@@ -49,6 +57,14 @@ const styles = {
       fontFamily: 'GeosansLight'
   
     },
+    currentMoodStyle: 
+{
+    color:'white',
+    fontFamily: 'GeosansLight',
+    fontSize: 20,
+    marginLeft:50,
+    marginBottom: 10
+},
     texts: {
       fontSize: 17,
       color: 'white',

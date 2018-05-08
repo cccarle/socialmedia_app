@@ -39,4 +39,3 @@ export const createProfiles = ({ name, age }) => {
             })
   }
 }
-

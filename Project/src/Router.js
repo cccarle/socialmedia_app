@@ -9,7 +9,7 @@ import NotGoingOut from './components/NotGoingOut/NotGoingOut'
 import EditProfile from './components/EditProfile/EditProfile'
 import Chat from './components/Chatt/Chat'
 import ChatList from './components/ChatList/ChatList'
-
+import Geo from '../src/utils/GeoLocation'
 const RouterComponent = () => {
   return (
     <Router>
@@ -57,7 +57,7 @@ const RouterComponent = () => {
         />
           <Scene
             key='chatList'
-            component={ChatList}
+            component={Geo}
             navTransparent
             title='Chat List'
             titleStyle={{color: 'white', fontFamily: 'GeosansLight', fontSize: 30}}

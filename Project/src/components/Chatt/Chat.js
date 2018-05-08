@@ -37,7 +37,6 @@ export default class Chat extends Component {
       var items = []
 
       snap.forEach((child) => {
-        console.log(child.val())
         var avatar = this.props.data.profile_picture
         var name = child.val().uid == this.user.uid ? this.user.name : this.friend.name
         items.push({
@@ -77,6 +76,7 @@ export default class Chat extends Component {
         //     messages: GiftedChat.append(this.state.messages, messages),
         // });
     messages.forEach(message => {
+      console.log(message)
       var now = new Date().getTime()
       this.chatRef.push({
         _id: now,

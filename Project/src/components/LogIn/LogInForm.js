@@ -10,6 +10,12 @@ import { Tile, Button, Icon } from 'react-native-elements'
 import styles from './LogInForm.style'
 
 class LogInForm extends Component {
+  componentWillUnmount () {
+    // prevent leaking
+    this.refreshUnsubscribe()
+    this.notificationUnsubscribe()
+  }
+
     // when user write something, create a action creator
   onEmailChange (text) {
     this.props.emailChanged(text)
@@ -63,7 +69,7 @@ class LogInForm extends Component {
         titleStyle={{ fontFamily: 'GeosansLight'}}
         buttonStyle={{
           backgroundColor: '#D1AF46',
-          //backgroundColor: '#2C4D69',
+          // backgroundColor: '#2C4D69',
           width: 250,
           height: 40,
           marginLeft: 45,
@@ -123,11 +129,10 @@ class LogInForm extends Component {
             secureTextEntry
             style={styles.texts}
 
-
       />
           <View style={styles.hairline} />
-          <View style={{marginBottom:40}}>
-          {this.renderError()}
+          <View style={{marginBottom: 40}}>
+            {this.renderError()}
           </View>
           <View style={styles.spinnerAndButton}>
             {this.renderButton()}

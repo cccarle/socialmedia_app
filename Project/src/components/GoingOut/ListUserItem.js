@@ -4,7 +4,6 @@ import { Avatar, Icon, Button} from 'react-native-elements'
 import Modal from 'react-native-modal'
 import { Actions } from 'react-native-router-flux'
 
-
 class ListUserItem extends Component {
   constructor () {
     super()
@@ -43,7 +42,7 @@ class ListUserItem extends Component {
   renderAvatarOrSpinner () {
     if (this.props.user.profile_picture) {
       return <Avatar
-        large
+        size='large'
         rounded
         source={{uri: this.props.user.profile_picture}}
         avatarStyle={{borderColor: '#302F30', borderWidth: 1}}
@@ -52,7 +51,7 @@ class ListUserItem extends Component {
 />
     } else {
       return <Avatar
-        large
+        size='large'
         rounded
         onPress={() => console.log('Works!')}
         activeOpacity={0.7}
@@ -70,7 +69,7 @@ class ListUserItem extends Component {
 
         <View style={styles.profileContainer}>
           <Avatar
-            height={180}
+            size={180}
             rounded
             source={{ uri: this.props.user.profile_picture }}
             activeOpacity={0.7}

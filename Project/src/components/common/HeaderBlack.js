@@ -51,7 +51,7 @@ class HeaderBlack extends Component {
 
         <View style={styles.profileContainer}>
           <Avatar
-            height={180}
+            size={180}
             rounded
             source={{ uri: this.props.profile[0].profile_picture }}
             activeOpacity={0.7}
@@ -96,7 +96,7 @@ class HeaderBlack extends Component {
         backgroundColor='#1E1E1E'
         outerContainerStyles={{ height: 120 }}
         leftComponent={<Avatar
-          medium
+          size='medium'
           rounded
           source={{ uri: this.props.profile[0].profile_picture }}
           onPress={this.toggleModal.bind(this)}

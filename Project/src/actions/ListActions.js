@@ -42,18 +42,22 @@ export const fetchList = (index) => {
       // adding the user object to an array
         arrayToFilter.push(users)
       }
-      console.log(index)
-      console.log(arrayToFilter)
+
+      // Get current users Latitude to compare to the other users in the list
       let userId = firebaseRef.auth().currentUser.uid
       firebaseRef.database().ref(`/users/${userId}`).once('value').then(function (snapshot) {
         let snap = snapshot.val()
+
         // Get acces to the keys in the object i got from firebase
         let keys = Object.keys(snap)
-        //  iterate the keys and put them in an User object
+
+        //  iterate the key
         for (var i = 0; i < keys.length; i++) {
           let k = keys[i]
           currentUsersLatitude = snap[k].latitude
         }
+
+        // filter and creates a new array with users depending on thr conditions
         if (index === 0) {
           let arr = arrayToFilter.filter(child => child.status === true && Math.floor(currentUsersLatitude) === child.latitude)
           dispatch({ type: UPDATE_LIST_SUCCESS, payload: arr })
@@ -71,8 +75,3 @@ export const fetchList = (index) => {
     })
   }
 }
-
-      // filter and creates a new array with users depending on thr conditions
-      // let arr1 = arrayToFilter.filter(child => child.status === true && Math.floor(currentUsersLatitude) === child.latitude && child.gender === 'female')
-      // dispatch({ type: UPDATE_LIST_SUCCESS, payload: arr1 })
-      // arrayToFilter.length = 0

@@ -1,16 +1,30 @@
 import 'react-native'
 import React from 'react'
 import App from '../../Project/App'
-import request from '../src/reducers/ListReducer'
+import listReducer from '../src/reducers/ListReducer'
 import authReducer from '../src/reducers/AuthReducer'
+import createProfileReducer from '../src/reducers/CreateProfileReducer'
+import currentMoodReducer from '../src/reducers/CurrentModeReducer'
+import currenProfileReducer from '../src/reducers/CurrentProfileReducer'
+import editProfileReducer from '../src/reducers/EditProfileReducer'
+import genderReducer from '../src/reducers/GenderReducer'
+import setStatusReducer from '../src/reducers/SetStatusReducer'
 
-describe('Request reducer', () => {
+import allReducers from '../src/reducers/index'
+
+describe('List Reducer', () => {
   it('Initial state should be an empty object', () => {
-    expect(request(undefined, {})).toEqual({})
+    expect(listReducer(undefined, {})).toEqual({})
   })
 })
 
-describe('Auth reducer', () => {
+describe('Current Profile Reducer', () => {
+  it('Initial state should be an empty object', () => {
+    expect(currenProfileReducer(undefined, {})).toEqual({})
+  })
+})
+
+describe('Auth Reducer', () => {
   it('Initial state should have email set to "", password to "" and loading to false', () => {
     expect(authReducer(undefined, {})).toEqual({
       email: '',
@@ -20,4 +34,46 @@ describe('Auth reducer', () => {
   })
 })
 
-// add user to firebase, check with snapshot
+describe('Create Profile Reducer', () => {
+  it('Initial state should have name set to "", age to "" and loading to false', () => {
+    expect(createProfileReducer(undefined, {})).toEqual({
+      name: '',
+      age: '',
+      loading: false
+    })
+  })
+})
+
+describe('Edit Profile Reducer', () => {
+  it('Initial state should have name set to "", age to "" and loading to false', () => {
+    expect(editProfileReducer(undefined, {})).toEqual({
+      name: '',
+      age: '',
+      loading: false
+    })
+  })
+})
+
+describe('Current Mood Reducer', () => {
+  it('Initial state should have mood set to "" ', () => {
+    expect(currentMoodReducer(undefined, {})).toEqual({
+      mood: ''
+    })
+  })
+})
+
+describe('Gender Reducer', () => {
+  it('Initial state should have gender set to "" ', () => {
+    expect(genderReducer(undefined, {})).toEqual({
+      gender: ''
+    })
+  })
+})
+
+describe('Set Status Reducer', () => {
+  it('Initial state should have status set to false ', () => {
+    expect(setStatusReducer(undefined, {})).toEqual({
+      status: false
+    })
+  })
+})

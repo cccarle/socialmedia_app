@@ -1,7 +1,6 @@
 import {
-    UPDATE_LIST_SUCCESS,
-    GET_LOCATION
-   } from '../actions/types'
+    UPDATE_LIST_SUCCESS
+} from '../actions/types'
 
 const INITIAL_STATE = {}
 

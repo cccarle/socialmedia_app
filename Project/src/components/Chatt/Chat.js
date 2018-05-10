@@ -17,7 +17,7 @@ export default class Chat extends Component {
     this.user = firebaseRef.auth().currentUser
     this.friend = this.props.data
 
-    this.chatRef = this.getRef().child('chat/' + this.generateChatId())
+    this.chatRef = this.getRef().child(this.generateChatId())
     this.chatRefData = this.chatRef.orderByChild('order')
     this.onSend = this.onSend.bind(this)
   }
@@ -28,7 +28,7 @@ export default class Chat extends Component {
 
   getRef () {
     const { currentUser } = firebaseRef.auth()
-    return firebaseRef.database().ref()
+    return firebaseRef.database().ref('chat')
   }
 
   listenForItems (chatRef) {

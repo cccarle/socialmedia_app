@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
-import { View, Text, ListView,TouchableOpacity, Image} from 'react-native'
+import { View, Text, ListView,TouchableOpacity, ImageBackground} from 'react-native'
 import {firebaseRef} from '../../firebase/firebase'
+import { Avatar, Icon, Button, Divider} from 'react-native-elements'
+import { Actions } from 'react-native-router-flux'
+import styles from './ChatList.style'
+import { BlurView } from 'react-native-blur'
 
+import _ from 'lodash'
 
 
 var navigator;
@@ -16,8 +21,8 @@ class ChatList extends Component {
             loading: true 
         };
         this.friendsRef = this.getRef().child('chat')
-        console.log(this.friendsRef)
 
+        console.log(this.props.data)
     }
 
     getRef() {
@@ -26,36 +31,48 @@ class ChatList extends Component {
         return firebaseRef.database().ref()
     }
 
+    
+
     listenForItems(friendsRef) {
         var user = firebaseRef.auth().currentUser;
 
+        var data
         friendsRef.on('value', (snap) => {
-
-            console.log(snap.val())
-            console.log(user.uid)
-                 var a = []
-            let snaps = snap.val()
-            let keys = Object.keys(snaps)
-            for (var i = 0; i < keys.length; i++) {
-                let k = keys[i]
-                let key = k
-                let text = snaps[k].text
-                console.log(text)
-            }
-
             // get children as an array
             var items = [];
+            var as = []
+            let snaps = snap.val() 
+
             snap.forEach((child) => {
-                if(child.val().email != user.email)
-                    items.push({
-                        name: child.val().name,
-                        uid: child.val().uid,
-                        email: child.val().email
-                    });
+
+                let a = child.val()
+
+                const users = _.map(a, (val) => {
+                    return { ...val }
+                })
+console.log(users)
+                let ab = users.filter(element => element.uid === user.uid)
+console.log(ab)
+                users.forEach(element => {
+                    
+                        text = element.text,
+                            avatar = element.profile,
+                            name = element.name
+                        key = element.key,
+                            apa = element.apa
+                    
+                });
+
+                items.push({
+                    name: name,
+                    text: text,
+                    profilAvatar: avatar,
+                    apa: apa,
+                    key: key
+                });
+
             });
             
-            console.log(items)
-
             this.setState({
                 dataSource: this.state.dataSource.cloneWithRows(items),
                 loading: false
@@ -67,31 +84,65 @@ class ChatList extends Component {
     componentDidMount() {
         this.listenForItems(this.friendsRef);
     }
-
-
-
     renderRow = (rowData) => {
-        return <TouchableOpacity onPress={() => console.log('edsd') }>
-            <View >
-                <Image source={{ uri: 'https://www.gravatar.com/avatar/' + (rowData.email) }} />
-                <Text >{rowData.name}</Text>
-            </View>
+
+        let userData = {
+            name: rowData.name,
+            key: rowData.key,
+            profile_picture: rowData.profilAvatar
+        }
+        return <TouchableOpacity onPress={() => Actions.chat({data:userData})}>
+                    <Divider style={{ backgroundColor: 'white'}} />
+
+           <View style={styles.container}>
+           <Avatar
+            size='medium'
+            rounded
+            source={{ uri: rowData.profilAvatar }}
+            activeOpacity={0.7}
+            avatarStyle={{borderColor: '#302F30', borderWidth: 1}}
+          />  
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>
+            {rowData.name}
+            </Text>
+          </View>
+
+          <View style={styles.textContainer2}>
+            <Text style={styles.text}>
+            {rowData.text}
+            </Text>
+          </View>
+        </View>
+
         </TouchableOpacity>
+           
+                   
+       
     }
 
     render() {
         return (
-            <View style={{flex:1, marginTop:200}} >
-                <View >
-                    <Text >My Friends</Text>
-                    <TouchableOpacity>
-                        <Text >Invite More Freinds</Text>
-                    </TouchableOpacity>
-                </View>
-                <ListView
+            <ImageBackground
+            source={require('../../assets/chatBack.jpg')}
+            style={styles.container2}
+           >   
+           
+           <BlurView
+            style={styles.absolute}
+            blurType='dark'
+            blurAmount={0.001}
+            height={995}
+        />
+            <View style={{marginTop:120}} >           
+            <ListView
+                    enableEmptySections
                     dataSource={this.state.dataSource}
                     renderRow={this.renderRow} />
-            </View>
+                    </View>
+                    <Divider style={{ backgroundColor: 'white'}} />
+
+            </ImageBackground>
         );
     }
 }

@@ -1,6 +1,5 @@
 import 'react-native'
 import React from 'react'
-import App from '../../Project/App'
 import listReducer from '../src/reducers/ListReducer'
 import authReducer from '../src/reducers/AuthReducer'
 import createProfileReducer from '../src/reducers/CreateProfileReducer'
@@ -11,6 +10,10 @@ import genderReducer from '../src/reducers/GenderReducer'
 import setStatusReducer from '../src/reducers/SetStatusReducer'
 
 import allReducers from '../src/reducers/index'
+
+import {mount} from 'enzyme'
+
+import renderer from 'react-test-renderer'
 
 describe('List Reducer', () => {
   it('Initial state should be an empty object', () => {

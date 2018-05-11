@@ -25,11 +25,11 @@ class NotGoingOut extends Component {
               backgroundColor='#03A9F4'
               fontFamily='GeosansLight'
               buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-              containerStyle={{height: 200, width:100}}
+              containerStyle={{height: 200, width: 100}}
               title='Read more' />
-              
+
           </Card>
-          
+
         </View>
         <View style={{ marginBottom: 90 }} />
       </View>

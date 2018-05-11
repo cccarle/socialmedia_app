@@ -1,12 +1,12 @@
+
 import React, {Component} from 'react'
 import {
     View,
-    StyleSheet,
-    ImageBackground
+    Text,
+    StyleSheet
 } from 'react-native'
-import { GiftedChat, InputToolbar } from 'react-native-gifted-chat'
+import { GiftedChat } from 'react-native-gifted-chat'
 import {firebaseRef} from '../../firebase/firebase'
-
 export default class Chat extends Component {
   constructor (props) {
     super(props)
@@ -17,7 +17,7 @@ export default class Chat extends Component {
     this.user = firebaseRef.auth().currentUser
     this.friend = this.props.data
 
-    this.chatRef = this.getRef().child(this.generateChatId())
+    this.chatRef = this.getRef().child('chat/' + this.generateChatId())
     this.chatRefData = this.chatRef.orderByChild('order')
     this.onSend = this.onSend.bind(this)
   }
@@ -25,17 +25,14 @@ export default class Chat extends Component {
   generateChatId () {
     if (this.user.uid > this.friend.key) { return `${this.user.uid}-${this.friend.key}` } else { return `${this.friend.key}-${this.user.uid}` }
   }
-
   getRef () {
-    const { currentUser } = firebaseRef.auth()
-    return firebaseRef.database().ref('chat')
+    return firebaseRef.database().ref()
   }
 
   listenForItems (chatRef) {
     chatRef.on('value', (snap) => {
             // get children as an array
       var items = []
-
       snap.forEach((child) => {
         var avatar = this.props.data.profile_picture
         var name = child.val().uid == this.user.uid ? this.user.name : this.friend.name
@@ -45,8 +42,9 @@ export default class Chat extends Component {
           createdAt: new Date(child.val().createdAt),
           user: {
             _id: child.val().uid,
-            name: name,
-            avatar: avatar
+            avatar: avatar,
+            name: name
+
           }
         })
       })
@@ -66,50 +64,43 @@ export default class Chat extends Component {
     this.chatRefData.off()
   }
 
-  renderInputToolbar (props) {
-    // Add the extra styles via containerStyle
-    return <InputToolbar {...props} containerStyle={{borderTopWidth: 1.5, borderTopColor: '#333', marginBottom: 5}} />
-  }
-
   onSend (messages = []) {
         // this.setState({
         //     messages: GiftedChat.append(this.state.messages, messages),
         // });
     messages.forEach(message => {
-      console.log(message)
       var now = new Date().getTime()
       this.chatRef.push({
         _id: now,
         text: message.text,
         createdAt: now,
         uid: this.user.uid,
-        order: -1 * now
+        order: -1 * now,
+        profile: this.friend.profile_picture,
+        name: this.friend.name,
+        key: this.friend.key
       })
     })
   }
   render () {
     return (
-      <ImageBackground
-        source={require('../../assets/thihi.png')}
-        style={styles.container}
-       >
-        <View style={{height: 810}}>
-          <GiftedChat
-            renderInputToolbar={this.renderInputToolbar}
-            messages={this.state.messages}
-            onSend={this.onSend.bind(this)}
-            user={{
-              _id: this.user.uid
-            }}
+      <GiftedChat
+        messages={this.state.messages}
+        onSend={this.onSend.bind(this)}
+        user={{
+          _id: this.friend.key,
+          profilepic: this.friend.profile_picture,
+          key: this.friend.key }}
                 />
-        </View>
-      </ImageBackground>
     )
   }
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: 700
+    alignItems: 'stretch',
+    marginRight: 10,
+    marginLeft: 10
   }
 })

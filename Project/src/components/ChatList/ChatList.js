@@ -52,26 +52,32 @@ class ChatList extends Component {
                     return { ...val }
                 })
                 console.log(users)
-                let ab = users.filter(element => element.uid === user.uid)
+                let ab = users.filter(element => this.user.uid === user.key)
                 console.log(ab)
                 users.forEach(element => {
 
                     text = element.text,
-                    avatar = element.profile,
+                    avatar = element.avatar,
                     name = element.name,
                     friendName = element.nameFriend,
                     key = element.key,
                     uid = element.uid,
-                    friendsAvatar = element.friendsAvatar
+                    friendsAvatar = element.friendsAvatar,
+                    friendKey = element.friendKey
                   
                 });
 
                     if (this.user.uid === uid ) {
                         console.log(friendName)
                         var names = friendName
+                        var avatar = friendsAvatar
+                        var key = friendKey
                     } else {
                         console.log(name)
                         var names = name
+                        var avatar = avatar
+                        var key = key
+
                     }
                 items.push({
                     name: names,

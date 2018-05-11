@@ -3,7 +3,8 @@ import React, {Component} from 'react'
 import {
     View,
     Text,
-    StyleSheet
+    StyleSheet,
+    ImageBackground
 } from 'react-native'
 import { GiftedChat } from 'react-native-gifted-chat'
 import {firebaseRef} from '../../firebase/firebase'
@@ -55,9 +56,8 @@ export default class Chat extends Component {
           text: child.val().text,
           createdAt: new Date(child.val().createdAt),
           user: {
-            _id: this.friend.uid,
-            avatar: avatar,
-            name: name
+            _id: child.val().uid,
+            avatar: avatar
 
           }
         })
@@ -94,8 +94,9 @@ export default class Chat extends Component {
         createdAt: now,
         uid: this.user.uid,
         order: -1 * now,
-        profile: this.friend.profile_picture,
-        key: this.friend.key,
+        avatar: this.userData.profile_picture,
+        key: this.user.uid,
+        friendKey: this.friend.key,
         name: this.userData.name,
         nameFriend: this.friend.name,
         friendsAvatar: this.friend.profile_picture
@@ -104,16 +105,23 @@ export default class Chat extends Component {
   }
   render () {
     return (
-      <GiftedChat
-        messages={this.state.messages}
-        onSend={this.onSend.bind(this)}
-        user={{
-          _id: this.friend.key,
-          profilepic: this.userData.profile_picture,
-          key: this.userData.key,
-          name: this.friend.name
-        }}
+      <ImageBackground
+        source={require('../../assets/chatBack.jpg')}
+        style={{flex: 1}}
+  >
+
+        <GiftedChat
+          messages={this.state.messages}
+          onSend={this.onSend.bind(this)}
+          user={{
+            _id: this.user.uid,
+            profilepic: this.userData.profile_picture,
+            key: this.userData.key,
+            name: this.friend.name
+          }}
                 />
+
+      </ImageBackground>
     )
   }
 }

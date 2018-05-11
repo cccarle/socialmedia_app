@@ -37,6 +37,11 @@ class HeaderBlack extends Component {
     Actions.selectStatus()
     this.toggleModal()
   }
+
+  goToChatList () {
+    Actions.chatList({ data: this.props.profile})
+    this.toggleModal()
+  }
 // Signs out the user, close modal and render Sign in Scene
   signOut () {
     Actions.login()
@@ -159,6 +164,8 @@ class HeaderBlack extends Component {
                   type='message'
                   color='#FFF'
                   size={50}
+                  onPress={() => this.goToChatList()} />
+
           />
                 <Text style={{color: 'white', marginTop: 4}}>Messages</Text>
               </View>

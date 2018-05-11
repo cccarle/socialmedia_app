@@ -107,7 +107,7 @@ class HeaderBlack extends Component {
           <Icon
             name='forum'
             color='white'
-            onPress={() => Actions.chatList({ data: this.props.profile })} />
+            onPress={() => Actions.chatList({ data: this.props.profile})} />
 
         }
 />

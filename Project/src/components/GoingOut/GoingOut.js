@@ -92,8 +92,8 @@ class GoingOut extends Component {
   }
 
   // Render out the users
-  renderRow (user, profile) {
-    return <ListUserItem user={user} currentUser={profile} />
+  renderRow (user) {
+    return <ListUserItem user={user}  />
   }
 
   render () {

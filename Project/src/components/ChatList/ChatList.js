@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, ListView,TouchableOpacity, ImageBackground} from 'react-native'
-import {firebaseRef} from '../../firebase/firebase'
-import { Avatar, Icon, Button, Divider} from 'react-native-elements'
+import { View, Text, ListView, TouchableOpacity, ImageBackground } from 'react-native'
+import { firebaseRef } from '../../firebase/firebase'
+import { Avatar, Icon, Button, Divider } from 'react-native-elements'
 import { Actions } from 'react-native-router-flux'
 import styles from './ChatList.style'
 import { BlurView } from 'react-native-blur'
@@ -18,9 +18,10 @@ class ChatList extends Component {
             dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2,
             }),
-            loading: true 
+            loading: true
         };
         this.friendsRef = this.getRef().child('chat')
+        this.user = firebaseRef.auth().currentUser
 
         console.log(this.props.data)
     }
@@ -31,7 +32,7 @@ class ChatList extends Component {
         return firebaseRef.database().ref()
     }
 
-    
+
 
     listenForItems(friendsRef) {
         var user = firebaseRef.auth().currentUser;
@@ -41,7 +42,7 @@ class ChatList extends Component {
             // get children as an array
             var items = [];
             var as = []
-            let snaps = snap.val() 
+            let snaps = snap.val()
 
             snap.forEach((child) => {
 
@@ -50,29 +51,37 @@ class ChatList extends Component {
                 const users = _.map(a, (val) => {
                     return { ...val }
                 })
-console.log(users)
+                console.log(users)
                 let ab = users.filter(element => element.uid === user.uid)
-console.log(ab)
+                console.log(ab)
                 users.forEach(element => {
-                    
-                        text = element.text,
-                            avatar = element.profile,
-                            name = element.name
-                        key = element.key,
-                            apa = element.apa
-                    
+
+                    text = element.text,
+                    avatar = element.profile,
+                    name = element.name,
+                    friendName = element.nameFriend,
+                    key = element.key,
+                    uid = element.uid,
+                    friendsAvatar = element.friendsAvatar
+                  
                 });
 
+                    if (this.user.uid === uid ) {
+                        console.log(friendName)
+                        var names = friendName
+                    } else {
+                        console.log(name)
+                        var names = name
+                    }
                 items.push({
-                    name: name,
+                    name: names,
                     text: text,
                     profilAvatar: avatar,
-                    apa: apa,
                     key: key
                 });
 
             });
-            
+
             this.setState({
                 dataSource: this.state.dataSource.cloneWithRows(items),
                 loading: false
@@ -91,56 +100,56 @@ console.log(ab)
             key: rowData.key,
             profile_picture: rowData.profilAvatar
         }
-        return <TouchableOpacity onPress={() => Actions.chat({data:userData})}>
-                    <Divider style={{ backgroundColor: 'white'}} />
+        return <TouchableOpacity onPress={() => Actions.chat({ data: userData })}>
+            <Divider style={{ backgroundColor: 'white' }} />
 
-           <View style={styles.container}>
-           <Avatar
-            size='medium'
-            rounded
-            source={{ uri: rowData.profilAvatar }}
-            activeOpacity={0.7}
-            avatarStyle={{borderColor: '#302F30', borderWidth: 1}}
-          />  
-          <View style={styles.textContainer}>
-            <Text style={styles.text}>
-            {rowData.name}
-            </Text>
-          </View>
+            <View style={styles.container}>
+                <Avatar
+                    size='medium'
+                    rounded
+                    source={{ uri: rowData.profilAvatar }}
+                    activeOpacity={0.7}
+                    avatarStyle={{ borderColor: '#302F30', borderWidth: 1 }}
+                />
+                <View style={styles.textContainer}>
+                    <Text style={styles.text}>
+                        {rowData.name}
+                    </Text>
+                </View>
 
-          <View style={styles.textContainer2}>
-            <Text style={styles.text}>
-            {rowData.text}
-            </Text>
-          </View>
-        </View>
+                <View style={styles.textContainer2}>
+                    <Text style={styles.text}>
+                        {rowData.text}
+                    </Text>
+                </View>
+            </View>
 
         </TouchableOpacity>
-           
-                   
-       
+
+
+
     }
 
     render() {
         return (
             <ImageBackground
-            source={require('../../assets/chatBack.jpg')}
-            style={styles.container2}
-           >   
-           
-           <BlurView
-            style={styles.absolute}
-            blurType='dark'
-            blurAmount={0.001}
-            height={995}
-        />
-            <View style={{marginTop:120}} >           
-            <ListView
-                    enableEmptySections
-                    dataSource={this.state.dataSource}
-                    renderRow={this.renderRow} />
-                    </View>
-                    <Divider style={{ backgroundColor: 'white'}} />
+                source={require('../../assets/chatBack.jpg')}
+                style={styles.container2}
+            >
+
+                <BlurView
+                    style={styles.absolute}
+                    blurType='dark'
+                    blurAmount={0.001}
+                    height={995}
+                />
+                <View style={{ marginTop: 120 }} >
+                    <ListView
+                        enableEmptySections
+                        dataSource={this.state.dataSource}
+                        renderRow={this.renderRow} />
+                </View>
+                <Divider style={{ backgroundColor: 'white' }} />
 
             </ImageBackground>
         );

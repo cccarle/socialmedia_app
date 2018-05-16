@@ -10,11 +10,10 @@ export const updateGender = ({ prop, gender }) => {
 
     dispatch({ type: GENDER_CHANGED,
       payload: { prop, gender } })
-
     firebaseRef.database().ref(`/users/${currentUser.uid}/profile`)
             .update({ prop, gender })
             .then(() => {
-              console.log('updated mood')
+              console.log('updated gender')
             })
   }
 }

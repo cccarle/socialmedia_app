@@ -45,7 +45,6 @@ class createProfile extends Component {
         titleStyle={{ fontFamily: 'GeosansLight'}}
         buttonStyle={{
           backgroundColor: '#D1AF46',
-        // backgroundColor: '#2C4D69',
           width: 250,
           height: 40,
           marginLeft: 45,
@@ -81,7 +80,9 @@ class createProfile extends Component {
         <View style={styles.uploadImageContainer} >
           <ProfilePictureHandeler />
         </View>
-        <KeyboardAvoidingView behavior='padding' style={styles.inputContainer}>
+        <KeyboardAvoidingView behavior='position'
+          contentContainerStyle={{backgroundColor:'black', height:370}}
+          style={styles.inputContainer}>
 
           <TextInput
             placeholder='Name'
@@ -113,6 +114,7 @@ class createProfile extends Component {
               selectedValue={this.props.gender}
               onValueChange={gender => this.props.updateGender({ prop: 'gender', gender })}
               itemStyle={{ height: 90, fontSize: 20, color: 'white', fontFamily: 'GeosansLight' }}>
+              <Picker.Item label='👫 Select in list' value='' />
               <Picker.Item label='♀ Female' value='female' />
               <Picker.Item label='♂ ️Male' value='male' />
             </Picker>

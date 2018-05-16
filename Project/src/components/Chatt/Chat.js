@@ -17,29 +17,34 @@ export default class Chat extends Component {
 
     const { currentUser } = firebaseRef.auth()
 
-    var b
+    var currentUserData
     firebaseRef.database().ref(`/users/${currentUser.uid}/profile`).ref.on('value', function (snapshot) {
       console.log(snapshot.val())
-      b = snapshot.val()
+      currentUserData = snapshot.val()
     })
 
     this.user = firebaseRef.auth().currentUser
+
+    // chat friends data
     this.friend = this.props.data
-    this.userData = b
-    // Get current users body
-    console.log(this.props.profiles)
-    console.log(this.friend)
-    console.log(b)
-    this.chatRef = this.getRef().child('chat/' + this.generateChatId())
+    // Current Users data
+    this.userData = currentUserData
+
+    this.chatRef = this.getRef().child(this.generateChatId())
     this.chatRefData = this.chatRef.orderByChild('order')
     this.onSend = this.onSend.bind(this)
   }
 
+  // generateChatId () {
+  //   if (this.user.uid > this.friend.key) { return `${this.user.uid}-${this.friend.key}` } else { return `${this.friend.key}-${this.user.uid}` }
+  // }
+
   generateChatId () {
-    if (this.user.uid > this.friend.key) { return `${this.user.uid}-${this.friend.key}` } else { return `${this.friend.key}-${this.user.uid}` }
+    if (this.user.uid > this.friend.key) return `${this.user.uid}-${this.friend.key}`
+    else return `${this.friend.key}-${this.user.uid}`
   }
   getRef () {
-    return firebaseRef.database().ref()
+    return firebaseRef.database().ref('chat')
   }
 
   listenForItems (chatRef) {

@@ -8,7 +8,6 @@ import HeaderBlack from '../common/HeaderBlack'
 import ListUserItem from './ListUserItem'
 import styles from './GoingOut.style'
 import { BlurView } from 'react-native-blur'
-import {firebaseRef} from '../../firebase/firebase'
 
 class GoingOut extends Component {
   constructor () {
@@ -28,23 +27,7 @@ class GoingOut extends Component {
     this.createDataSource(this.props)
   }
 
-  componentDidMount () {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        console.log(position.coords.latitude)
-        console.log(position.coords.longitude)
-        const { currentUser } = firebaseRef.auth()
 
-        firebaseRef.database().ref(`/users/${currentUser.uid}/profile`)
-        .update({ latitude: position.coords.latitude, longitude: position.coords.longitude })
-        .then(() => {
-          console.log('added profile')
-        })
-      },
-      (error) => console.log(error),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-    )
-  }
 
   componentWillReceiveProps (nextProps) {
     // nextProps are the next set of props that this component
@@ -93,7 +76,7 @@ class GoingOut extends Component {
 
   // Render out the users
   renderRow (user) {
-    return <ListUserItem user={user}  />
+    return <ListUserItem user={user} />
   }
 
   render () {

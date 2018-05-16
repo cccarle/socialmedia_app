@@ -4,8 +4,35 @@ import styles from './SelectStatus.style'
 import { connect } from 'react-redux'
 import { upDateStatus, upDateStatusToNotGoOut } from '../../actions'
 import { Tile } from 'react-native-elements'
+import {firebaseRef} from '../../firebase/firebase'
+import Geocoder from 'react-native-geocoding'
 
 class SelectStatus extends Component {
+  componentDidMount () {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { currentUser } = firebaseRef.auth()
+
+        firebaseRef.database().ref(`/users/${currentUser.uid}/profile`)
+        .update({ latitude: position.coords.latitude, longitude: position.coords.longitude })
+        .then(() => {
+          console.log('postion added')
+          Geocoder.init('AIzaSyAVjxpARJCUf8w76KlANf7VDBxX_d3j4Os')
+          Geocoder.from(position.coords.latitude, position.coords.longitude)
+        .then(json => {
+        	let addressComponent = json.results[0].address_components[3].long_name
+          console.log(addressComponent)
+          firebaseRef.database().ref(`/users/${currentUser.uid}/profile`)
+          .update({position: addressComponent})
+        })
+        .catch(error => console.warn(error))
+        })
+      },
+      (error) => console.log(error),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    )
+  }
+
   goOutButtonPress () {
     this.props.upDateStatus({ status: true })
   }
@@ -48,14 +75,17 @@ class SelectStatus extends Component {
 
             <Image
               style={{ width: 145, height: 145 }}
-              source={require('../../assets/sleep.png')}
+              source={require('../../assets/chatting.png')}
         />
           </TouchableHighlight>
         </View>
-        <View style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center',paddingTop: 5}} >
-          <Text style={{fontFamily: 'GeosansLight', color: 'white'}}> Im Going Out </Text>
-          <Text style={{fontFamily: 'GeosansLight', color: 'white'}}> Im Going To Bed </Text>
+        <View style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingTop: 5, marginLeft: 18}} >
+          <Text style={{fontFamily: 'GeosansLight', color: 'white'}}> Im going out </Text>
+          <Text style={{fontFamily: 'GeosansLight', color: 'white', marginLeft: 5}}> Nah, i'll be at home</Text>
         </View>
+
+        <Text style={{fontFamily: 'GeosansLight', color: 'white', marginLeft: 220}}>  But i still wanna chat</Text>
+
       </View>
     )
   }

@@ -1,7 +1,7 @@
 
 const styles = {
   container: {
-    flex: 1,
+    flex: 1
   },
   backgroundTile: {
     flex: 1,
@@ -33,6 +33,21 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  changeStatusButtonContainer:
+  {
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginBottom: 20
+  },
+  currentMoodStyle:
+  {
+    color: 'white',
+    fontFamily: 'GeosansLight',
+    fontSize: 20,
+    marginLeft: 50,
+    marginBottom: 10
   },
   absolute: {
     position: 'absolute',

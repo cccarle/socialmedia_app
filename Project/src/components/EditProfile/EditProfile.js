@@ -127,6 +127,7 @@ class EditProfile extends Component {
     />
           <View style={styles.hairline} />
         </KeyboardAvoidingView>
+        
         <View style={styles.spinnerAndButton}>
           {this.renderButton()}
         </View>

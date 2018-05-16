@@ -60,7 +60,7 @@ class HeaderBlack extends Component {
             rounded
             source={{ uri: this.props.profile[0].profile_picture }}
             activeOpacity={0.7}
-            avatarStyle={{borderColor: '#302F30', borderWidth: 1}}
+            avatarStyle={{borderColor: 'white', borderWidth: 1}}
           />
 
           <View style={styles.profileDataContainer}>
@@ -116,6 +116,34 @@ class HeaderBlack extends Component {
 
         }
 />
+    }
+  }
+
+  renderLocation () {
+    if (!this.props.profile[0] || this.props.profile[0] === undefined) {
+      return (
+        <View>
+          <Icon
+            name='place'
+            type='place'
+            color='#FFF'
+            size={50}
+/>
+          <Text style={{color: 'white', marginTop: 5}}> Location </Text>
+        </View>
+      )
+    } else {
+      return (
+        <View>
+          <Icon
+            name='place'
+            type='place'
+            color='#FFF'
+            size={50}
+/>
+          <Text style={{color: 'white', marginTop: 5}}> {this.props.profile[0].position} </Text>
+        </View>
+      )
     }
   }
 
@@ -182,15 +210,7 @@ class HeaderBlack extends Component {
                 <Text onPress={this.changeStatus.bind(this)} style={{color: 'white', marginTop: 5, marginLeft: 13}}> Change Status </Text>
               </View>
 
-              <View>
-                <Icon
-                  name='place'
-                  type='place'
-                  color='#FFF'
-                  size={50}
-          />
-                <Text style={{color: 'white', marginTop: 5}}> Oskarshamn </Text>
-              </View>
+              {this.renderLocation()}
             </View>
             <Divider style={{ backgroundColor: 'white', marginTop: 30}} />
 

@@ -43,7 +43,7 @@ export default (state = INTIAL_STATE, action) => {
       return {...state, loading: true, error: ''}
 
     case SIGN_OUT:
-      return {...state, loading: false , error: '', email: '', password: ''}
+      return {...state, loading: false, error: '', email: '', password: ''}
 
     case DELETE_ERROR:
       return {...state, error: ''}

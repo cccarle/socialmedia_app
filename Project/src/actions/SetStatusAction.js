@@ -29,7 +29,7 @@ export const upDateStatusToNotGoOut = ({ status }) => {
     firebaseRef.database().ref(`/users/${currentUser.uid}/profile`)
           .update({ status })
           .then(() => {
-            Actions.notGoingOut()
+            Actions.chatList()
             console.log('status changed to "not out"')
           })
   }

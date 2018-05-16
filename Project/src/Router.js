@@ -5,7 +5,6 @@ import CreateProfile from './components/CreateProfile/createProfile'
 import SelectStatus from './components/SelectStatus/SelectStatus'
 import Register from './components/Register/Register'
 import GoingOut from './components/GoingOut/GoingOut'
-import NotGoingOut from './components/NotGoingOut/NotGoingOut'
 import EditProfile from './components/EditProfile/EditProfile'
 import Chat from './components/Chatt/Chat'
 import ChatList from './components/ChatList/ChatList'
@@ -41,12 +40,14 @@ const RouterComponent = () => {
             onLeft={() => Actions.selectStatus()}
             leftTitle='Change Status'
             key='notGoingOut'
-            component={NotGoingOut}
+            navTransparent
+            component={ChatList}
         />
           <Scene
+            onLeft={() => Actions.goingOut()}
             key='editProfile'
             component={EditProfile}
-            hideNavBar
+            navTransparent
         />
           <Scene
             key='chat'

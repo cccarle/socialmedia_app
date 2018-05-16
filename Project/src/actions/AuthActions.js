@@ -65,6 +65,17 @@ export const signOut = () => {
   }
 }
 
+export const forgotPassword = (text) => {
+  return (dispatch) => {
+    console.log(text)
+    // dispatch({ type: SIGN_OUT })
+    // firebaseRef.auth().signOut().then(function () {
+    //   console.log('Signed Out')
+    // }, function (error) {
+    //   console.error('Sign Out Error', error)
+    // })
+  }
+}
 /*
 Register user - redirected to "createProfile" scene
 */

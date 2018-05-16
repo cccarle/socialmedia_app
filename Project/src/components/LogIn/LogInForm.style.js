@@ -18,6 +18,9 @@ const styles = {
   inputContainer: {
     marginBottom: 20
   },
+  inputContainer2: {
+    marginBottom: 100
+  },
   buttonContainer: {
     height: 30,
     marginRight: 60,
@@ -41,14 +44,36 @@ const styles = {
     marginLeft: 25,
     fontFamily: 'GeosansLight'
   },
+  texts2: {
+    fontSize: 17,
+    color: 'white',
+    marginLeft: 35,
+    fontFamily: 'GeosansLight'
+  },
   descriptionText: {
     textAlign: 'center',
     height: 15,
     color: 'white',
     paddingHorizontal: 0,
     fontSize: 12,
+    marginBottom: 27,
+    fontFamily: 'GeosansLight'
+
+  },
+  exitModalIcon:
+  {
+    marginTop: 12,
+    marginRight: 312,
+    width: 30
+  },
+  descriptionText2: {
+    textAlign: 'center',
+    height: 15,
+    color: 'white',
+    paddingHorizontal: 0,
+    fontSize: 12,
     marginBottom: 40,
-    fontFamily: 'GeosansLight',
+    fontFamily: 'GeosansLight'
 
   },
   hairline: {
@@ -57,6 +82,13 @@ const styles = {
     marginBottom: 40,
     marginLeft: 25,
     marginRight: 25
+  },
+  hairline2: {
+    height: 1,
+    backgroundColor: 'white',
+    marginBottom: 40,
+    marginLeft: 30,
+    marginRight: 30
   },
   HeadText: {
     textAlign: 'center',
@@ -72,6 +104,13 @@ const styles = {
     fontSize: 20,
     alignSelf: 'center',
     color: 'red',
+    fontFamily: 'GeosansLight'
+
+  },
+  errorTextStyleForgottPassword: {
+    fontSize: 20,
+    alignSelf: 'center',
+    color: 'white',
     fontFamily: 'GeosansLight'
 
   },

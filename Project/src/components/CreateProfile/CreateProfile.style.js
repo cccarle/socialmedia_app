@@ -32,6 +32,7 @@ marginTop: 65
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
+      marginTop:30
     },
     buttonContainer: {
       height: 30,

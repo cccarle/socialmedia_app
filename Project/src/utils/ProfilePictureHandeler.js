@@ -30,7 +30,7 @@ class ProfilePictureHandeler extends Component {
     if (!this.props.profile[0] || this.props.profile[0] === undefined) {
       return <Avatar
         rounded
-        height={265}
+        size={265}
         source={require('../../src/assets/better.png')}
         activeOpacity={0.7}
         avatarStyle={{borderColor: 'white', borderWidth: 1}}
@@ -39,7 +39,7 @@ class ProfilePictureHandeler extends Component {
     } else {
       return <Avatar
         rounded
-        height={265}
+        size={265}
         source={{ uri: this.props.profile[0].profile_picture}}
         activeOpacity={0.7}
         avatarStyle={{borderColor: 'white', borderWidth: 1}}
@@ -111,7 +111,7 @@ class ProfilePictureHandeler extends Component {
   render () {
     const selectedPicture = this.state.dp ? (<TouchableOpacity onPress={() => this.openPicker()}>
       <Avatar
-        height={265}
+        size={265}
         rounded
         source={{ uri: this.state.dp }}
         activeOpacity={0.7}

@@ -34,3 +34,5 @@ export const UPDATE_LIST_SUCCESS = 'update_list_success'
 // Profile Data
 export const CURRENT_PROFILE_DATA = 'current_profile_data'
 export const GET_LOCATION = 'get_location'
+export const UPDATE_DECSRIPTION_TEXT = 'update_desscription_text'
+export const DESCRIPTION_TEXT_CHANGED = 'description_text_changed'

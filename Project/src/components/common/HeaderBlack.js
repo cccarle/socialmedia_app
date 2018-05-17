@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, Picker } from 'react-native'
+import { View, Text, Picker, TextInput, TouchableOpacity } from 'react-native'
 import { Header, Icon, Avatar, Button, Divider } from 'react-native-elements'
 import _ from 'lodash'
 import { Actions } from 'react-native-router-flux'
-import { fetchProfileData, signOut, currentMood } from '../../actions'
+import { fetchProfileData, signOut, currentMood, descriptionTextChanged} from '../../actions'
 import { connect } from 'react-redux'
 import Modal from 'react-native-modal'
 import { Spinner } from '../common'
@@ -26,6 +26,7 @@ class HeaderBlack extends Component {
   toggleModal () {
     this.setState({ isModalVisible: !this.state.isModalVisible })
     this.profile()
+    this.props.fetchProfileData()
   }
   // Render editProfile Scene & Closes modal
   changeProfile () {
@@ -49,6 +50,9 @@ class HeaderBlack extends Component {
     this.props.signOut()
   }
 
+  descriptionText (text) {
+    this.props.descriptionTextChanged(text)
+  }
   // When modal is true/visibal show this content
   profile () {
     if (this.state.isModalVisible === true) {
@@ -122,26 +126,62 @@ class HeaderBlack extends Component {
   renderLocation () {
     if (!this.props.profile[0] || this.props.profile[0] === undefined) {
       return (
-        <View>
+        <View style={{backgroundColor: '#3A3A3A', borderBottomRightRadius: 11, borderTopRightRadius: 11, width: 107, justifyContent: 'center', alignItems: 'center'}}>
           <Icon
             name='place'
             type='place'
             color='#FFF'
-            size={50}
+            size={25}
+            iconStyle={{marginTop: 15}}
+
 />
-          <Text style={{color: 'white', marginTop: 5}}> Location </Text>
+          <Text style={{color: 'white', marginTop: 5, marginBottom: 15}}> Location </Text>
+        </View>
+      )
+    } else {
+      return (
+        <View style={{backgroundColor: '#3A3A3A', borderBottomRightRadius: 11, borderTopRightRadius: 11, width: 107, justifyContent: 'center', alignItems: 'center'}}>
+          <Icon
+            name='place'
+            type='place'
+            color='#FFF'
+            size={25}
+            iconStyle={{marginTop: 15}}
+
+/>
+          <Text style={{color: 'white', marginTop: 5, marginBottom: 15}}> {this.props.profile[0].position} </Text>
+        </View>
+      )
+    }
+  }
+
+  renderDescritptionText () {
+    if (!this.props.profile[0] || this.props.profile[0].descriptionText === undefined) {
+      return (
+        <View>
+          <Text style={{color: 'white', marginTop: 20, fontSize: 25, textAlign: 'center', fontFamily: 'GeosansLight', justifyContent: 'center', alignItems: 'center'}}>Description : </Text>
+          <TextInput
+            maxLength={40}
+            placeholder='"Write something about yourself..."'
+            placeholderTextColor='white'
+            returnKeyType='done'
+            onChangeText={this.descriptionText.bind(this)}
+            style={{ color: 'white', marginTop: 20, fontSize: 20, textAlign: 'center', fontFamily: 'GeosansLight', justifyContent: 'center', alignItems: 'center' }}
+        />
         </View>
       )
     } else {
       return (
         <View>
-          <Icon
-            name='place'
-            type='place'
-            color='#FFF'
-            size={50}
-/>
-          <Text style={{color: 'white', marginTop: 5}}> {this.props.profile[0].position} </Text>
+          <Text style={{ color: 'white', marginTop: 20, fontSize: 25, textAlign: 'center', fontFamily: 'GeosansLight', justifyContent: 'center', alignItems: 'center'}}>About {this.props.profile[0].name} : </Text>
+          <TextInput
+            maxLength={40}
+            placeholderTextColor='white'
+            returnKeyType='done'
+            onChangeText={this.descriptionText.bind(this)}
+            value={this.props.profile[0].descriptionText}
+            style={{ color: 'white', marginTop: 20, fontSize: 20, textAlign: 'center', fontFamily: 'GeosansLight', justifyContent: 'center', alignItems: 'center' }}
+      />
         </View>
       )
     }
@@ -177,49 +217,55 @@ class HeaderBlack extends Component {
               {this.profile()}
             </View>
 
-            <Divider style={{ backgroundColor: 'white'}} />
-
             <View style={{
               flexDirection: 'row',
               justifyContent: 'space-between',
-              marginLeft: 10,
-              marginRight: 10,
-              marginTop: 25
+              marginLeft: 0,
+              marginRight: 0,
+              marginTop: 5
             }}>
-              <View>
+              <TouchableOpacity
+                onPress={() => this.goToChatList()}
+                style={{backgroundColor: '#3A3A3A', borderBottomLeftRadius: 11, borderTopLeftRadius: 11, width: 107, justifyContent: 'center', alignItems: 'center'}}>
                 <Icon
                   name='message'
                   type='message'
                   color='#FFF'
-                  size={50}
-                  onPress={() => this.goToChatList()} />
+                  size={25}
+                  iconStyle={{marginTop: 15}}
+                  />
 
           />
-                <Text style={{color: 'white', marginTop: 4}}>Messages</Text>
-              </View>
+                <Text style={{color: 'white', marginTop: 4, marginBottom: 15}}>Messages</Text>
+              </TouchableOpacity>
 
-              <View >
+              <TouchableOpacity
+                onPress={this.changeStatus.bind(this)}
+                style={{backgroundColor: '#3A3A3A', width: 117, justifyContent: 'center', alignItems: 'center'}}>
+
                 <Icon
                   name='replay'
                   type='replay'
                   color='#FFF'
-                  size={50}
-                  iconStyle={{marginLeft: 13}}
-                  onPress={this.changeStatus.bind(this)}
+                  size={25}
+
           />
-                <Text onPress={this.changeStatus.bind(this)} style={{color: 'white', marginTop: 5, marginLeft: 13}}> Change Status </Text>
-              </View>
+                <Text onPress={this.changeStatus.bind(this)} style={{color: 'white', marginTop: 5}}> Change Status </Text>
+              </TouchableOpacity>
 
               {this.renderLocation()}
             </View>
-            <Divider style={{ backgroundColor: 'white', marginTop: 30}} />
+
+            <View style={{backgroundColor: '#3A3A3A', marginTop: 10, borderRadius: 11, height: 150}}>
+              {this.renderDescritptionText()}
+            </View>
 
             <View style={styles.changeStatusButtonContainer}>
               <Text style={styles.currentMoodStyle} > Current Mood : </Text>
               <Picker
                 selectedValue={this.props.mood}
                 onValueChange={value => this.props.currentMood({ prop: 'mood', value })}
-                itemStyle={{color: 'white', fontFamily: 'GeosansLight' }} style={{ height: 300, width: 230 }}>
+                itemStyle={{color: 'white', fontFamily: 'GeosansLight' }} style={{ height: 250, width: 230,marginTop:25 }}>
                 <Picker.Item label='💃 Dancing' value=' 💃 Dancing' />
                 <Picker.Item label='🎶 Listening To Music' value=' 🎶 Listening To Music' />
                 <Picker.Item label='🔥 Feeling On Fire' value=' 🔥 Feeling On Fire' />
@@ -248,7 +294,7 @@ const mapStateToProps = state => {
 
   const { mood } = state.moode
 
-  return { profile, mood }
+  return { profile, mood}
 }
 
-export default connect(mapStateToProps, { fetchProfileData, signOut, currentMood })(HeaderBlack)
+export default connect(mapStateToProps, { fetchProfileData, signOut, currentMood, descriptionTextChanged })(HeaderBlack)

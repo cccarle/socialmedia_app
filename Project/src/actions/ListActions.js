@@ -26,8 +26,11 @@ export const fetchList = (index) => {
         let gender = snap[k].profile.gender
         let latitude = snap[k].profile.latitude
         let longitude = snap[k].profile.longitude
+        let position = snap[k].profile.position
+        let descriptionText = snap[k].profile.descriptionText
 
-        var users = { key: '', name: '', age: '', status: Boolean, profile_picture: '', prop: '', value: '', gender: '', latitude: '', longitude: ''}
+
+        var users = { key: '', name: '', age: '', status: Boolean, profile_picture: '', prop: '', value: '', gender: '', latitude: '', longitude: '', position: '', descriptionText:''}
         users.key = key
         users.name = name
         users.age = age
@@ -38,6 +41,8 @@ export const fetchList = (index) => {
         users.gender = gender
         users.latitude = Math.floor(latitude)
         users.longitude = Math.floor(longitude)
+        users.position = position
+        users.descriptionText = descriptionText
 
       // adding the user object to an array
         arrayToFilter.push(users)

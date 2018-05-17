@@ -50,7 +50,8 @@ profileContainerInPlace:
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 370
+    height: 370,
+    marginBottom:30
 },
 signOut: 
 {
@@ -67,8 +68,11 @@ changeStatusButtonContainer:
     justifyContent: 'flex-start', 
     alignItems: 'center',
     flexDirection: 'row',
-    height:400,
-    marginTop:50
+    height:250,
+    marginTop:10,
+    backgroundColor: '#3A3A3A',
+    borderRadius: 11,
+    marginBottom:20
 },
 buttonStyleChange:
 {
@@ -81,7 +85,8 @@ currentMoodStyle:
     color:'white',
     fontFamily: 'GeosansLight',
     fontSize: 20,
-    marginBottom: 85
+    marginBottom: 9,
+    marginLeft:2
 }
 }
   

@@ -34,8 +34,7 @@ export const createProfiles = ({ name, age }) => {
     firebaseRef.database().ref(`/users/${currentUser.uid}/profile`)
             .update({ name, age })
             .then(() => {
-              console.log('added profile')
-              Actions.selectStatus()
+              return Actions.main()
             })
   }
 }

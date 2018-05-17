@@ -20,7 +20,7 @@ class SelectStatus extends Component {
           Geocoder.init('AIzaSyAVjxpARJCUf8w76KlANf7VDBxX_d3j4Os')
           Geocoder.from(position.coords.latitude, position.coords.longitude)
         .then(json => {
-        	let addressComponent = json.results[0].address_components[3].long_name
+        	var addressComponent = json.results[0].address_components[3].long_name
           console.log(addressComponent)
           firebaseRef.database().ref(`/users/${currentUser.uid}/profile`)
           .update({position: addressComponent})

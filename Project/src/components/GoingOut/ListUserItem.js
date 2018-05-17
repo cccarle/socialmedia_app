@@ -1,5 +1,5 @@
 import React, {Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, TextInput } from 'react-native'
 import { Avatar, Icon, Button} from 'react-native-elements'
 import Modal from 'react-native-modal'
 import { Actions } from 'react-native-router-flux'
@@ -33,12 +33,6 @@ class ListUserItem extends Component {
     Actions.chat({data: this.props.user})
   }
 
-  startchat1 () {
-    this.toggleModal()
-
-    Actions.chat({ data: this.props.user, text: ' My doctor says i’m lacking vitamin U !' })
-  }
-
   renderAvatarOrSpinner () {
     if (this.props.user.profile_picture) {
       return <Avatar
@@ -63,6 +57,7 @@ class ListUserItem extends Component {
   }
 
   profile () {
+    console.log(this.props.user)
     var i = 0
     if (this.state.isModalVisible === true) {
       return (
@@ -80,6 +75,12 @@ class ListUserItem extends Component {
             <Text style={styles.profileDataSettings} >{this.props.user.name} {this.props.user.age} </Text>
           </View>
 
+          <View style={styles.profileDataPosition}>
+            <Text style={styles.profileDataSettings2} >
+              {this.props.user.position}
+            </Text>
+          </View>
+
           <View style={styles.editProfileDataSettingsContainer}>
             <Text style={styles.editProfileDataSettings}>{this.props.user.value} </Text>
           </View>
@@ -89,11 +90,33 @@ class ListUserItem extends Component {
     }
   }
 
+  renderDescriptionText () {
+    if (this.props.user.descriptionText === undefined) {
+      return (
+        <View style={{ justifyContent: 'center', alignItems: 'center'}}>
+          <Text style={styles.text4}>About {this.props.user.name}</Text>
+
+          <Text style={styles.text3}>
+            "{this.props.user.name} has not yet done any description"
+            </Text>
+        </View>
+      )
+    } else {
+      return (
+        <View style={{ justifyContent: 'center', alignItems: 'center'}}>
+          <Text style={styles.text4}>About {this.props.user.name}</Text>
+          <Text style={styles.text3}>
+            "{this.props.user.descriptionText}"
+          </Text>
+        </View>
+      )
+    }
+  }
+
   render (user) {
     return (
       <View style={{
-        width: 320,
-        left: 34
+        flex: 1
       }}>
 
         <View style={styles.container}>
@@ -119,166 +142,65 @@ class ListUserItem extends Component {
           animationIn='slideInDown'
           animationInTiming={270}
           >
-          <View style={{ flexDirection: 'row', marginTop: 65 }}>
-            <View style={styles.exitModalIcon}>
-              <Icon
-                name='clear'
-                type='clear'
-                color='#FFF'
-                onPress={this.toggleModal.bind(this)}
+          <View style={{ flex: 1}}>
+            <View style={{ flexDirection: 'row' }}>
+              <View style={styles.exitModalIcon}>
+                <Icon
+                  name='clear'
+                  type='clear'
+                  color='#FFF'
+                  onPress={this.toggleModal.bind(this)}
                 />
+              </View>
             </View>
-          </View>
 
-          <View style={styles.profileContainerInPlace}>
-            {this.profile()}
-          </View>
-
-          <View style={{ marginLeft: 20, marginBottom: 30 }}>
-
-            <View style={{flexDirection: 'column',
-              alignItems: 'baseline',
-              marginBottom: 50,
-              marginTop: 40 }}>
-
-              <Text style={{fontSize: 40, color: 'white', fontFamily: 'GeosansLight', marginLeft: 5}}> Start a conversation
- </Text>
-              <Text style={{fontSize: 12, color: 'white', fontFamily: 'GeosansLight', marginLeft: 55}}> Pick one of the lines to start a new conversation</Text>
-
+            <View style={styles.profileContainerInPlace}>
+              {this.profile()}
             </View>
-            <View style={{
-              flexDirection: 'column',
+
+            <View style={{ height: 250,
+              marginBottom: 60,
+              marginTop: 60,
+              padding: 10,
               justifyContent: 'center',
-              marginBottom: 10 }}>
-              <View style={{
-                flexDirection: 'column',
-                justifyContent: 'center',
-                marginBottom: 15,
-                height: 30
-              }}>
+              alignItems: 'center',
+              backgroundColor: '#3A3A3A',
+              borderRadius: 11
+            }}>
 
-                <Button
-                  icon={
-                    <Icon
-                      name='adjust'
-                      type='material-community'
-                      size={10}
-                      color='white' />}
-                  title='Where are we going tonight ?'
-                  titleStyle={{ fontFamily: 'GeosansLight', fontSize: 15}}
-                  buttonStyle={{
-                    backgroundColor: 'transparent',
-                    width: 210,
-                    height: 35,
-                    borderColor: 'white',
-                    borderWidth: 1,
-                    borderRadius: 10 }} />
-              </View>
-              <View style={{
-                flexDirection: 'column',
-                justifyContent: 'center',
-                marginTop: 5,
-                marginBottom: 15,
-                height: 30
-              }} >
-                <Button
-                  icon={
-                    <Icon
-                      name='adjust'
-                      type='material-community'
-                      size={10}
-                      color='white' />}
-                  title='Damn is your name Wifi? Cause i´m feeling a connection !'
-                  titleStyle={{ fontFamily: 'GeosansLight', fontSize: 13}}
-                  buttonStyle={{
-                    backgroundColor: 'transparent',
-                    width: 325,
-                    height: 35,
-                    borderColor: 'white',
-                    borderWidth: 1,
-                    borderRadius: 10 }} />
-              </View>
+              <Text style={styles.text3}>
+                {this.renderDescriptionText()}
+              </Text>
 
-              <View style={{
-                flexDirection: 'column',
-                justifyContent: 'center',
-                marginTop: 5,
-                marginBottom: 15,
-                height: 30
-              }} >
-                <Button
-                  icon={
-                    <Icon
-                      name='adjust'
-                      type='material-community'
-                      size={10}
-                      color='white' />}
-                  title=' Do you think Leo will ever get that Oscar ?'
-                  titleStyle={{ fontFamily: 'GeosansLight', fontSize: 15 }}
-                  buttonStyle={{
-                    backgroundColor: 'transparent',
-                    width: 280,
-                    height: 35,
-                    borderColor: 'white',
-                    borderWidth: 1,
-                    borderRadius: 10 }} />
-              </View>
-              <View style={{
-                flexDirection: 'column',
-                justifyContent: 'center',
-                marginTop: 5,
-                height: 30,
-                marginBottom: 30
-              }} >
-                <Button
-                  icon={
-                    <Icon
-                      name='adjust'
-                      type='material-community'
-                      size={10}
-                      color='white' />}
-                  title=' My doctor says i’m lacking vitamin U !'
-                  titleStyle={{ fontFamily: 'GeosansLight', fontSize: 15}}
-                  onPress={this.startchat1.bind(this)}
-                  buttonStyle={{
-                    backgroundColor: 'transparent',
-                    width: 250,
-                    height: 35,
-                    borderColor: 'white',
-                    borderWidth: 1,
-                    borderRadius: 10 }} />
-              </View>
             </View>
-            <View style={{flexDirection: 'row',
-              alignItems: 'baseline' }}>
-              <Text style={{ fontSize: 16, color: 'white', fontFamily: 'GeosansLight', marginLeft: 50, marginBottom: 50, marginTop: 10 }}> or just send a ordinary message . . . </Text>
-            </View>
+            <View style={{ marginLeft: 20}}>
 
-            <View style={styles.changeStatusButtonContainer} >
+              <View style={styles.changeStatusButtonContainer} >
 
-              <Button
-                icon={
-                  <Icon
-                    name='message-plus'
-                    type='material-community'
-                    size={20}
-                    color='white'
+                <Button
+                  icon={
+                    <Icon
+                      name='message-plus'
+                      type='material-community'
+                      size={20}
+                      color='white'
     />
   }
-                title='Send a message'
-                titleStyle={{ fontFamily: 'GeosansLight'}}
-                onPress={this.startchat.bind(this)}
-                buttonStyle={{
-                  backgroundColor: '#D1AF46',
-                  width: 300,
-                  height: 45,
-                  borderColor: 'transparent',
-                  borderWidth: 0,
-                  borderRadius: 5
+                  title='Send a message'
+                  titleStyle={{ fontFamily: 'GeosansLight'}}
+                  onPress={this.startchat.bind(this)}
+                  buttonStyle={{
+                    backgroundColor: '#D1AF46',
+                    width: 300,
+                    height: 45,
+                    borderColor: 'transparent',
+                    borderWidth: 0,
+                    borderRadius: 5
 
-                }}
+                  }}
 />
 
+              </View>
             </View>
           </View>
         </Modal>
@@ -327,6 +249,12 @@ const styles = {
     fontSize: 20,
     fontFamily: 'GeosansLight'
   },
+  text4: {
+    color: 'white',
+    fontSize: 35,
+    fontFamily: 'GeosansLight',
+    marginBottom: 10
+  },
   profileContainer: {
     position: 'relative',
     flexDirection: 'row',
@@ -350,6 +278,20 @@ const styles = {
     fontFamily: 'GeosansLight',
     fontSize: 20
   },
+  profileDataSettings2: {
+    color: '#fff',
+    fontFamily: 'GeosansLight',
+    fontSize: 15
+  },
+  profileDataPosition: {
+    position: 'absolute',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'baseline',
+    left: 200,
+    top: 95
+  },
+
   editProfileDataSettingsContainer:
   {
     position: 'absolute',
@@ -357,19 +299,20 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'baseline',
     left: 195,
-    top: 95
+    top: 112
   },
   editProfileDataSettings:
   {
     color: '#fff',
     fontFamily: 'GeosansLight',
-    fontSize: 15
+    fontSize: 13
   },
   exitModalIcon:
   {
-    marginTop: 12,
+    marginTop: 18,
     marginRight: 312,
-    width: 30
+    width: 30,
+    marginBottom: 80
   },
   profileContainerInPlace:
   {
@@ -377,8 +320,7 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 170,
-    marginTop: 20
+    height: 170
   },
   signOut:
   {
@@ -393,7 +335,6 @@ const styles = {
   {
     height: 40,
     width: 300,
-    marginBottom: 50,
     flexDirection: 'row'
 
   },

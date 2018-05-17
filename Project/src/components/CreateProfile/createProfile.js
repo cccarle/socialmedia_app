@@ -9,11 +9,37 @@ import {
 import { Tile, Button, Icon } from 'react-native-elements'
 import { Spinner } from '../common'
 import { connect } from 'react-redux'
-import { nameChanged, ageChanged, createProfiles, updateGender} from '../../actions'
+import { nameChanged, ageChanged, createProfiles, updateGender } from '../../actions'
 import ProfilePictureHandeler from '../../utils/ProfilePictureHandeler'
 import styles from './CreateProfile.style'
+import {firebaseRef} from '../../firebase/firebase'
+import Geocoder from 'react-native-geocoding'
 
 class createProfile extends Component {
+  componentDidMount () {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { currentUser } = firebaseRef.auth()
+
+        firebaseRef.database().ref(`/users/${currentUser.uid}/profile`)
+        .update({ latitude: position.coords.latitude, longitude: position.coords.longitude })
+        .then(() => {
+          console.log('postion added')
+          Geocoder.init('AIzaSyAVjxpARJCUf8w76KlANf7VDBxX_d3j4Os')
+          Geocoder.from(position.coords.latitude, position.coords.longitude)
+        .then(json => {
+        	var addressComponent = json.results[0].address_components[3].long_name
+          console.log(addressComponent)
+          firebaseRef.database().ref(`/users/${currentUser.uid}/profile`)
+          .update({position: addressComponent})
+        })
+        .catch(error => console.warn(error))
+        })
+      },
+      (error) => console.log(error),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    )
+  }
   onNameChange (text) {
     this.props.nameChanged(text)
   }
@@ -42,7 +68,7 @@ class createProfile extends Component {
 />
 }
         title='Register'
-        titleStyle={{ fontFamily: 'GeosansLight'}}
+        titleStyle={{ fontFamily: 'GeosansLight' }}
         buttonStyle={{
           backgroundColor: '#D1AF46',
           width: 250,
@@ -81,7 +107,7 @@ class createProfile extends Component {
           <ProfilePictureHandeler />
         </View>
         <KeyboardAvoidingView behavior='position'
-          contentContainerStyle={{backgroundColor:'black', height:370}}
+          contentContainerStyle={{backgroundColor: 'black', height: 370}}
           style={styles.inputContainer}>
 
           <TextInput
@@ -108,7 +134,6 @@ class createProfile extends Component {
           <View style={styles.changeStatusButtonContainer}>
 
             <Text style={styles.currentMoodStyle} > Select a gender : </Text>
-
             <Picker
               style={{width: 150, height: 80, marginBottom: 20}}
               selectedValue={this.props.gender}
@@ -119,7 +144,6 @@ class createProfile extends Component {
               <Picker.Item label='♂ ️Male' value='male' />
             </Picker>
           </View>
-
           <View style={styles.spinnerAndButton}>
             {this.renderButton()}
           </View>

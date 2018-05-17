@@ -7,7 +7,7 @@ import CurrentProfileReducer from './CurrentProfileReducer'
 import CurrentModeReducer from './CurrentModeReducer'
 import EditProfileReducer from './EditProfileReducer'
 import GenderReducer from './GenderReducer'
-
+import DescriptionReducer from './DescriptionReducer'
 export default combineReducers({
   auth: AuthReducer,
   create: CreateProfileReducer,
@@ -16,5 +16,6 @@ export default combineReducers({
   profile: CurrentProfileReducer,
   moode: CurrentModeReducer,
   edit: EditProfileReducer,
-  gender: GenderReducer
+  gender: GenderReducer,
+  descriptionText: DescriptionReducer
 })

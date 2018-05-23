@@ -41,7 +41,7 @@ If there´s no profile picture render default avatar image
   renderAvatarOrProfilePic () {
     if (!this.props.profile[0] || this.props.profile[0] === undefined) {
       return <Avatar
-        rounded
+      
         size={265}
         source={require('../../src/assets/user.png')}
         activeOpacity={0.7}
@@ -133,6 +133,8 @@ If there´s no profile picture render default avatar image
         rounded
         source={{ uri: this.state.dp }}
         activeOpacity={0.7}
+        avatarStyle={{borderColor: 'white', borderWidth: 1}}
+
 />
     </TouchableOpacity>) : (
 

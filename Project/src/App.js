@@ -5,6 +5,11 @@ import reducers from './reducers'
 import ReduxThunk from 'redux-thunk'
 import Router from './Router'
 
+/*
+Starting point of the application.
+Creating redux store & Routing.
+*/
+
 class App extends Component {
   render () {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk))

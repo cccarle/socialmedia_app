@@ -14,12 +14,20 @@ import {
 
 import { Actions } from 'react-native-router-flux'
 
+/*
+Listen for changes in the email text input
+*/
+
 export const emailChanged = (text) => {
   return {
     type: EMAIL_CHANGED,
     payload: text
   }
 }
+
+/*
+Listen for changes in the email-password text input
+*/
 
 export const passwordChanged = (text) => {
   return {
@@ -32,6 +40,7 @@ export const passwordChanged = (text) => {
 Sign in - if a user already have created a profile it will be redirected to "selectStatus"
 if a user has created a account but not yet created a profile it will be redirected to "createProfile"
 */
+
 export const loginUser = ({ email, password }) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_USER })
@@ -54,6 +63,10 @@ export const loginUser = ({ email, password }) => {
   }
 }
 
+/*
+Sign out a user
+*/
+
 export const signOut = () => {
   return (dispatch) => {
     dispatch({ type: SIGN_OUT })
@@ -65,20 +78,10 @@ export const signOut = () => {
   }
 }
 
-export const forgotPassword = (text) => {
-  return (dispatch) => {
-    console.log(text)
-    // dispatch({ type: SIGN_OUT })
-    // firebaseRef.auth().signOut().then(function () {
-    //   console.log('Signed Out')
-    // }, function (error) {
-    //   console.error('Sign Out Error', error)
-    // })
-  }
-}
 /*
 Register user - redirected to "createProfile" scene
 */
+
 export const registerUser = ({ email, password }) => {
   return (dispatch) => {
     dispatch({ type: REGISTER_USER })
@@ -92,17 +95,29 @@ export const registerUser = ({ email, password }) => {
   }
 }
 
+/*
+Removes error messages
+*/
 export const deleteErrorMessage = () => {
   return (dispatch) => {
     dispatch({type: DELETE_ERROR})
   }
 }
+
+/*
+If log in success, dispatch LOGIN_USER_SUCESS
+*/
+
 const loginUserSucess = (dispatch, user) => {
   dispatch({
     type: LOGIN_USER_SUCESS,
     payload: user
   })
 }
+
+/*
+If log in fails, dispatch LOGIN_USER_FAIL
+*/
 
 const loginUserFail = (dispatch) => {
   dispatch({ type: LOGIN_USER_FAIL })

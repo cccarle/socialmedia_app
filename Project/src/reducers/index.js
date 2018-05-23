@@ -8,6 +8,11 @@ import CurrentModeReducer from './CurrentModeReducer'
 import EditProfileReducer from './EditProfileReducer'
 import GenderReducer from './GenderReducer'
 import DescriptionReducer from './DescriptionReducer'
+
+/*
+Reducers watch for an action and then updates the state with the new payload
+*/
+
 export default combineReducers({
   auth: AuthReducer,
   create: CreateProfileReducer,

@@ -8,34 +8,41 @@ import {firebaseRef} from '../../firebase/firebase'
 import Geocoder from 'react-native-geocoding'
 
 class SelectStatus extends Component {
+  // Gets the current latitude & longitude, and the Town.
   componentDidMount () {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { currentUser } = firebaseRef.auth()
 
         firebaseRef.database().ref(`/users/${currentUser.uid}/profile`)
-        .update({ latitude: position.coords.latitude, longitude: position.coords.longitude })
-        .then(() => {
-          console.log('postion added')
-          Geocoder.init('AIzaSyAVjxpARJCUf8w76KlANf7VDBxX_d3j4Os')
-          Geocoder.from(position.coords.latitude, position.coords.longitude)
-        .then(json => {
-        	var addressComponent = json.results[0].address_components[3].long_name
-          console.log(addressComponent)
-          firebaseRef.database().ref(`/users/${currentUser.uid}/profile`)
-          .update({position: addressComponent})
-        })
-        .catch(error => console.warn(error))
-        })
+          .update({ latitude: position.coords.latitude, longitude: position.coords.longitude })
+          .then(() => {
+            console.log('postion added')
+            Geocoder.init('AIzaSyAVjxpARJCUf8w76KlANf7VDBxX_d3j4Os')
+            Geocoder.from(position.coords.latitude, position.coords.longitude)
+              .then(json => {
+                var currentTown = json.results[0].address_components[3].long_name
+                firebaseRef.database().ref(`/users/${currentUser.uid}/profile`)
+                  .update({ position: currentTown })
+              })
+              .catch(error => console.warn(error))
+          })
       },
       (error) => console.log(error),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     )
   }
-
+  /*
+  Set the status to true
+  */
+ 
   goOutButtonPress () {
     this.props.upDateStatus({ status: true })
   }
+
+  /*
+  Set the status to false
+  */
 
   notGoOutButtonPress () {
     this.props.upDateStatusToNotGoOut({ status: false })
@@ -52,7 +59,7 @@ class SelectStatus extends Component {
         }}>
 
           <Tile
-            imageSrc={require('../../assets/thihi.png')}
+            imageSrc={require('../../assets/darkgreenbackground.png')}
             imageContainerStyle={{ }}
             title='What are u up for tonight ? '
             featured
@@ -61,7 +68,7 @@ class SelectStatus extends Component {
             captionStyle={{ fontFamily: 'GeosansLight'
             }}
             titleStyle={{fontFamily: 'GeosansLight', fontSize: 55, justifyContent: 'center', alignItems: 'center'}}
-            height={1200}
+            height={1250}
 />
         </View>
         <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>

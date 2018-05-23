@@ -28,6 +28,7 @@ Saves profile to firebase datastore and then redirect to selecStatus scene
 
 export const updateProfile = ({ age, name }) => {
   return (dispatch) => {
+    // Logged in user
     const { currentUser } = firebaseRef.auth()
 
     dispatch({ type: EDIT_PROFILE })
@@ -40,8 +41,12 @@ export const updateProfile = ({ age, name }) => {
   }
 }
 
+/*  
+Listen for changes if onlu the name is changed, and update it.
+*/
 export const updateProfileName = ({ name }) => {
     return (dispatch) => {
+      // Logged in user
       const { currentUser } = firebaseRef.auth()
   
       dispatch({ type: EDIT_PROFILE })
@@ -53,8 +58,15 @@ export const updateProfileName = ({ name }) => {
               })
     }
   }
+
+
+/*  
+Listen for changes if only the age is changed, and update it.
+*/
+
   export const updateProfileAge = ({ age }) => {
     return (dispatch) => {
+      // Logged in user
       const { currentUser } = firebaseRef.auth()
   
       dispatch({ type: EDIT_PROFILE })

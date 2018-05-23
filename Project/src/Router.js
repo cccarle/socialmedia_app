@@ -9,6 +9,10 @@ import EditProfile from './components/EditProfile/EditProfile'
 import Chat from './components/Chatt/Chat'
 import ChatList from './components/ChatList/ChatList'
 
+/*
+Handles the routing of the application.
+*/
+
 const RouterComponent = () => {
   return (
     <Router>

@@ -5,7 +5,6 @@ import { Avatar, Icon, Button, Divider } from 'react-native-elements'
 import { Actions } from 'react-native-router-flux'
 import styles from './ChatList.style'
 import { BlurView } from 'react-native-blur'
-
 import _ from 'lodash'
 
 
@@ -20,24 +19,27 @@ class ChatList extends Component {
             }),
             loading: true
         };
-        this.friendsRef = this.getRef().child('chat')
-        this.user = firebaseRef.auth().currentUser
 
-        console.log(this.props.data)
+        // get all chats from the firebase database
+        this.friendsRef = this.getRef().child('chat')
+        // Ref to the current logged in user
+        this.user = firebaseRef.auth().currentUser
     }
 
+    // Ref to firebase Database
     getRef() {
-        const { currentUser } = firebaseRef.auth()
-
         return firebaseRef.database().ref()
     }
 
 
 
     listenForItems(friendsRef) {
+
+        // Logged in user
         var user = firebaseRef.auth().currentUser;
 
         var data
+
         friendsRef.on('value', (snap) => {
             // get children as an array
             var items = [];
@@ -46,48 +48,49 @@ class ChatList extends Component {
 
             snap.forEach((child) => {
 
-                let a = child.val()
-
-                const users = _.map(a, (val) => {
+                let childsValue = child.val()
+                
+                // Sorting out the keys
+                const users = _.map(childsValue, (val) => {
                     return { ...val }
                 })
-                console.log(users)
-                let ab = users.filter(element => this.user.uid === user.key)
-                console.log(ab)
+
+                // Get the properties i want from the keys in users
                 users.forEach(element => {
 
-                    text = element.text,
-                    avatar = element.avatar,
-                    name = element.name,
-                    friendName = element.nameFriend,
-                    key = element.key,
-                    uid = element.uid,
-                    friendsAvatar = element.friendsAvatar,
-                    friendKey = element.friendKey
-                  
+                        text = element.text,
+                        avatar = element.avatar,
+                        name = element.name,
+                        friendName = element.nameFriend,
+                        key = element.key,
+                        uid = element.uid,
+                        friendsAvatar = element.friendsAvatar,
+                        friendKey = element.friendKey
+
                 });
 
-                    if (this.user.uid === uid ) {
-                        console.log(friendName)
-                        var names = friendName
-                        var avatar = friendsAvatar
-                        var key = friendKey
-                    } else {
-                        console.log(name)
-                        var names = name
-                        var avatar = avatar
-                        var key = key
+                // if the user  render friends name and friendsavatar
+                //  else render name and avatar from the users.element
+                if (this.user.uid === uid) {
+                    var names = friendName
+                    var avatar = friendsAvatar
+                    var key = friendKey
+                } else {
+                    var names = name
+                    var avatar = avatar
+                    var key = key
+                }
 
-                    }
+                // Adds all properties to items array
                 items.push({
                     name: names,
                     text: text,
                     profilAvatar: avatar,
                     key: key
                 });
-
             });
 
+            // Updates the state with items array
             this.setState({
                 dataSource: this.state.dataSource.cloneWithRows(items),
                 loading: false
@@ -99,6 +102,11 @@ class ChatList extends Component {
     componentDidMount() {
         this.listenForItems(this.friendsRef);
     }
+
+/*
+Renders out a profile avatar, name and the latest message from the rowData
+*/
+
     renderRow = (rowData) => {
 
         let userData = {
@@ -108,7 +116,6 @@ class ChatList extends Component {
         }
         return <TouchableOpacity onPress={() => Actions.chat({ data: userData })}>
             <Divider style={{ backgroundColor: 'white' }} />
-
             <View style={styles.container}>
                 <Avatar
                     size='medium'

@@ -4,8 +4,12 @@ import {
     DESCRIPTION_TEXT_CHANGED
 } from './types'
 
+/*
+Listen for changes in description text and updates it to the firebase database
+*/
 export const descriptionTextChanged = (descriptionText) => {
   return (dispatch) => {
+    // Logged in user
     const { currentUser } = firebaseRef.auth()
 
     dispatch({ type: DESCRIPTION_TEXT_CHANGED,

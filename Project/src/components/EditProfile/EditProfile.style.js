@@ -39,7 +39,8 @@ const styles = {
     justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'row',
-    marginBottom: 20
+    marginBottom: 20,
+    marginLeft: 30
   },
   currentMoodStyle:
   {

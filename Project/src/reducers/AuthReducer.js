@@ -1,7 +1,6 @@
-
 /*
 Reducers watch for an action and then updates the state with the new payload
- */
+*/
 
 import {
   EMAIL_CHANGED,

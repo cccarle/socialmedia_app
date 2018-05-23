@@ -4,7 +4,8 @@ import {
   Picker,
   TextInput,
   KeyboardAvoidingView,
-  Text
+  Text,
+  Keyboard
 } from 'react-native'
 import { Tile, Button, Icon } from 'react-native-elements'
 import { Spinner } from '../common'
@@ -12,46 +13,39 @@ import { connect } from 'react-redux'
 import { nameChanged, ageChanged, createProfiles, updateGender } from '../../actions'
 import ProfilePictureHandeler from '../../utils/ProfilePictureHandeler'
 import styles from './CreateProfile.style'
-import {firebaseRef} from '../../firebase/firebase'
-import Geocoder from 'react-native-geocoding'
 
 class createProfile extends Component {
-  componentDidMount () {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { currentUser } = firebaseRef.auth()
+  /*
+  Listen for changes in the name text input
+  */
 
-        firebaseRef.database().ref(`/users/${currentUser.uid}/profile`)
-        .update({ latitude: position.coords.latitude, longitude: position.coords.longitude })
-        .then(() => {
-          console.log('postion added')
-          Geocoder.init('AIzaSyAVjxpARJCUf8w76KlANf7VDBxX_d3j4Os')
-          Geocoder.from(position.coords.latitude, position.coords.longitude)
-        .then(json => {
-        	var addressComponent = json.results[0].address_components[3].long_name
-          console.log(addressComponent)
-          firebaseRef.database().ref(`/users/${currentUser.uid}/profile`)
-          .update({position: addressComponent})
-        })
-        .catch(error => console.warn(error))
-        })
-      },
-      (error) => console.log(error),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-    )
-  }
   onNameChange (text) {
     this.props.nameChanged(text)
   }
+
+  /*
+  Listen for changes in the age text input
+  */
 
   onAgeChange (number) {
     this.props.ageChanged(number)
   }
 
+  /*
+  When the button is press call createPRofiles with the name and the age
+  Di smisses the keyboard.
+  */
+
   onButtonPress () {
     const {name, age} = this.props
     this.props.createProfiles({ name, age})
+    Keyboard.dismiss()
   }
+
+  /*
+  If the state is set to loading render spinner
+  else render the button.
+  */
 
   renderButton () {
     if (this.props.loading) {
@@ -65,8 +59,8 @@ class createProfile extends Component {
             type='material-community'
             size={20}
             color='white'
-/>
-}
+          />
+        }
         title='Register'
         titleStyle={{ fontFamily: 'GeosansLight' }}
         buttonStyle={{
@@ -80,18 +74,17 @@ class createProfile extends Component {
 
         }}
         onPress={this.onButtonPress.bind(this)}
-/>
+      />
     )
   }
 
   render () {
-    console.log(this.props.gender)
     return (
       <View style={styles.container}>
 
         <View style={styles.backgroundTile}>
           <Tile
-            imageSrc={require('../../assets/thihi.png')}
+            imageSrc={require('../../assets/darkgreenbackground.png')}
             imageContainerStyle={{ }}
             activeOpacity={1}
             title='Create Profile'
@@ -103,9 +96,15 @@ class createProfile extends Component {
           />
 
         </View>
+
+        {/* Profile Picture */}
+
         <View style={styles.uploadImageContainer} >
           <ProfilePictureHandeler />
         </View>
+
+        {/* Text inputs */}
+
         <KeyboardAvoidingView behavior='position'
           contentContainerStyle={{backgroundColor: 'black', height: 370}}
           style={styles.inputContainer}>
@@ -130,7 +129,11 @@ class createProfile extends Component {
             style={styles.texts}
 
     />
+
           <View style={styles.hairline} />
+
+          {/* Gender Picker & Button/Spinner */}
+
           <View style={styles.changeStatusButtonContainer}>
 
             <Text style={styles.currentMoodStyle} > Select a gender : </Text>
@@ -139,14 +142,16 @@ class createProfile extends Component {
               selectedValue={this.props.gender}
               onValueChange={gender => this.props.updateGender({ prop: 'gender', gender })}
               itemStyle={{ height: 90, fontSize: 20, color: 'white', fontFamily: 'GeosansLight' }}>
-              <Picker.Item label='👫 Select in list' value='' />
+              <Picker.Item label='👫 Select in list' value='all' />
               <Picker.Item label='♀ Female' value='female' />
               <Picker.Item label='♂ ️Male' value='male' />
             </Picker>
           </View>
+          
           <View style={styles.spinnerAndButton}>
             {this.renderButton()}
           </View>
+
         </KeyboardAvoidingView>
 
       </View>

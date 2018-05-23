@@ -20,7 +20,7 @@ class LogInForm extends Component {
     }
   }
 
-    // toggle if to show modal or not
+  // toggle if to show modal or not
   toggleModal () {
     this.setState({ isModalVisible: !this.state.isModalVisible })
     this.props.deleteErrorMessage()
@@ -32,7 +32,7 @@ class LogInForm extends Component {
     this.notificationUnsubscribe()
   }
 
-    // when user write something, create a action creator
+  // when user write something, create a action creator
   onEmailChange (text) {
     this.props.emailChanged(text)
   }
@@ -43,11 +43,12 @@ class LogInForm extends Component {
 
   // Try to log  in with email and password
   onButtonPress () {
-    const {email, password} = this.props
-    this.props.loginUser({email, password})
+    const { email, password } = this.props
+    this.props.loginUser({ email, password })
     Keyboard.dismiss()
   }
 
+  // Send a resetlink to the email that is provided.
   onButtonPress2 (email) {
     var that = this
 
@@ -55,6 +56,7 @@ class LogInForm extends Component {
     firebaseRef.auth().sendPasswordResetEmail(emailToResetPassword).then(function (user) {
       console.log('A Password Reset has been send to the provided email')
     }).then(function () {
+      // close modal & delete error messages
       that.toggleModal()
       this.props.deleteErrorMessage()
     }).catch(function (error) {
@@ -63,29 +65,17 @@ class LogInForm extends Component {
     })
   }
 
-  errorSendNewPassword (error) {
-    console.log(error)
-    if (error) {
-      return (
-        <View>
-          <Text style={styles.errorTextStyle}>
-            Something went Wrong
-          </Text>
-        </View>
-      )
-    }
-  }
   // If auth fails, shows an error message
   renderError () {
     if (this.props.error) {
       return (
-        <View style={{flexDirection: 'column'}}>
+        <View style={{ flexDirection: 'column' }}>
           <Text style={styles.errorTextStyle}>
             {this.props.error}
           </Text>
 
           <Text style={styles.errorTextStyleForgottPassword} onPress={this.toggleModal.bind(this)}>
-            Forgot password ?<Text style={{textDecorationLine: 'underline'}}> Click here.</Text>
+            Forgot password ?<Text style={{ textDecorationLine: 'underline' }}> Click here.</Text>
           </Text>
         </View>
       )
@@ -110,13 +100,12 @@ class LogInForm extends Component {
             type='material-community'
             size={20}
             color='white'
-/>
-}
+          />
+        }
         title='Log In'
-        titleStyle={{fontFamily: 'GeosansLight'}}
+        titleStyle={{ fontFamily: 'GeosansLight' }}
         buttonStyle={{
           backgroundColor: '#D1AF46',
-          // backgroundColor: '#2C4D69',
           width: 250,
           height: 40,
           marginLeft: 45,
@@ -126,7 +115,7 @@ class LogInForm extends Component {
 
         }}
         onPress={this.onButtonPress.bind(this)}
-/>
+      />
     )
   }
 
@@ -142,17 +131,20 @@ class LogInForm extends Component {
 
           <Tile
             imageSrc={require('../../assets/loginback2.jpg')}
-            imageContainerStyle={{ }}
+            imageContainerStyle={{}}
             title='Who´s Out?'
             activeOpacity={1}
             featured
             caption='Meet New People'
-            captionStyle={{ fontFamily: 'GeosansLight'
+            captionStyle={{
+              fontFamily: 'GeosansLight'
             }}
-            titleStyle={{fontFamily: 'Meatbuckets', fontSize: 55, justifyContent: 'center', alignItems: 'center'}}
+            titleStyle={{ fontFamily: 'Meatbuckets', fontSize: 55, justifyContent: 'center', alignItems: 'center' }}
             icon={{ name: 'zoom-in', color: 'white', size: 50 }}
             height={1200}
-/>
+          />
+
+          {/* Forgot password modal */}
 
           <Modal isVisible={this.state.isModalVisible}
             onSwipe={() => this.setState({ isModalVisible: false })}
@@ -163,41 +155,45 @@ class LogInForm extends Component {
             animationInTiming={270}
           >
 
-            <View style={{ flex: 1, flexDirection: 'row'}}>
-              <KeyboardAvoidingView behavior='position' contentContainerStyle={{marginTop: 30}}
+            <View style={{ flex: 1, flexDirection: 'row' }}>
+              <KeyboardAvoidingView behavior='position' contentContainerStyle={{ marginTop: 30 }}
                 style={styles.inputContainer} >
 
-                <View style={{marginTop: 0}}>
+                <View style={{ marginTop: 0 }}>
                   <View style={styles.exitModalIcon}>
                     <Icon
                       name='clear'
                       type='clear'
                       color='#FFF'
                       onPress={this.toggleModal.bind(this)}
-                />
+                    />
                   </View>
 
-                  <Text style={{marginTop: 50, marginLeft: 28, fontFamily: 'GeosansLight', fontSize: 45, justifyContent: 'center', alignItems: 'center', color: 'white'}}>
-                Forgot Password ?
+                  <Text style={{ marginTop: 50, marginLeft: 28, fontFamily: 'GeosansLight', fontSize: 45, justifyContent: 'center', alignItems: 'center', color: 'white' }}>
+                    Forgot Password ?
                 </Text>
+
                   <Image
                     style={{ width: 145, height: 145, marginTop: 100, marginBottom: 60, marginLeft: 95 }}
                     source={require('../../assets/mail.png')}
-        />
+                  />
 
-                  <Text style={{marginBottom: 80, marginLeft: 30, fontFamily: 'GeosansLight', fontSize: 15, justifyContent: 'center', alignItems: 'center', color: 'white'}}>
-               No worries, just enter your email & get a new one !
+                  <Text style={{ marginBottom: 80, marginLeft: 30, fontFamily: 'GeosansLight', fontSize: 15, justifyContent: 'center', alignItems: 'center', color: 'white' }}>
+                    No worries, just enter your email & get a new one !
                 </Text>
+
                   <TextInput
                     placeholder='Email'
                     placeholderTextColor='white'
                     returnKeyType='next'
                     keyboardType='email-address'
                     style={styles.texts2}
-                    onChangeText={(email) => this.setState({email})}
+                    onChangeText={(email) => this.setState({ email })}
                     value={this.state.email}
-/>
+                  />
+
                   <View style={styles.hairline2} />
+                  
                   <View>
                     <Button
                       icon={
@@ -206,10 +202,10 @@ class LogInForm extends Component {
                           type='material-community'
                           size={20}
                           color='white'
-/>
-}
+                        />
+                      }
                       title='Send New Password'
-                      titleStyle={{fontFamily: 'GeosansLight'}}
+                      titleStyle={{ fontFamily: 'GeosansLight' }}
                       buttonStyle={{
                         backgroundColor: '#D1AF46',
                         width: 250,
@@ -221,7 +217,7 @@ class LogInForm extends Component {
 
                       }}
                       onPress={this.onButtonPress2.bind(this)}
-/>
+                    />
                   </View>
                 </View>
               </KeyboardAvoidingView>
@@ -239,8 +235,10 @@ class LogInForm extends Component {
             keyboardType='email-address'
             onChangeText={this.onEmailChange.bind(this)}
             style={styles.texts}
-      />
+          />
+
           <View style={styles.hairline} />
+          
           <TextInput
             placeholder='Password'
             placeholderTextColor='white'
@@ -250,20 +248,24 @@ class LogInForm extends Component {
             secureTextEntry
             style={styles.texts}
 
-      />
+          />
+
           <View style={styles.hairline} />
-          <View style={{marginBottom: 40}}>
+          
+          <View style={{ marginBottom: 40 }}>
             {this.renderError()}
           </View>
+
           <View style={styles.spinnerAndButton}>
             {this.renderButton()}
           </View>
+
         </KeyboardAvoidingView>
 
-        <Text style={styles.descriptionText} onPress={this.renderRegisterScreen.bind(this)}
-        >
-        Not a account ? <Text style={{textDecorationLine: 'underline'}}>Register here.</Text>
+        <Text style={styles.descriptionText} onPress={this.renderRegisterScreen.bind(this)}>
+          Not a account ? <Text style={{ textDecorationLine: 'underline' }}>Register here.</Text>
         </Text>
+        
       </View>
     )
   }

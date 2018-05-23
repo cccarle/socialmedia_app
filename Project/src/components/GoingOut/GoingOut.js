@@ -4,8 +4,8 @@ import { ButtonGroup } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { fetchList, fetchProfileData } from '../../actions'
 import _ from 'lodash'
-import HeaderBlack from '../common/HeaderBlack'
-import ListUserItem from './ListUserItem'
+import HeaderBlack from '../Header/HeaderBlack'
+import ListUserItem from '../ListUserItem/ListUserItem'
 import styles from './GoingOut.style'
 import { BlurView } from 'react-native-blur'
 
@@ -26,8 +26,6 @@ class GoingOut extends Component {
     this.props.fetchProfileData()
     this.createDataSource(this.props)
   }
-
-
 
   componentWillReceiveProps (nextProps) {
     // nextProps are the next set of props that this component
@@ -85,7 +83,7 @@ class GoingOut extends Component {
     return (
 
       <ImageBackground
-        source={require('../../assets/ssss.jpg')}
+        source={require('../../assets/goingOutBackground.jpg')}
         style={styles.container}
          >
 

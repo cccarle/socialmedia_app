@@ -1,8 +1,6 @@
 
 import React, {Component} from 'react'
 import {
-    View,
-    Text,
     StyleSheet,
     ImageBackground
 } from 'react-native'
@@ -17,12 +15,13 @@ export default class Chat extends Component {
 
     const { currentUser } = firebaseRef.auth()
 
+    // Gets value from the current users data
     var currentUserData
     firebaseRef.database().ref(`/users/${currentUser.uid}/profile`).ref.on('value', function (snapshot) {
-      console.log(snapshot.val())
       currentUserData = snapshot.val()
     })
 
+    // Current logged in user
     this.user = firebaseRef.auth().currentUser
 
     // chat friends data
@@ -35,24 +34,22 @@ export default class Chat extends Component {
     this.onSend = this.onSend.bind(this)
   }
 
-  // generateChatId () {
-  //   if (this.user.uid > this.friend.key) { return `${this.user.uid}-${this.friend.key}` } else { return `${this.friend.key}-${this.user.uid}` }
-  // }
-
+  // Generate a chat id from the current users key & and the friends users.
   generateChatId () {
     if (this.user.uid > this.friend.key) return `${this.user.uid}-${this.friend.key}`
     else return `${this.friend.key}-${this.user.uid}`
   }
+
+  // Get firebase database reference
   getRef () {
     return firebaseRef.database().ref('chat')
   }
 
   listenForItems (chatRef) {
     chatRef.on('value', (snap) => {
-            // get children as an array
+    // get children as an array
       var items = []
 
-      console.log(this.userData)
       snap.forEach((child) => {
         var avatar = this.props.data.profile_picture
         var name = this.friend.key == this.user.uid ? this.userData.name : this.friend.name
@@ -83,14 +80,10 @@ export default class Chat extends Component {
     this.chatRefData.off()
   }
 
+  // When a message is send , include both current users profile data & the friends users data.
   onSend (messages = []) {
-        // this.setState({
-        //     messages: GiftedChat.append(this.state.messages, messages),
-        // });
     messages.forEach(message => {
-      console.log(message)
       var now = new Date().getTime()
-
       var name = this.friend.name == this.user.name ? this.userData.name : this.friend.name
 
       this.chatRef.push({
@@ -108,6 +101,7 @@ export default class Chat extends Component {
       })
     })
   }
+
   render () {
     return (
       <ImageBackground
@@ -130,12 +124,3 @@ export default class Chat extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'stretch',
-    marginRight: 10,
-    marginLeft: 10
-  }
-})

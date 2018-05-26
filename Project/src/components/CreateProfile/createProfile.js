@@ -43,6 +43,7 @@ class createProfile extends Component {
   }
 
   /*
+  
   If the state is set to loading render spinner
   else render the button.
   */

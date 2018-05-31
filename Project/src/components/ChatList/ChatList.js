@@ -21,41 +21,49 @@ class ChatList extends Component {
         };
 
         // get all chats from the firebase database
+
         this.friendsRef = this.getRef().child('chat')
+        
         // Ref to the current logged in user
+
         this.user = firebaseRef.auth().currentUser
     }
 
     // Ref to firebase Database
+    
     getRef() {
         return firebaseRef.database().ref()
     }
 
-
-
     listenForItems(friendsRef) {
 
         // Logged in user
-        var user = firebaseRef.auth().currentUser;
+
+        var user = firebaseRef.auth().currentUser.uid;
 
         var data
 
         friendsRef.on('value', (snap) => {
             // get children as an array
             var items = [];
-            var as = []
             let snaps = snap.val()
 
-            snap.forEach((child) => {
+            console.log(snaps)
+        
+            // if this.current
+        
+        snap.forEach((child) => {
 
                 let childsValue = child.val()
                 
                 // Sorting out the keys
+    
                 const users = _.map(childsValue, (val) => {
                     return { ...val }
                 })
 
                 // Get the properties i want from the keys in users
+
                 users.forEach(element => {
 
                         text = element.text,
@@ -71,6 +79,7 @@ class ChatList extends Component {
 
                 // if the user  render friends name and friendsavatar
                 //  else render name and avatar from the users.element
+
                 if (this.user.uid === uid) {
                     var names = friendName
                     var avatar = friendsAvatar
@@ -82,6 +91,7 @@ class ChatList extends Component {
                 }
 
                 // Adds all properties to items array
+
                 items.push({
                     name: names,
                     text: text,
@@ -91,6 +101,7 @@ class ChatList extends Component {
             });
 
             // Updates the state with items array
+            
             this.setState({
                 dataSource: this.state.dataSource.cloneWithRows(items),
                 loading: false

@@ -43,7 +43,7 @@ class createProfile extends Component {
   }
 
   /*
-  
+
   If the state is set to loading render spinner
   else render the button.
   */
@@ -148,7 +148,7 @@ class createProfile extends Component {
               <Picker.Item label='♂ ️Male' value='male' />
             </Picker>
           </View>
-          
+
           <View style={styles.spinnerAndButton}>
             {this.renderButton()}
           </View>

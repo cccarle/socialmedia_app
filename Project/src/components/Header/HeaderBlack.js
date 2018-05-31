@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, Picker, TextInput, TouchableOpacity } from 'react-native'
-import { Header, Icon, Avatar } from 'react-native-elements'
+import { Header, Icon, Avatar, Button } from 'react-native-elements'
 import _ from 'lodash'
 import { Actions } from 'react-native-router-flux'
 import { fetchProfileData, signOut, currentMood, descriptionTextChanged } from '../../actions'
@@ -28,12 +28,15 @@ class HeaderBlack extends Component {
     this.profile()
     this.props.fetchProfileData()
   }
+
   // Render editProfile Scene & Closes modal
+
   changeProfile () {
     Actions.editProfile()
     this.toggleModal()
   }
   // Render selectStatus Scene & Closes modal
+
   changeStatus () {
     Actions.selectStatus()
     this.toggleModal()
@@ -43,7 +46,9 @@ class HeaderBlack extends Component {
     Actions.chatList({ data: this.props.profile })
     this.toggleModal()
   }
+
   // Signs out the user, close modal and render Sign in Scene
+
   signOut () {
     Actions.login()
     this.toggleModal()
@@ -51,11 +56,13 @@ class HeaderBlack extends Component {
   }
 
   // Listen for changes in the descripotion text
+
   descriptionText (text) {
     this.props.descriptionTextChanged(text)
   }
 
   // When modal is true/visibal show this content
+
   profile () {
     if (this.state.isModalVisible === true) {
       return (
@@ -71,20 +78,7 @@ class HeaderBlack extends Component {
           <View style={styles.profileDataContainer}>
             <Text style={styles.profileDataSettings} >{this.props.profile[0].name} {this.props.profile[0].age} </Text>
           </View>
-
-          <View style={styles.editProfileDataSettingsContainer}>
-            <Text style={styles.editProfileDataSettings} onPress={this.changeProfile.bind(this)}> Edit Profile </Text>
-            <Icon
-              iconStyle={{ marginBottom: 10 }}
-              containerStyle={{ marginBottom: 10 }}
-              size={13}
-              name='cog'
-              type='font-awesome'
-              color='#FFF'
-              onPress={this.changeProfile.bind(this)}
-            />
-          </View>
-
+          
         </View>
       )
     }
@@ -158,9 +152,8 @@ class HeaderBlack extends Component {
             color='#FFF'
             size={25}
             iconStyle={{ marginTop: 15 }}
-
           />
-          <Text style={{ color: 'white', marginTop: 5, marginBottom: 15 }}> {this.props.profile[0].position} </Text>
+          <Text style={{ color: 'white', marginTop: 5, marginBottom: 15, textAlign: 'center' }}> {this.props.profile[0].position} </Text>
         </View>
       )
     }
@@ -219,8 +212,8 @@ class HeaderBlack extends Component {
             animationIn='slideInDown'
             animationInTiming={270}
           >
-            <View style={{ flexDirection: 'row', marginTop: 10 }}>
-              <View style={styles.exitModalIcon}>
+            <View style={{ flexDirection: 'row', marginTop: 20 }}>
+              <View>
                 <Icon
                   name='clear'
                   type='clear'
@@ -229,16 +222,22 @@ class HeaderBlack extends Component {
                 />
               </View>
 
-              <View style={styles.signOut}>
-                <Text style={styles.editProfileDataSettings} onPress={this.signOut.bind(this)}>Sign Out</Text>
+              <View style={{ position: 'absolute', right: 0, flexDirection: 'row'}}>
+                <View>
+                  <Button
+                    raised
+                    title='Sign Out'
+                    titleStyle={{ fontFamily: 'GeosansLight', fontSize: 12, textAlign: 'center', justifyContent: 'center' }}
+                    buttonStyle={{ backgroundColor: 'transparent'}}
+                    onPress={this.signOut.bind(this)}
+                  />
+                </View>
               </View>
             </View>
 
             {/* Renders profile avatar-mood and location */}
 
-            <View style={styles.profileContainerInPlace}>
-              {this.profile()}
-            </View>
+            {this.profile()}
 
             <View style={styles.iconsInModal}>
 

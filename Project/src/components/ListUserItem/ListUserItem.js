@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import { Avatar, Icon, Button } from 'react-native-elements'
 import Modal from 'react-native-modal'
 import { Actions } from 'react-native-router-flux'
@@ -67,7 +67,6 @@ class ListUserItem extends Component {
         source={{ uri: this.props.user.profile_picture }}
         avatarStyle={{ borderColor: '#302F30', borderWidth: 1 }}
         activeOpacity={0.7}
-        onPress={this.toggleModal.bind(this)}
       />
     }
   }
@@ -75,6 +74,7 @@ class ListUserItem extends Component {
   /*
    Render Profile picture, name, age, current mood, and location.
     */
+   
   profile () {
     if (this.state.isModalVisible === true) {
       return (
@@ -141,7 +141,7 @@ class ListUserItem extends Component {
         flex: 1
       }}>
 
-        <View style={styles.container}>
+        <TouchableOpacity onPress={this.toggleModal.bind(this)} style={styles.container}>
           {this.renderAvatarOrSpinner()}
           <View style={styles.textContainer}>
             <Text style={styles.text}>
@@ -154,7 +154,7 @@ class ListUserItem extends Component {
               {this.renderMood()}
             </Text>
           </View>
-        </View>
+        </TouchableOpacity>
 
         <Modal isVisible={this.state.isModalVisible}
           onSwipe={() => this.setState({ isModalVisible: false })}

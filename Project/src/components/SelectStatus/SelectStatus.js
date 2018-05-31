@@ -9,6 +9,7 @@ import Geocoder from 'react-native-geocoding'
 
 class SelectStatus extends Component {
   // Gets the current latitude & longitude, and the Town.
+
   componentDidMount () {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -32,10 +33,11 @@ class SelectStatus extends Component {
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     )
   }
+
   /*
   Set the status to true
   */
- 
+
   goOutButtonPress () {
     this.props.upDateStatus({ status: true })
   }
@@ -72,13 +74,13 @@ class SelectStatus extends Component {
 />
         </View>
         <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
-          <TouchableHighlight underlayColor='transparent' style={{ }}onPress={() => this.goOutButtonPress()} >
+          <TouchableHighlight underlayColor='transparent' onPress={() => this.goOutButtonPress()} >
             <Image
               style={{ width: 145, height: 145 }}
               source={require('../../assets/pint1.png')}
         />
           </TouchableHighlight>
-          <TouchableHighlight underlayColor='transparent' style={{ }}onPress={() => this.notGoOutButtonPress()} >
+          <TouchableHighlight underlayColor='transparent' onPress={() => this.notGoOutButtonPress()} >
 
             <Image
               style={{ width: 145, height: 145 }}
@@ -86,12 +88,12 @@ class SelectStatus extends Component {
         />
           </TouchableHighlight>
         </View>
-        <View style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingTop: 5, marginLeft: 18}} >
-          <Text style={{fontFamily: 'GeosansLight', color: 'white'}}> Im going out </Text>
-          <Text style={{fontFamily: 'GeosansLight', color: 'white', marginLeft: 5}}> Nah, i'll be at home</Text>
+        <View style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingTop: 5, marginLeft: 3}} >
+          <Text style={{fontFamily: 'GeosansLight', color: 'white'}}> Im Going Out </Text>
+          <Text style={{fontFamily: 'GeosansLight', color: 'white'}}> I'll Be At Home</Text>
         </View>
 
-        <Text style={{fontFamily: 'GeosansLight', color: 'white', marginLeft: 220}}>  But i still wanna chat</Text>
+        <Text style={{fontFamily: 'GeosansLight', color: 'white', marginLeft: 222, fontSize: 11}}> ( but i want to keep chatting )</Text>
 
       </View>
     )

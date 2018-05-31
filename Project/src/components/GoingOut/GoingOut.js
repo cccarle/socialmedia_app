@@ -107,15 +107,15 @@ class GoingOut extends Component {
           />
           </View>
 
-          <View style={{ height: 610, marginTop: 50 }} >
+          <View style={{ maxHeight: 580, marginTop: 50 }} >
 
             <ListView
               showsVerticalScrollIndicator={false}
               enableEmptySections
               dataSource={this.dataSource}
               renderRow={this.renderRow}
-              // onScroll={this.updateData.bind(this)}
         />
+        
           </View>
         </View>
       </ImageBackground>

@@ -1,36 +1,28 @@
 
 const styles = {
     profileContainer: {
-        position: 'relative',
+        flex:1,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 5,
-        right: 54
+        padding:10
+
     },
     profileDataContainer:
         {
-            position: 'absolute',
             flexDirection: 'row',
             justifyContent: 'center',
-            alignItems: 'baseline',
-            left: 200,
-            top: 70
+            alignItems: 'center',
+            width:160,
+            padding: 5
         },
     profileDataSettings:
         {
             color: '#fff',
             fontFamily: 'GeosansLight',
-            fontSize: 20
-        },
-    editProfileDataSettingsContainer:
-        {
-            position: 'absolute',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'baseline',
-            left: 200,
-            top: 95
+            fontSize: 20,
+            justifyContent: 'center', alignItems: 'center'
+
         },
     editProfileDataSettings:
         {
@@ -44,14 +36,8 @@ const styles = {
             marginRight: 312,
             width: 30
         },
-    profileContainerInPlace:
-        {
-            flex: 1,
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: 370,
-            marginBottom: 30
+        iconStyle: {
+             height:4
         },
     signOut:
         {
@@ -59,7 +45,7 @@ const styles = {
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'baseline',
-            left: 290,
+            left: 250,
             top: 15
         },
     changeStatusButtonContainer:

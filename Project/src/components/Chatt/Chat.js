@@ -1,11 +1,9 @@
-
 import React, {Component} from 'react'
 import {
-    StyleSheet,
     ImageBackground
 } from 'react-native'
 import { GiftedChat } from 'react-native-gifted-chat'
-import {firebaseRef} from '../../firebase/firebase'
+import { firebaseRef } from '../../firebase/firebase'
 export default class Chat extends Component {
   constructor (props) {
     super(props)
@@ -112,6 +110,7 @@ export default class Chat extends Component {
         <GiftedChat
           messages={this.state.messages}
           onSend={this.onSend.bind(this)}
+          
           user={{
             _id: this.user.uid,
             profilepic: this.userData.profile_picture,

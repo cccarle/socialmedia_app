@@ -15,7 +15,7 @@ Handles the routing of the application.
 
 const RouterComponent = () => {
   return (
-    <Router>
+    <Router tintColor='white' >
       <Scene key='root' hideNavBar>
         <Scene key='auth'>
           <Scene key='login' component={LoginForm} hideNavBar />
@@ -58,6 +58,7 @@ const RouterComponent = () => {
             component={Chat}
             navTransparent
             title='Chat'
+            barButtonIconStyle={{tintColor: 'black'}}
             titleStyle={{color: 'white', fontFamily: 'GeosansLight', fontSize: 30}}
         />
           <Scene

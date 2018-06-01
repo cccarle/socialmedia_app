@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, ListView, ImageBackground } from 'react-native'
+import { View, FlatList, ImageBackground } from 'react-native'
 import { ButtonGroup } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { fetchList, fetchProfileData } from '../../actions'
@@ -20,21 +20,15 @@ class GoingOut extends Component {
   }
 
   // Call fetchList with 0 to get access to all users
+  
   componentWillMount () {
     let i = 0
     this.props.fetchList(i)
     this.props.fetchProfileData()
-    this.createDataSource(this.props)
-  }
-
-  componentWillReceiveProps (nextProps) {
-    // nextProps are the next set of props that this component
-    // will be rendered with
-    // this.props is still the old set of props
-    this.createDataSource(nextProps)
   }
 
   // updates the selectedIndex and calls the methods with the selectedindex
+
   updateIndex (selectedIndex) {
     this.setState({selectedIndex})
     this.fetchAllUsers(selectedIndex)
@@ -59,22 +53,8 @@ class GoingOut extends Component {
     }
   }
 
-  // When user scrolls, the list will update
-  updateData () {
-    this.props.fetchList()
-  }
-
-  createDataSource ({ users }) {
-    const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
-    })
-
-    this.dataSource = ds.cloneWithRows(users)
-  }
-
-  // Render out the users
-  renderRow (user) {
-    return <ListUserItem user={user} />
+  renderItem ({ item, index }) {
+    return <ListUserItem user={item} />
   }
 
   render () {
@@ -109,13 +89,11 @@ class GoingOut extends Component {
 
           <View style={{ maxHeight: 580, marginTop: 50 }} >
 
-            <ListView
-              showsVerticalScrollIndicator={false}
-              enableEmptySections
-              dataSource={this.dataSource}
-              renderRow={this.renderRow}
-        />
-        
+            <FlatList
+              data={this.props.users}
+              renderItem={this.renderItem}
+           />
+
           </View>
         </View>
       </ImageBackground>

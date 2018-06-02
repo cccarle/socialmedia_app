@@ -41,9 +41,19 @@ class EditProfile extends Component {
     this.props.ageChangedEdit(number)
   }
 
+     /*
+  Listen for changes for gender
+   */
+
+  listenForGenderChanges (gender) {
+    this.props.updateGender({ prop: 'gender', gender })
+    this.props.fetchProfileData()
+  }
+
    /*
   Updates the information - on conditions if only the name or the age is changeds.
    */
+
   onButtonPress () {
     const {name, age} = this.props
 
@@ -51,8 +61,10 @@ class EditProfile extends Component {
       Actions.goingOut()
     } else if (!this.props.age) {
       this.props.updateProfileName({name})
+      this.props.fetchProfileData()
     } else if (!this.props.name) {
       this.props.updateProfileAge({ age })
+      this.props.fetchProfileData()
     } else {
       Actions.goingOut()
     }
@@ -110,6 +122,8 @@ class EditProfile extends Component {
           alignItems: 'center',
           marginTop: 100 }}>
           <Text style={styles.titleStyles}>Edit Profile</Text>
+          <Text style={styles.underTextStyles}>Click on the image for uploading a new profile picture</Text>
+
         </View>
 
         <View style={styles.uploadImageContainer}>
@@ -147,8 +161,8 @@ class EditProfile extends Component {
             <Text style={styles.currentMoodStyle} > Gender : </Text>
             <Picker
               style={{width: 150, height: 60 }}
-              selectedValue={this.props.gender}
-              onValueChange={gender => this.props.updateGender({ prop: 'gender', gender })}
+              selectedValue={this.props.profile[0].gender}
+              onValueChange={gender => this.listenForGenderChanges(gender)}
               itemStyle={{ height: 50, fontSize: 20, color: 'white', fontFamily: 'GeosansLight' }}>
               <Picker.Item label='👫 Select in list' value='all' />
               <Picker.Item label='♀ Female' value='female' />

@@ -29,7 +29,7 @@ class ListUserItem extends Component {
       return <Text />
     } else {
       return (
-        <Text> {this.props.user.mood} {this.props.user.value} </Text>
+        <Text>   {this.props.user.mood} {this.props.user.value} </Text>
       )
     }
   }
@@ -74,35 +74,40 @@ class ListUserItem extends Component {
   /*
    Render Profile picture, name, age, current mood, and location.
     */
-   
+
   profile () {
     if (this.state.isModalVisible === true) {
       return (
+        <View style={{flexDirection: 'row', padding: 10}}>
 
-        <View style={styles.profileContainer}>
-          <Avatar
-            size={180}
-            rounded
-            source={{ uri: this.props.user.profile_picture }}
-            activeOpacity={0.7}
-            avatarStyle={{ borderColor: '#302F30', borderWidth: 1 }}
+          <View style={styles.profileContainer}>
+            <Avatar
+              size={180}
+              rounded
+              source={{ uri: this.props.user.profile_picture }}
+              activeOpacity={0.7}
+              avatarStyle={{ borderColor: '#302F30', borderWidth: 1 }}
           />
+          </View>
 
           <View style={styles.profileDataContainer}>
-            <Text style={styles.profileDataSettings} >{this.props.user.name} {this.props.user.age} </Text>
-          </View>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={styles.profileDataSettings} >{this.props.user.name} {this.props.user.age}</Text>
+            </View>
 
-          <View style={styles.profileDataPosition}>
-            <Text style={styles.profileDataSettings2} >
-              {this.props.user.position}
-            </Text>
-          </View>
+            <View style={styles.profileDataPosition}>
+              <Text style={styles.profileDataSettings2} >
+                {this.props.user.position}
+              </Text>
+            </View>
 
-          <View style={styles.editProfileDataSettingsContainer}>
-            <Text style={styles.editProfileDataSettings}>{this.props.user.value} </Text>
-          </View>
+            <View style={styles.editProfileDataSettingsContainer}>
+              <Text style={styles.editProfileDataSettings}>{this.props.user.value} </Text>
+            </View>
 
+          </View>
         </View>
+
       )
     }
   }
@@ -137,10 +142,7 @@ class ListUserItem extends Component {
 
   render (user) {
     return (
-      <View style={{
-        flex: 1
-      }}>
-
+      <View>
         <TouchableOpacity onPress={this.toggleModal.bind(this)} style={styles.container}>
           {this.renderAvatarOrSpinner()}
           <View style={styles.textContainer}>
@@ -165,7 +167,7 @@ class ListUserItem extends Component {
           animationInTiming={270}
         >
 
-          <View style={{ flex: 1 }}>
+          <View >
             <View style={{ flexDirection: 'row' }}>
               <View style={styles.exitModalIcon}>
                 <Icon
@@ -177,18 +179,16 @@ class ListUserItem extends Component {
               </View>
             </View>
 
-            <View style={styles.profileContainerInPlace}>
               {this.profile()}
-            </View>
 
             <View style={{
               height: 250,
-              marginBottom: 60,
+              marginBottom: 70,
               marginTop: 60,
               padding: 10,
               justifyContent: 'center',
               alignItems: 'center',
-              backgroundColor: '#3A3A3A',
+              backgroundColor: 'rgba(52, 52, 52, 0.8)',
               borderRadius: 11
             }}>
 
@@ -226,7 +226,6 @@ class ListUserItem extends Component {
             </View>
           </View>
         </Modal>
-
       </View>
     )
   }

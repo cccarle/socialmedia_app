@@ -3,7 +3,7 @@ import {
     } from '../actions/types'
     
     const INITIAL_STATE = {
-      mood: ''
+      mood: 'ss'
     }
     
     export default (state = INITIAL_STATE, action) => {

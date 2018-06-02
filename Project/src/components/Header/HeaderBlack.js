@@ -18,6 +18,7 @@ class HeaderBlack extends Component {
     }
   }
   // Call fetchList to get access to the users
+
   componentWillMount () {
     this.props.fetchProfileData()
   }
@@ -35,6 +36,7 @@ class HeaderBlack extends Component {
     Actions.editProfile()
     this.toggleModal()
   }
+
   // Render selectStatus Scene & Closes modal
 
   changeStatus () {
@@ -61,25 +63,53 @@ class HeaderBlack extends Component {
     this.props.descriptionTextChanged(text)
   }
 
+  // Listen for changes in the current picker & updates the profile
+
+  currentMood (value) {
+    this.props.currentMood({prop: 'mood', value})
+    this.props.fetchProfileData()
+  }
+
   // When modal is true/visibal show this content
 
   profile () {
     if (this.state.isModalVisible === true) {
       return (
-        <View style={styles.profileContainer}>
-          <Avatar
-            size={180}
-            rounded
-            source={{ uri: this.props.profile[0].profile_picture }}
-            activeOpacity={0.7}
-            avatarStyle={{ borderColor: 'white', borderWidth: 1 }}
+        <View style={{flexDirection: 'row', padding: 20, marginBottom: 10, marginTop: 10}}>
+          <View style={styles.profileContainer}>
+            <Avatar
+              size={180}
+              rounded
+              source={{ uri: this.props.profile[0].profile_picture }}
+              activeOpacity={0.7}
+              avatarStyle={{ borderColor: 'white', borderWidth: 1 }}
           />
+          </View>
 
           <View style={styles.profileDataContainer}>
-            <Text style={styles.profileDataSettings} >{this.props.profile[0].name} {this.props.profile[0].age} </Text>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={styles.profileDataSettings} >{this.props.profile[0].name} {this.props.profile[0].age}
+              </Text>
+            </View>
+
+            <TouchableOpacity
+              style={styles.rightSideContainerProfile}
+              onPress={() => this.changeProfile()}>
+              <Text style={styles.editProfileText}>
+              Edit Profile </Text>
+              <Icon
+                iconStyle={{ marginBottom: 10 }}
+                containerStyle={{ marginBottom: 10 }}
+                size={13}
+                name='cog'
+                type='font-awesome'
+                color='#FFF'
+            />
+            </TouchableOpacity>
           </View>
-          
+
         </View>
+
       )
     }
   }
@@ -131,7 +161,7 @@ class HeaderBlack extends Component {
   renderLocation () {
     if (!this.props.profile[0] || this.props.profile[0] === undefined) {
       return (
-        <View style={{ backgroundColor: '#3A3A3A', borderBottomRightRadius: 11, borderTopRightRadius: 11, width: 107, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ backgroundColor: 'rgba(52, 52, 52, 0.8)', borderBottomRightRadius: 11, borderTopRightRadius: 11, width: 107, justifyContent: 'center', alignItems: 'center' }}>
           <Icon
             name='place'
             type='place'
@@ -145,7 +175,7 @@ class HeaderBlack extends Component {
       )
     } else {
       return (
-        <View style={{ backgroundColor: '#3A3A3A', borderBottomRightRadius: 11, borderTopRightRadius: 11, width: 107, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ backgroundColor: 'rgba(52, 52, 52, 0.8)', borderBottomRightRadius: 11, borderTopRightRadius: 11, width: 107, justifyContent: 'center', alignItems: 'center' }}>
           <Icon
             name='place'
             type='place'
@@ -196,7 +226,36 @@ class HeaderBlack extends Component {
     }
   }
 
-  render (profile) {
+  renderMoodPicker () {
+    if (!this.props.profile[0] || this.props.profile[0] === undefined) {
+      return (
+        <Spinner size='large' />
+      )
+    } else {
+      return (
+        <View style={styles.changeStatusButtonContainer}>
+
+          <Text style={styles.currentMoodStyle} > Current Mood : </Text>
+          <Picker
+            selectedValue={this.props.profile[0].value}
+            onValueChange={value => this.currentMood(value)}
+            itemStyle={{ color: 'white', fontFamily: 'GeosansLight' }} style={{ height: 250, width: 230, marginTop: 25 }}>
+            <Picker.Item label='💃 Dancing' value='💃 Dancing' />
+            <Picker.Item label='🎶 Listening To Music' value='🎶 Listening To Music' />
+            <Picker.Item label='🔥 Feeling On Fire' value='🔥 Feeling On Fire' />
+            <Picker.Item label='😴 Feeling Tired' value='😴 Feeling Tired' />
+            <Picker.Item label='🤪 Feeling Crazy' value='🤪 Feeling Crazy' />
+            <Picker.Item label='🤔 Feeling Confused' value='🤔 Feeling Confused' />
+            <Picker.Item label='🍻 Drinking Beer' value='🍻 Drinking Beer' />
+            <Picker.Item label='🍷 Drinking Wine' value='🍷 Drinking Wine' />
+            <Picker.Item label='🍕 Pizza Time' value='🍕 Pizza Time' />
+          </Picker>
+        </View>
+      )
+    }
+  }
+
+  render () {
     return (
       <View>
         <View>
@@ -227,7 +286,7 @@ class HeaderBlack extends Component {
                   <Button
                     raised
                     title='Sign Out'
-                    titleStyle={{ fontFamily: 'GeosansLight', fontSize: 12, textAlign: 'center', justifyContent: 'center' }}
+                    titleStyle={{ fontFamily: 'GeosansLight', fontSize: 15, textAlign: 'center', justifyContent: 'center' }}
                     buttonStyle={{ backgroundColor: 'transparent'}}
                     onPress={this.signOut.bind(this)}
                   />
@@ -242,9 +301,10 @@ class HeaderBlack extends Component {
             <View style={styles.iconsInModal}>
 
               {/* Message icon - renders chatlist onPress */}
+
               <TouchableOpacity
                 onPress={() => this.goToChatList()}
-                style={{ backgroundColor: '#3A3A3A', borderBottomLeftRadius: 11, borderTopLeftRadius: 11, width: 107, justifyContent: 'center', alignItems: 'center' }}>
+                style={{ backgroundColor: 'rgba(52, 52, 52, 0.8)', borderBottomLeftRadius: 11, borderTopLeftRadius: 11, width: 107, justifyContent: 'center', alignItems: 'center' }}>
                 <Icon
                   name='message'
                   type='message'
@@ -260,7 +320,7 @@ class HeaderBlack extends Component {
               {/* Changes icon - renders selectStatus onPress */}
               <TouchableOpacity
                 onPress={this.changeStatus.bind(this)}
-                style={{ backgroundColor: '#3A3A3A', width: 117, justifyContent: 'center', alignItems: 'center' }}>
+                style={{ backgroundColor: 'rgba(52, 52, 52, 0.8)', width: 117, justifyContent: 'center', alignItems: 'center' }}>
                 <Icon
                   name='replay'
                   type='replay'
@@ -276,29 +336,14 @@ class HeaderBlack extends Component {
             </View>
 
             {/* Description Text */}
-            <View style={{ backgroundColor: '#3A3A3A', marginTop: 10, borderRadius: 11, height: 150 }}>
+            <View style={{ backgroundColor: 'rgba(52, 52, 52, 0.8)', marginTop: 10, borderRadius: 11, height: 150 }}>
               {this.renderDescritptionText()}
             </View>
 
             {/* Mood Picker */}
 
-            <View style={styles.changeStatusButtonContainer}>
-              <Text style={styles.currentMoodStyle} > Current Mood : </Text>
-              <Picker
-                selectedValue={this.props.mood}
-                onValueChange={value => this.props.currentMood({ prop: 'mood', value })}
-                itemStyle={{ color: 'white', fontFamily: 'GeosansLight' }} style={{ height: 250, width: 230, marginTop: 25 }}>
-                <Picker.Item label='💃 Dancing' value=' 💃 Dancing' />
-                <Picker.Item label='🎶 Listening To Music' value=' 🎶 Listening To Music' />
-                <Picker.Item label='🔥 Feeling On Fire' value=' 🔥 Feeling On Fire' />
-                <Picker.Item label='😴 Feeling Tired' value=' 😴 Feeling Tired' />
-                <Picker.Item label='🤪 Feeling Crazy' value=' 🤪 Feeling Crazy' />
-                <Picker.Item label='🤔 Feeling Confused' value=' 🤔 Feeling Confused' />
-                <Picker.Item label='🍻 Drinking Beer' value=' 🍻 Drinking Beer' />
-                <Picker.Item label='🍷 Drinking Wine' value=' 🍷 Drinking Wine' />
-                <Picker.Item label='🍕 Pizza Time' value=' 🍕 Pizza Time' />
-              </Picker>
-            </View>
+            {this.renderMoodPicker()}
+
           </Modal>
         </View>
       </View>
@@ -311,9 +356,9 @@ const mapStateToProps = state => {
     return { ...val }
   })
 
-  const { mood } = state.moode
+  const { moode } = state.moode
 
-  return { profile, mood }
+  return { profile, moode}
 }
 
 export default connect(mapStateToProps, { fetchProfileData, signOut, currentMood, descriptionTextChanged })(HeaderBlack)

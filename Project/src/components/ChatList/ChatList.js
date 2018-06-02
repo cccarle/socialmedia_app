@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { View, Text, ListView, TouchableOpacity, ImageBackground } from 'react-native'
 import { firebaseRef } from '../../firebase/firebase'
-import { Avatar, Icon, Button, Divider } from 'react-native-elements'
+import { Avatar, Icon, Button, Divider,Header } from 'react-native-elements'
 import { Actions } from 'react-native-router-flux'
 import styles from './ChatList.style'
 import { BlurView } from 'react-native-blur'
 import _ from 'lodash'
-
+import { Spinner } from '../common'
 
 var navigator;
 class ChatList extends Component {
@@ -157,16 +157,24 @@ Renders out a profile avatar, name and the latest message from the rowData
     render() {
         return (
             <ImageBackground
-                source={require('../../assets/chatBack.jpg')}
-                style={styles.container2}
-            >
+            source={require('../../assets/chatBack.jpg')}
+            style={styles.container2}
+        >            <Header
+            style={{ padding: 0 }}
+            backgroundColor='#1E1E1E'
+            outerContainerStyles={{ height: 120 }}
+            leftComponent={{ icon: 'keyboard_arrow_left', color: '#fff' }}
+            centerComponent={{ text: 'Chat List ', style: { color: '#fff', fontFamily: 'GeosansLight', fontSize: 24 } }}
+            rightComponent={{ icon: 'forum', color: '#fff' }}
+          />
+           
 
-                <BlurView
+                {/* <BlurView
                     style={styles.absolute}
                     blurType='dark'
                     blurAmount={0.001}
                     height={995}
-                />
+                /> */}
                 <View style={{ marginTop: 120 }} >
                     <ListView
                         enableEmptySections

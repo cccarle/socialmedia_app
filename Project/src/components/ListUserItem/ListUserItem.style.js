@@ -44,50 +44,32 @@ const styles = {
     marginBottom: 10
   },
   profileContainer: {
-    position: 'relative',
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
-    padding: 5,
-    right: 54
+    alignItems: 'center'
   },
   profileDataContainer:
   {
-    position: 'absolute',
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'baseline',
-    left: 200,
-    top: 70
+    width: 160,
+    padding: 5,
+    paddingLeft: 10
+
   },
   profileDataSettings:
   {
     color: '#fff',
     fontFamily: 'GeosansLight',
-    fontSize: 20
+    fontSize: 20,
+    justifyContent: 'center',
+    alignItems: 'center'
+
   },
   profileDataSettings2: {
     color: '#fff',
     fontFamily: 'GeosansLight',
     fontSize: 15
-  },
-  profileDataPosition: {
-    position: 'absolute',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'baseline',
-    left: 200,
-    top: 95
-  },
-
-  editProfileDataSettingsContainer:
-  {
-    position: 'absolute',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'baseline',
-    left: 195,
-    top: 112
   },
   editProfileDataSettings:
   {
@@ -97,10 +79,10 @@ const styles = {
   },
   exitModalIcon:
   {
-    marginTop: 18,
     marginRight: 312,
     width: 30,
-    marginBottom: 80
+    marginTop:110,
+    marginBottom:50
   },
   profileContainerInPlace:
   {
@@ -121,9 +103,10 @@ const styles = {
   },
   changeStatusButtonContainer:
   {
-    height: 40,
+    height: 100,
     width: 300,
-    flexDirection: 'row'
+    marginBottom:100,
+    flexDirection: 'row',
 
   },
   buttonStyleChange:

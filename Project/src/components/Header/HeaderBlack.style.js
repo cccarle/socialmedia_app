@@ -1,20 +1,18 @@
 
 const styles = {
     profileContainer: {
-        flex:1,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        padding:10
-
     },
     profileDataContainer:
         {
-            flexDirection: 'row',
+            flexDirection: 'column',
             justifyContent: 'center',
-            alignItems: 'center',
             width:160,
-            padding: 5
+            padding: 5,
+            paddingLeft:10
+
         },
     profileDataSettings:
         {
@@ -30,11 +28,21 @@ const styles = {
             fontFamily: 'GeosansLight',
             fontSize: 15
         },
+        rightSideContainerProfile: {
+            alignContent: 'flex-start',
+             flexDirection:'row'
+        },
     exitModalIcon:
         {
             marginTop: 12,
             marginRight: 312,
             width: 30
+        },
+        editProfileText : {
+            color: 'white',
+            alignContent: 'flex-start',
+            fontFamily: 'GeosansLight',
+
         },
         iconStyle: {
              height:4
@@ -56,7 +64,7 @@ const styles = {
             flexDirection: 'row',
             height: 250,
             marginTop: 10,
-            backgroundColor: '#3A3A3A',
+            backgroundColor: 'rgba(52, 52, 52, 0.8)',
             borderRadius: 11,
             marginBottom: 35
         },

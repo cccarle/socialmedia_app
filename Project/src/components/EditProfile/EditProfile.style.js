@@ -16,6 +16,11 @@ const styles = {
     fontSize: 50,
     color: 'white'
   },
+  underTextStyles: {
+    fontFamily: 'GeosansLight',
+    fontSize: 13,
+    color: 'white'
+  },
   input: {
     color: 'white',
     height: 10,

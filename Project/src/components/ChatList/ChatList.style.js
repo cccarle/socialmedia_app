@@ -1,10 +1,12 @@
 const styles = {
   container: {
-    flex: 1,
-    width: null,
-    height: null,
-    backgroundColor: 'black',
-  }  ,
+    position: 'relative',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+    right: 75
+ },
   container2: {
     flex: 1
   },

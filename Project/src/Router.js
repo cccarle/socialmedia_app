@@ -64,9 +64,9 @@ const RouterComponent = () => {
           <Scene
             key='chatList'
             component={ChatList}
-            hideNavBar
-            // title='Chat List'
-            // titleStyle={{color: 'white', fontFamily: 'GeosansLight', fontSize: 30}}
+            navTransparent
+            title='Chat List'
+            titleStyle={{color: 'white', fontFamily: 'GeosansLight', fontSize: 30}}
         />
         </Scene>
       </Scene>
